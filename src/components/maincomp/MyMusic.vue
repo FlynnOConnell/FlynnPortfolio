@@ -1,0 +1,77 @@
+<script>
+import RecentSpotify from './spotify/RecentSpotify.vue';
+import NowSpotify from './spotify/NowSpotify.vue';
+
+export default {
+    name: "MyMusic",
+    components: { RecentSpotify, NowSpotify }
+};
+
+</script>
+
+<template>
+	<div class="flex flex-row justify-left">
+		<div class="box a">
+            <NowSpotify />
+        </div>
+	</div>
+</template>
+
+<style scoped>
+.wrapper {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: 150px 100px 150px 100px;
+	grid-template-rows: repeat(3, minmax(100px, auto));
+	background-color: transparent;
+}
+
+.box {
+	background-color: transparent;
+	color: #fff;
+	border-radius: 5px;
+	padding: 20px;
+	font-size: 150%;
+}
+
+.box .box {
+	background-color: transparent;
+	color: #444;
+}
+
+.a {
+	grid-column: 1 / 3;
+}
+
+.b {
+	grid-column: 4;
+}
+
+.c {
+	grid-column: 1;
+	grid-row: 2 / 4;
+}
+
+.d {
+	grid-column: 2 / 5;
+	grid-row: 2 / 4;
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-rows: subgrid;
+}
+
+.e {
+	grid-row: 1 / 3;
+	grid-column: 1;
+}
+
+.f {
+	grid-row: 1;
+	grid-column: 2 / 4;
+}
+
+.g {
+	grid-row: 2;
+	grid-column: 3;
+}
+</style>
