@@ -1,69 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useSwipe } from '@/assets/js/swipe';
 
+onMounted(() => {
+    console.log('mounted');
+    console.log(main.value);
 
-const main: Ref<HTMLElement | any> = ref(null);
-let activeIndex: Ref<number | any> = ref(0);
-let reference = ref(null);
-function handleLeftClick() {
+    const count = main.value;
+});
+const main = ref<null | HTMLElement>(null);
 
-    console.log(reference);
-
-    // const nextIndex: number | null =
-    //     activeIndex.value - 1 >= 0
-    //         ? activeIndex.value - 1
-    //         : main.value.childNodes.length - 1;
-    // const currentSlide: HTMLElement | null = document.querySelector(
-    //     `[data-index="${activeIndex.value}"]`
-    // );
-    // const nextSlide: HTMLElement | null = document.querySelector(
-    //     `[data-index="${nextIndex}"]`
-    // );
-    // if (currentSlide && nextSlide != null) {
-    //     currentSlide.dataset.status = 'after';
-    //     nextSlide.dataset.status = 'becoming-active-from-before';
-    // }
-    // if (nextSlide && activeIndex.value != null) {
-    //     setTimeout(() => {
-    //         nextSlide.dataset.status = 'active';
-    //         console.log(activeIndex.value);
-    //         activeIndex.value = nextIndex;
-    //         console.log(activeIndex.value);
-    //     });
-    // }
-}
-
-function handleRightClick() {
-    console.log("right click");
-    const nextIndex: number | null =
-        activeIndex.value + 1 <= main.value.childNodes.length - 1
-            ? activeIndex.value + 1
-            : 0;
-
-    const currentSlide: HTMLElement | null = document.querySelector(
-        `[data-index="${activeIndex.value}"]`
-    );
-    const nextSlide: HTMLElement | null = document.querySelector(
-        `[data-index="${nextIndex}"]`
-    );
-
-    if (currentSlide && nextSlide && activeIndex.value != null) {
-        currentSlide.dataset.status = 'before';
-        nextSlide.dataset.status = 'becoming-active-from-before';
-
-        setTimeout(() => {
-            nextSlide.dataset.status = 'active';
-            activeIndex.value = nextIndex;
-        });
-    }
-}
+console.log(main.value);
+const nodeCount = 4; // TODO: make this reactive to the number of nodes in the DOM
 </script>
 
 <template>
     <main ref="main">
-        <article ref="article" :data-index="0" data-status="active">
-            <div class="article-image-section article-section"></div>
+        <article data-index="0" data-status="active">
+            <div class="article-image-section article-section">
+                <!-- Image Section with Background in CSS -->
+            </div>
             <div class="article-description-section article-section">
                 <p>
                     Neuroscientist, programmer, learner and
@@ -90,7 +46,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @click="handleLeftClick()"
+                    @click="useSwipe(nodeCount, 'left')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-left-long']"
@@ -100,7 +56,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @click="handleRightClick()"
+                    @click="useSwipe(nodeCount, 'right')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-right-long']"
@@ -109,8 +65,10 @@ function handleRightClick() {
                 </button>
             </div>
         </article>
-        <article ref="article" :data-index="1" data-status="inactive">
-            <div class="article-image-section article-section"></div>
+        <article data-index="1" data-status="inactive">
+            <div class="article-image-section article-section">
+                Image Section
+            </div>
             <div class="article-description-section article-section">
                 <p>
                     Hi! I'm Flynn. I'm a Neuroscientist with a love of software,
@@ -125,7 +83,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleLeftClick()"
+                    @click="useSwipe(nodeCount, 'left')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-left-long']"
@@ -135,7 +93,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleRightClick()"
+                    @click="useSwipe(nodeCount, 'right')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-right-long']"
@@ -144,8 +102,10 @@ function handleRightClick() {
                 </button>
             </div>
         </article>
-        <article ref="article" :data-index="2" data-status="inactive">
-            <div class="article-image-section article-section"></div>
+        <article data-index="2" data-status="inactive">
+            <div class="article-image-section article-section">
+                Image Section
+            </div>
             <div class="article-description-section article-section">
                 <p>I uh love the beach?</p>
             </div>
@@ -157,7 +117,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleLeftClick()"
+                    @click="useSwipe(nodeCount, 'left')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-left-long']"
@@ -167,7 +127,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleRightClick()"
+                    @click="useSwipe(nodeCount, 'right')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-right-long']"
@@ -176,8 +136,10 @@ function handleRightClick() {
                 </button>
             </div>
         </article>
-        <article ref="article" :data-index="3" data-status="inactive">
-            <div class="article-image-section article-section"></div>
+        <article data-index="3" data-status="inactive">
+            <div class="article-image-section article-section">
+                Image Section
+            </div>
             <div class="article-description-section article-section">
                 <p>Data Analysis Pipeline here.</p>
             </div>
@@ -189,7 +151,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleLeftClick()"
+                    @click="useSwipe(nodeCount, 'left')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-left-long']"
@@ -199,7 +161,7 @@ function handleRightClick() {
                 <button
                     class="article-nav-button"
                     type="button"
-                    @onclick="handleRightClick()"
+                    @click="useSwipe(nodeCount, 'right')"
                 >
                     <font-awesome-icon
                         :icon="['fas', 'arrow-right-long']"
