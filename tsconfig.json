@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vue-shims.d.ts"],
   "exclude": [
     "./typings/**/*",
     "./built/**/*",
@@ -9,14 +9,20 @@
     "./.vscode/**/*",
     "./.git/**/*",
     "./plugins/*",
+    "node_modules"
    ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "nm/*": ["./node_modules/*"],
     },
     "strict": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
+    "allowJs": true,
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true
   },
   "references": [
     {
