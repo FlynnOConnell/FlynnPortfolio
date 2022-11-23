@@ -2,6 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vue-shims.d.ts"],
   "exclude": [
+
     "./typings/**/*",
     "./built/**/*",
     "./node_modules/**/*",
@@ -17,7 +18,7 @@
       "@/*": ["./src/*"],
       "nm/*": ["./node_modules/*"],
     },
-    "strict": true,
+    "strict": false,
     "isolatedModules": false,
     "allowJs": true,
     "module": "commonjs",
