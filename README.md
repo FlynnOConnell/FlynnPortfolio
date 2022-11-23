@@ -2,7 +2,7 @@
 
 Source code for my website hosted on [DigitalOcean](https://www.digitalocean.com/) and built with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## My JS/TS Framework experiences thus far
 
 I tested many other frameworks and SSR configurations, Next, Nuxt, React, Angular, Flask and Django primarily. Vue felt the most natural and polished: thorough and to the point documentation and clean state tracking. Plus seameless 'typescript' support, so I think I'm going to settle on vue3.
 
