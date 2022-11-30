@@ -1,0 +1,430 @@
+/* Path: assets/css/main.css */
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--background-color) !important;
+}
+
+:root {
+    --background-color: rgb(6, 11, 25);
+    --background-color-tw: rgb(15 23 42 / var(--tw-bg-opacity));
+    --border-color: rgb(255, 255, 255, 0.1);
+    --border-color-blue: #004daa;
+    --blue-dark: #004daa;
+    --blue-light: #0087ca;
+    --highlight-color: #0087ca;
+    --text-color: #e6e2d2;
+    --yt-color: rgb(229, 57, 53);
+    --font-main: SignifierWeb, 'Times New Roman', serif;
+    --tw-bg-opacity: 1;
+}
+
+/* montserrat-regular - latin */
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/montserrat-v25-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+        url('/fonts/Montserrat/montserrat-v25-latin-regular.eot?#iefix')
+            format('embedded-opentype'),
+        /* IE6-IE8 */
+            url('/fonts/Montserrat/montserrat-v25-latin-regular.woff2')
+            format('woff2'),
+        /* Super Modern Browsers */
+            url('/fonts/Montserrat/montserrat-v25-latin-regular.woff')
+            format('woff'),
+        /* Modern Browsers */
+            url('/fonts/Montserrat/montserrat-v25-latin-regular.ttf')
+            format('truetype'),
+        /* Safari, Android, iOS */
+            url('/fonts/Montserrat/montserrat-v25-latin-regular.svg#Montserrat')
+            format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-regular - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/open-sans/open-sans-v34-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+        url('/fonts/open-sans/open-sans-v34-latin-regular.eot?#iefix')
+            format('embedded-opentype'),
+        /* IE6-IE8 */ url('/fonts/open-sans/open-sans-v34-latin-regular.woff2')
+            format('woff2'),
+        /* Super Modern Browsers */
+            url('/fonts/open-sans/open-sans-v34-latin-regular.woff')
+            format('woff'),
+        /* Modern Browsers */
+            url('/fonts/open-sans/fonts/open-sans-v34-latin-regular.ttf')
+            format('truetype'),
+        /* Safari, Android, iOS */
+            url('/fonts/open-sans/open-sans-v34-latin-regular.svg#OpenSans')
+            format('svg'); /* Legacy iOS */
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+a,
+p,
+span {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: var(--text-color);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--highlight-color);
+    transition: color 0.5s ease;
+}
+
+main {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+main > article {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 2fr 0.5fr;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: transform 400ms ease;
+}
+
+main > article > .article-section {
+    height: 100%;
+    display: flex;
+}
+
+main > article > .article-description-section,
+main > article > .article-nav-section {
+    border-left: 1px solid var(--border-color);
+}
+
+main > article > .article-title-section,
+main > article > .article-nav-section {
+    border-top: 1px solid var(--border-color);
+}
+
+main > article:first-child > .article-image-section {
+    background-color: transparent;
+    background-image: url('/images/SFN.jpg');
+}
+
+main > article:nth-child(2) > .article-image-section {
+    background-color: transparent;
+}
+
+main > article:nth-child(3) > .article-image-section {
+    background-color: transparent;
+}
+
+main > article > .article-image-section {
+    background-position: center;
+    background-size: cover;
+}
+
+main > article > .article-description-section {
+    flex-direction: column;
+}
+
+main > article > .article-description-section > p {
+    color: var(--text-color);
+}
+
+main > article > .article-description-section > p > a:hover {
+    text-decoration: underline;
+    transition: text-decoration 0.5s ease;
+}
+
+main > article > .article-title-section {
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    max-height: 150px;
+}
+
+main > article > .article-title-section > h2,
+main > article > .article-title-section > h3,
+main > article > .article-title-section > p,
+main > article > .article-title-section > span {
+    color: var(--text-color);
+}
+
+main > article > .article-title-section > h2 {
+    flex-basis: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bolder;
+    line-height: 3rem;
+    margin: 0px;
+    text-transform: uppercase;
+    flex-grow: 1;
+}
+
+main > article > .article-title-section > i {
+    color: var(--text-color);
+    font-size: 4rem;
+}
+
+main > article > .article-title-section:hover {
+    transition: background-color 0.5s ease;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+main > article > .article-nav-section > .article-nav-button {
+    background-color: transparent;
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+main > article > .article-nav-section > .article-nav-button:hover {
+    transition: background-color 0.5s ease;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+main > article > .article-nav-section > .article-nav-button:nth-child(2) {
+    border-left: 1px solid var(--border-color);
+}
+
+.article-title-section:hover > button > .svg-inline--fa {
+    color: var(--highlight-color) !important;
+    transition: color 0.5s ease !important;
+}
+
+.article-nav-button:hover > .svg-inline--fa {
+    color: var(--highlight-color) !important;
+    transition: color 0.5s ease !important;
+}
+
+.svg-inline--fa:hover {
+    color: var(--highlight-color) !important;
+    transition: color 0.5s ease !important;
+}
+
+.animation-underline {
+    font-weight: bolder;
+    display: inline-block;
+    position: relative;
+}
+
+.animation-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.animation-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+header {
+    color: var(--text-color);
+}
+
+@media (max-width: 1200px) {
+    #nav-mobile-section {
+        flex-basis: calc(100% * 0.75);
+    }
+
+    #nav-logo-section {
+        flex-basis: calc(100% * 0.25);
+    }
+
+    #nav-link-section {
+        flex-basis: calc(100% / 3);
+        gap: 3rem;
+    }
+
+    main {
+        overflow-y: auto;
+    }
+
+    main > article {
+        grid-template-columns: none;
+        grid-template-rows: 1.5fr repeat(3, 0.75fr) 0.25fr;
+        height: max(900px, 100%);
+    }
+
+    main > article > .article-title-section > h2 {
+        font-size: 3rem;
+        line-height: 2.6rem;
+    }
+
+    main > article > .article-title-section > i {
+        font-size: 3rem;
+    }
+
+    main > article > .article-description-section,
+    main > article > .article-nav-section {
+        border-left: none;
+    }
+
+    main > article > .article-image-section {
+        order: 1;
+    }
+
+    main > article > .article-title-section {
+        border-bottom: 1px solid var(--border-color);
+        order: 2;
+    }
+
+    main > article > .article-description-section {
+        justify-content: center;
+        order: 3;
+    }
+
+    main > article > .article-nav-section {
+        border-bottom: 1px solid var(--border-color);
+        order: 4;
+    }
+}
+
+@media (max-width: 800px) {
+    nav {
+        justify-content: space-between;
+    }
+
+    nav[data-toggled='true'] > #nav-mobile-section {
+        transform: translateY(0%);
+    }
+
+    nav[data-toggled='true'] > #nav-toggle-button {
+        border-left: none;
+    }
+
+    nav[data-transitionable='true'] > #nav-mobile-section {
+        transition: transform 400ms ease;
+    }
+
+    nav .nav-section {
+        border-left: none;
+        padding: 1.5rem 1rem;
+    }
+
+    #nav-logo-section > a > i {
+        font-size: 1.5rem;
+        margin-left: 1rem;
+    }
+
+    #nav-mobile-section {
+        background-color: var(--background-color);
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        transform: translateY(-100%);
+    }
+
+    #nav-toggle-button {
+        display: flex;
+    }
+
+    #nav-link-section {
+        flex-basis: 60%;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    #nav-link-section > a {
+        font-size: 3rem;
+    }
+
+    #nav-social-section > a {
+        font-size: 2rem;
+    }
+
+    #nav-contact-section {
+        padding-bottom: 4rem;
+    }
+
+    main > article {
+        grid-template-rows: 1fr repeat(4, 0.5fr);
+        height: max(700px, 100%);
+    }
+
+    main > article > .article-title-section {
+        padding: 1rem;
+    }
+
+    main > article > .article-title-section > h2 {
+        flex-basis: 70%;
+        font-size: 1.75em;
+        line-height: 1.5rem;
+    }
+
+    main > article > .article-title-section > i {
+        font-size: 2rem;
+    }
+
+    main > article > .article-description-section {
+        padding: 2rem;
+    }
+
+    main > article > .article-description-section > p {
+        font-size: 1rem;
+    }
+}
+
+main > article > .article-description-section > p > .source-link {
+    color: var(--highlight-color);
+    display: inline;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.container {
+    padding: 0 1em;
+    max-width: 60rem;
+    min-height: 40vh;
+}
+
+.icon:hover {
+    filter: url(#iconfilter);
+    transition: filter 0.5s ease;
+}

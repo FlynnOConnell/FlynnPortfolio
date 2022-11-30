@@ -1,0 +1,407 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import { computed, ref, onBeforeMount, onMounted } from 'vue';
+import { useActiveIndexStore } from '@/stores/activeIndex';
+import Icon from '@/components/subcomponents/SVGComponent.vue';
+
+const indexStore = useActiveIndexStore();
+const main: any = ref(null);
+
+onMounted(() => {
+    let activeIndex = computed(() => {
+        return indexStore.activeIndex;
+    });
+
+    const currentSlide: HTMLElement = document.querySelector(
+        `[data-index="${activeIndex.value}"]`
+    )!;
+    currentSlide.dataset.status = 'active';
+
+    const otherSlides = document.querySelectorAll(
+        'article[data-index]:not([data-index="' + activeIndex.value + '"])'
+    );
+
+    Array.from(otherSlides).forEach((el) => {
+        if (el instanceof HTMLElement && el.dataset.status === 'active') {
+            console.log('Other slides changed from:', el.dataset.status);
+            el.dataset.status = 'inactive';
+            console.log('to:', el.dataset.status);
+        }
+    });
+});
+
+let article = ref();
+let scientist = ref();
+let engineer = ref();
+
+const playbutton = ref();
+const videoplayer = ref();
+
+function playButton() {
+    var video: any = videoplayer.value;
+    var btn: any = playbutton.value;
+    console.log(video);
+    console.log(btn);
+    if (video.paused) {
+        video.play();
+        btn.innerHTML = 'Pause';
+    } else {
+        video.pause();
+        btn.innerHTML = 'Play';
+    }
+}
+
+function useSwipeLeft() {
+    const nodeLength = main.value.children.length;
+
+    let activeIndex = computed(() => {
+        return indexStore.activeIndex;
+    });
+    const nextIndex =
+        activeIndex.value - 1 >= 0 ? activeIndex.value - 1 : nodeLength - 1;
+
+    const currentSlide: HTMLElement = document.querySelector(
+        `[data-index="${activeIndex.value}"]`
+    )!;
+
+    const nextSlide: HTMLElement = document.querySelector(
+        `[data-index="${nextIndex}"]`
+    )!;
+
+    currentSlide.dataset.status = 'after';
+    nextSlide.dataset.status = 'place-left';
+
+    setTimeout(() => {
+        nextSlide.dataset.status = 'active';
+        indexStore.setIndex(nextIndex);
+    }, 20);
+}
+
+function useSwipeRight() {
+    const nodeLength = main.value.children.length;
+    let activeIndex = computed(() => {
+        return indexStore.activeIndex;
+    });
+
+    const nextIndex =
+        activeIndex.value + 1 <= nodeLength - 1 ? activeIndex.value + 1 : 0;
+
+    const currentSlide: HTMLElement = document.querySelector(
+        `[data-index="${activeIndex.value}"]`
+    )!;
+
+    const nextSlide: HTMLElement = document.querySelector(
+        `[data-index="${nextIndex}"]`
+    )!;
+
+    currentSlide.dataset.status = 'before';
+    nextSlide.dataset.status = 'place-right';
+
+    setTimeout(() => {
+        nextSlide.dataset.status = 'active';
+        indexStore.setIndex(nextIndex);
+    }, 20);
+}
+</script>
+
+<template>
+    <main ref="main">
+        <article ref="article" id="home" data-index="0" data-status="active">
+            <!-- IMAGE SECTION -->
+            <div class="article-image-section article-section relative">
+                <p id="credit" class="text-white absolute top-0 right-0 bold">
+                    Photo credit: <br />
+                    <a
+                        href="https://www.linkedin.com/in/kevin-mohsenian-phd-45020558/"
+                        >Kevin Mohsenian</a
+                    >
+                </p>
+            </div>
+            <!-- DESCRIPTION SECTION -->
+            <div
+                class="article-description-section article-section p-8 flex justify-center"
+            >
+                <div class="h-full w-full flex flex-col justify-between">
+                    <h1>Hello! I'm Flynn.</h1>
+                    <p class="text-2xl">
+                        I
+                        <router-link to="/projects" class="animation-underline">
+                            develop tools...
+                        </router-link>
+                    </p>
+                    <p class="text-2xl">
+                        to study the
+                        <router-link to="/projects" class="animation-underline">
+                            awake, behaving brain.
+                        </router-link>
+                    </p>
+                </div>
+            </div>
+
+            <div class="article-title-section article-section">
+                <h2>Neuroscientist & Software Engineer</h2>
+            </div>
+            <div class="article-nav-section article-section">
+                <button
+                    class="article-nav-button tooltip"
+                    data-text="Software Engineer"
+                    type="button"
+                    @click="useSwipeLeft()"
+                >
+                    <font-awesome-icon :icon="['fas', 'code']" inverse />
+                </button>
+
+                <button
+                    ref="rightButton"
+                    class="article-nav-button tooltip"
+                    data-text="Neuroscientist"
+                    type="button"
+                    @click="useSwipeRight()"
+                >
+                    <font-awesome-icon :icon="['fas', 'brain']" inverse />
+                </button>
+            </div>
+        </article>
+        <article
+            ref="article"
+            id="scientist"
+            data-index="1"
+            data-status="inactive"
+        >
+            <div class="article-image-section article-section relative">
+                <div class="flex flex-grow justify-center">
+                    <div class="video-container relative">
+                        <video
+                            ref="videoplayer"
+                            id="caSignal"
+                            autoplay
+                            muted
+                            loop
+                        >
+                            <source
+                                src="/movies/Ca2Imaging.mp4"
+                                type="video/mp4"
+                            />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="caption">
+                            <h1>Neurons glow when they're active</h1>
+                        </div>
+                        <button
+                            ref="playbutton"
+                            id="myBtn"
+                            class="absolute"
+                            @click="playButton"
+                        >
+                            Pause
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="article-description-section article-section">
+                <div
+                    class="flex flex-col justify-evenly flex-grow text-white relative"
+                >
+                    <h1 class="self-start justify-evenly">
+                        My research objectives:
+                    </h1>
+                    <div
+                        class="relative mx-6 flex flex-col flex-grow justify-evenly self-center"
+                    >
+                        <ul class="flex flex-col flex-grow justify-evenly">
+                            <li>
+                                <strong>Neural Coding Mechanisms:</strong> How
+                                do neurons encode information
+                            </li>
+                            <li>
+                                <strong>Neural Dynamics:</strong> How do neurons
+                                interact with each other
+                            </li>
+                            <li>
+                                <strong>Neuroinflammation:</strong> How does
+                                central inflammation affect eating behaviors
+                            </li>
+                            <li>
+                                <strong>Neuroplasticity:</strong> How does the
+                                brain adapt to changes in the environment
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="article-title-section article-section">
+                <h2>Real-time Brain Activity</h2>
+                <button
+                    @click="$router.push('scientist')"
+                    class="article-nav-button"
+                >
+                    <font-awesome-icon
+                        :icon="['fas', 'circle-chevron-down']"
+                        inverse
+                        size="2x"
+                    />
+                </button>
+            </div>
+            <div class="article-nav-section article-section">
+                <button
+                    class="article-nav-button"
+                    type="button"
+                    @click="useSwipeLeft()"
+                >
+                    <font-awesome-icon :icon="['fas', 'home']" inverse />
+                </button>
+                <button
+                    class="article-nav-button"
+                    type="button"
+                    @click="useSwipeRight()"
+                >
+                    <font-awesome-icon :icon="['fas', 'code']" inverse />
+                </button>
+            </div>
+        </article>
+        <article
+            ref="article"
+            id="engineer"
+            data-index="2"
+            data-status="inactive"
+        >
+            <div class="article-image-section article-section">
+                <div id="linechart"></div>
+            </div>
+            <div class="article-description-section article-section">
+                <h2>My Tech Stack:</h2>
+                <div class="techstack">
+                    <Tooltip position="top" tooltipText="C">
+                        <Icon subfolder="languages" name="C" filter: true />
+                    </Tooltip>
+                </div>
+            </div>
+            <div class="article-title-section article-section">
+                <h2>Software Engineering</h2>
+                <button
+                    @click="$router.push('engineer')"
+                    class="article-nav-button"
+                >
+                    <font-awesome-icon
+                        :icon="['fas', 'circle-chevron-down']"
+                        inverse
+                        size="2x"
+                    />
+                </button>
+            </div>
+            <div class="article-nav-section article-section">
+                <button
+                    class="article-nav-button"
+                    type="button"
+                    @click="useSwipeLeft()"
+                >
+                    <font-awesome-icon :icon="['fas', 'brain']" inverse />
+                </button>
+                <button
+                    class="article-nav-button"
+                    type="button"
+                    @click="useSwipeRight()"
+                >
+                    <font-awesome-icon :icon="['fas', 'home']" inverse />
+                </button>
+            </div>
+        </article>
+    </main>
+</template>
+
+<style scoped>
+#credit {
+    font-size: small;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+main > article[data-status='active'] {
+    transform: translateX(0%);
+}
+
+main > article[data-status='inactive'] {
+    transform: translateX(-100%);
+    transition: none;
+}
+
+main > article[data-status='before'] {
+    transform: translateX(-100%);
+}
+
+main > article[data-status='after'] {
+    transform: translateX(100%);
+}
+
+main > article[data-status='place-left'] {
+    transform: translateX(-100%);
+    transition: none;
+}
+
+main > article[data-status='place-right'] {
+    transform: translateX(100%);
+    transition: none;
+}
+
+ul {
+    list-style: circle outside none;
+}
+
+video {
+    max-width: 100%;
+    width: auto;
+    height: 50%;
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#myBtn {
+    font-size: 18px;
+    background-color: #0000002a;
+    border-radius: 15px;
+    color: #ffffff;
+    cursor: pointer;
+    bottom: 0;
+    padding: 0.5rem;
+
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75px;
+}
+
+#myBtn:hover {
+    color: var(--blue-dark);
+}
+
+.video-container {
+    height: auto;
+    width: 100%;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+}
+.video-container .caption {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    color: #dc0000;
+    padding: 10px;
+}
+</style>
