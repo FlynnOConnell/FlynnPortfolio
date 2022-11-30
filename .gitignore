@@ -20,6 +20,8 @@ dist
 dist-ssr
 coverage
 *.local
+.firebaserc
+*.env
 
 node_modules/
 dist/

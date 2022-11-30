@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { shallowRef } from 'vue';
 import HeaderComponent from './components/maincomponents/HeaderComponent.vue';
 </script>
 
