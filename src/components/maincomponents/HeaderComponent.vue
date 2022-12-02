@@ -35,30 +35,18 @@ window.matchMedia('(max-width: 800px)').onchange = () => {
             </div>
             <div id="nav-mobile-section">
                 <div id="nav-link-section" class="nav-section">
-                    <router-link class="animation-underline" to="/"
-                        >ABOUT</router-link
-                    >
-                    <router-link class="animation-underline" to="/project"
-                        >PROJECTS</router-link
-                    >
-                    <router-link class="animation-underline" to="/resume"
-                        >RESUME</router-link
-                    >
+                    <router-link class="animation-underline" to="/">ABOUT</router-link>
+                    <router-link class="animation-underline" to="/project">PROJECTS</router-link>
+                    <router-link class="animation-underline" to="/resume">RESUME</router-link>
                 </div>
                 <div id="nav-social-section" class="nav-section">
                     <LinksComponent />
                 </div>
                 <div id="nav-contact-section" class="nav-section">
-                    <router-link class="animation-underline" to="/contact"
-                        >CONTACT</router-link
-                    >
+                    <router-link class="animation-underline" to="/contact">CONTACT</router-link>
                 </div>
             </div>
-            <button
-                id="nav-toggle-button"
-                type="button"
-                @click="handleNavToggle()"
-            >
+            <button id="nav-toggle-button" type="button" @click="handleNavToggle()">
                 <span>Menu</span>
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -67,107 +55,7 @@ window.matchMedia('(max-width: 800px)').onchange = () => {
 </template>
 
 <style scoped>
-nav {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    border-bottom: 1px solid var(--border-color);
-}
-
-nav .nav-section {
-    padding: 1rem 2rem;
-    display: flex;
-    gap: 1rem;
-    border-left: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    align-items: center;
-    justify-content: center;
-}
-
-#nav-mobile-section {
-    display: flex;
-    flex-basis: calc(100% * (2 / 3));
-    z-index: 2;
-}
-
-#nav-toggle-button {
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    border-left: 1px solid var(--border-color);
-    color: white;
-    cursor: pointer;
-    display: none;
-    gap: 0.8rem;
-    height: 100%;
-    justify-content: center;
-    outline: none;
-    padding: 0rem 3rem;
-    position: relative;
-    z-index: 3;
-    transition: color 0.5s ease;
-}
-
-#nav-toggle-button:hover,
-#nav-toggle-button:hover > span {
-    color: var(--highlight-color);
-    transition: color 0.5s ease;
-}
-
-#nav-toggle-button > span,
-#nav-toggle-button > i {
-    display: inline-block;
-    height: 1rem;
-    line-height: 1rem;
-}
-
-#nav-social-section,
-#nav-contact-section {
-    flex-grow: 1;
-}
-
-#nav-logo-section {
-    flex-basis: calc(100% / 3);
-    justify-content: flex-start;
-}
-
-#nav-logo-section > a > i {
-    font-size: 2.5rem;
-}
-
-#nav-logo-section {
-    justify-content: flex-start;
-}
-
-#nav-link-section > a > i {
-    font-size: 2.5rem;
-}
-
-#nav-link-section {
-    flex-basis: 50%;
-    gap: 6rem;
-}
-
-#nav-social-section {
-    gap: 3rem;
-    flex-grow: 1;
-}
-
-#nav-logo-section,
-#nav-links-section {
-    flex-basis: calc(100% / 3);
-}
-
-#nav-contacts-section {
-    flex-grow: 1;
-}
-
-#svg-signature {
+/* #svg-signature {
     filter: brightness(0) invert(1);
-}
-
-#svg-signature:hover {
-    filter: invert(41%) sepia(69%) saturate(927%) hue-rotate(227deg)
-        brightness(80%) contrast(86%);
-}
+} */
 </style>

@@ -1,12 +1,13 @@
 import { app } from './plugins/main-app';
 
 import './plugins/router';
-import './plugins/quasar';
 import './plugins/pinia';
 import './plugins/formkit';
 import './plugins/fontawesome';
-import './assets/css/main.css';
+import './assets/css/imports.css';
 import './assets/scss/_tooltip.scss';
+// import './assets/scss/main.scss';
+
 import directives from './directives/';
 import Tooltip from './components/subcomponents/Tooltip.vue';
 

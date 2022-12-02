@@ -13,17 +13,19 @@ export default {
 </script>
 
 <template>
-    <div class="flex flex-row justify-between w-full">
+    <div class="links flex flex-row justify-around w-full">
         <button @click="toLink('https://github.com/NeuroPyPy')">
-            <font-awesome-icon :icon="['fab', 'github']" inverse size="2x" />
+            <font-awesome-icon :icon="['fab', 'github']" inverse />
         </button>
         <button @click="toLink('https://twitter.com/FlynnNeuro')">
-            <font-awesome-icon :icon="['fab', 'twitter']" inverse size="2x" />
+            <font-awesome-icon :icon="['fab', 'twitter']" inverse />
         </button>
         <button @click="toLink('https://www.linkedin.com/in/flynnoconnell/')">
-            <font-awesome-icon :icon="['fab', 'linkedin']" inverse size="2x" />
+            <font-awesome-icon :icon="['fab', 'linkedin']" inverse />
         </button>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

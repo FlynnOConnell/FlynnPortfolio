@@ -31,8 +31,6 @@ onMounted(() => {
 });
 
 let article = ref();
-let scientist = ref();
-let engineer = ref();
 
 const playbutton = ref();
 const videoplayer = ref();
@@ -111,103 +109,59 @@ function useSwipeRight() {
             <div class="article-image-section article-section relative">
                 <p id="credit" class="text-white absolute top-0 right-0 bold">
                     Photo credit: <br />
-                    <a
-                        href="https://www.linkedin.com/in/kevin-mohsenian-phd-45020558/"
-                        >Kevin Mohsenian</a
-                    >
+                    <a href="https://www.linkedin.com/in/kevin-mohsenian-phd-45020558/">Kevin Mohsenian</a>
                 </p>
             </div>
             <!-- DESCRIPTION SECTION -->
-            <div
-                class="article-description-section article-section p-8 flex justify-center"
-            >
+            <div class="article-description-section article-section p-8 flex justify-center relative">
                 <div class="h-full w-full flex flex-col justify-between">
-                    <h1>Hello! I'm Flynn.</h1>
-                    <p class="text-2xl">
-                        I
-                        <router-link to="/projects" class="animation-underline">
-                            develop tools...
-                        </router-link>
-                    </p>
-                    <p class="text-2xl">
-                        to study the
-                        <router-link to="/projects" class="animation-underline">
-                            awake, behaving brain.
-                        </router-link>
+                    <h1 class="text-center">Hi, I'm Flynn</h1>
+                    <div id="neuron-bg" class="flex-grow"></div>
+                    <p class="text-xl">
+                        I develop software to study the awake, behaving brain.
                     </p>
                 </div>
             </div>
-
+            <!-- TITLE SECTION -->
             <div class="article-title-section article-section">
                 <h2>Neuroscientist & Software Engineer</h2>
             </div>
+            <!-- NAV BUTTONS SECTION -->
             <div class="article-nav-section article-section">
-                <button
-                    class="article-nav-button tooltip"
-                    data-text="Software Engineer"
-                    type="button"
-                    @click="useSwipeLeft()"
-                >
+                <button class="article-nav-button tooltip" data-text="Software Engineer" type="button"
+                    @click="useSwipeLeft()">
                     <font-awesome-icon :icon="['fas', 'code']" inverse />
                 </button>
 
-                <button
-                    ref="rightButton"
-                    class="article-nav-button tooltip"
-                    data-text="Neuroscientist"
-                    type="button"
-                    @click="useSwipeRight()"
-                >
+                <button ref="rightButton" class="article-nav-button tooltip" data-text="Neuroscientist" type="button"
+                    @click="useSwipeRight()">
                     <font-awesome-icon :icon="['fas', 'brain']" inverse />
                 </button>
             </div>
         </article>
-        <article
-            ref="article"
-            id="scientist"
-            data-index="1"
-            data-status="inactive"
-        >
+        <article ref="article" id="scientist" data-index="1" data-status="inactive">
             <div class="article-image-section article-section relative">
                 <div class="flex flex-grow justify-center">
                     <div class="video-container relative">
-                        <video
-                            ref="videoplayer"
-                            id="caSignal"
-                            autoplay
-                            muted
-                            loop
-                        >
-                            <source
-                                src="/movies/Ca2Imaging.mp4"
-                                type="video/mp4"
-                            />
+                        <video ref="videoplayer" id="caSignal" autoplay muted loop>
+                            <source src="/movies/Ca2Imaging.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                         <div class="caption">
                             <h1>Neurons glow when they're active</h1>
                         </div>
-                        <button
-                            ref="playbutton"
-                            id="myBtn"
-                            class="absolute"
-                            @click="playButton"
-                        >
+                        <button ref="playbutton" id="myBtn" class="absolute" @click="playButton">
                             Pause
                         </button>
                     </div>
                 </div>
             </div>
             <div class="article-description-section article-section">
-                <div
-                    class="flex flex-col justify-evenly flex-grow text-white relative"
-                >
+                <div class="flex flex-col justify-evenly flex-grow text-white relative">
                     <h1 class="self-start justify-evenly">
                         My research objectives:
                     </h1>
-                    <div
-                        class="relative mx-6 flex flex-col flex-grow justify-evenly self-center"
-                    >
+                    <div class="relative mx-6 flex flex-col flex-grow justify-evenly self-center">
                         <ul class="flex flex-col flex-grow justify-evenly">
                             <li>
                                 <strong>Neural Coding Mechanisms:</strong> How
@@ -231,77 +185,107 @@ function useSwipeRight() {
             </div>
             <div class="article-title-section article-section">
                 <h2>Real-time Brain Activity</h2>
-                <button
-                    @click="$router.push('scientist')"
-                    class="article-nav-button"
-                >
-                    <font-awesome-icon
-                        :icon="['fas', 'circle-chevron-down']"
-                        inverse
-                        size="2x"
-                    />
+                <button @click="$router.push('scientist')" class="article-nav-button">
+                    <font-awesome-icon :icon="['fas', 'circle-chevron-down']" inverse size="2x" />
                 </button>
             </div>
             <div class="article-nav-section article-section">
-                <button
-                    class="article-nav-button"
-                    type="button"
-                    @click="useSwipeLeft()"
-                >
+                <button class="article-nav-button" type="button" @click="useSwipeLeft()">
                     <font-awesome-icon :icon="['fas', 'home']" inverse />
                 </button>
-                <button
-                    class="article-nav-button"
-                    type="button"
-                    @click="useSwipeRight()"
-                >
+                <button class="article-nav-button" type="button" @click="useSwipeRight()">
                     <font-awesome-icon :icon="['fas', 'code']" inverse />
                 </button>
             </div>
         </article>
-        <article
-            ref="article"
-            id="engineer"
-            data-index="2"
-            data-status="inactive"
-        >
+        <article ref="article" id="engineer" data-index="2" data-status="inactive">
             <div class="article-image-section article-section">
-                <div id="linechart"></div>
-            </div>
-            <div class="article-description-section article-section">
-                <h2>My Tech Stack:</h2>
-                <div class="techstack">
-                    <Tooltip position="top" tooltipText="C">
-                        <Icon subfolder="languages" name="C" filter: true />
-                    </Tooltip>
+                <div class="ais-wrapper">
+                    <!-- ROW 1 -->
+                    <div id="ais-left" class="ais-section justify-center">
+                        <h3 class="self-end justify-self-center">My Tools</h3>
+                    </div>
+                    <div id="ais-right" class="ais-section">
+                        <h3 class="self-end"></h3>
+                    </div>
+                    <!-- ROW 2 -->
+                    <div id="ais-left" class="ais-section">
+
+                        <div class="techicon flex flex-col justify-center">
+                            <Icon subfolder="languages" name="Cpp" filter: true />
+                        </div>
+
+                        <div class="techicon">
+                            <Icon subfolder="languages" name="Python" filter: true />
+                        </div>
+
+                        <div class="techicon">
+                            <Icon subfolder="languages" name="Typescript" filter: true />
+                        </div>
+                    </div>
+                    <div id="ais-right" class="ais-section">
+                        <h3 class="self-center"></h3>
+                    </div>
+                    <!-- ROW 3 -->
+                    <div id="ais-left" class="ais-section">
+                        <div class="techicon">
+                            <Icon subfolder="frameworks" name="Nuxt" filter: true />
+                        </div>
+                        <div class="techicon">
+                            <Icon subfolder="frameworks" name="React" filter: true />
+                        </div>
+
+                        <div class="techicon">
+                            <Icon subfolder="frameworks" name="Vue" filter: true />
+                        </div>
+                    </div>
+                    <div id="ais-right" class="ais-section">
+                        <h3 class="self-center"></h3>
+                    </div>
+                    <!-- ROW 3 -->
+                    <div id="ais-left" class="ais-section">
+                        <div class="techicon">
+                            <Icon subfolder="databases" name="MongoDB" filter: true />
+                        </div>
+                        <div class="techicon">
+                            <Icon subfolder="databases" name="MySQL" filter: true />
+                        </div>
+
+                        <div class="techicon">
+                            <Icon subfolder="databases" name="PostgresDB" filter: true />
+                        </div>
+                    </div>
+                    <div id="ais-right" class="ais-section">
+                        <h3 class="self-center"></h3>
+                    </div>
+                    <!-- ROW 4 -->
+                    <div id="ais-left" class="ais-section">
+
+                    </div>
+                    <div id="ais-right" class="ais-section">
+                        <h3 class="self-center"></h3>
+                    </div>
                 </div>
             </div>
+            <div class="article-description-section article-section">
+                <p class="text-white pt-4">
+                    I have been coding for 5+ years and use my experience with C++,
+                    Python and Typescript to build tools for extracting and analyzing neural
+                    recordings.
+                </p>
+
+            </div>
             <div class="article-title-section article-section">
-                <h2>Software Engineering</h2>
-                <button
-                    @click="$router.push('engineer')"
-                    class="article-nav-button"
-                >
-                    <font-awesome-icon
-                        :icon="['fas', 'circle-chevron-down']"
-                        inverse
-                        size="2x"
-                    />
+                <h2 style="font-family: CrimsonItalic">Software Engineering</h2>
+                <button @click="$router.push('engineer')" class="article-nav-button">
+                    <font-awesome-icon :icon="['fas', 'circle-chevron-down']" inverse size="2x" />
                 </button>
             </div>
             <div class="article-nav-section article-section">
-                <button
-                    class="article-nav-button"
-                    type="button"
-                    @click="useSwipeLeft()"
-                >
+                <button class="article-nav-button" type="button" @click="useSwipeLeft()">
                     <font-awesome-icon :icon="['fas', 'brain']" inverse />
                 </button>
-                <button
-                    class="article-nav-button"
-                    type="button"
-                    @click="useSwipeRight()"
-                >
+                <button class="article-nav-button" type="button" @click="useSwipeRight()">
                     <font-awesome-icon :icon="['fas', 'home']" inverse />
                 </button>
             </div>
@@ -310,43 +294,42 @@ function useSwipeRight() {
 </template>
 
 <style scoped>
+#neuron-bg {
+    background-image: url('@/assets/svg/other/Neuron.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 #credit {
     font-size: small;
 }
 
-h1 {
-    font-size: 2.5rem;
-}
-
-main > article[data-status='active'] {
+main>article[data-status='active'] {
     transform: translateX(0%);
 }
 
-main > article[data-status='inactive'] {
+main>article[data-status='inactive'] {
     transform: translateX(-100%);
     transition: none;
 }
 
-main > article[data-status='before'] {
+main>article[data-status='before'] {
     transform: translateX(-100%);
 }
 
-main > article[data-status='after'] {
+main>article[data-status='after'] {
     transform: translateX(100%);
 }
 
-main > article[data-status='place-left'] {
+main>article[data-status='place-left'] {
     transform: translateX(-100%);
     transition: none;
 }
 
-main > article[data-status='place-right'] {
+main>article[data-status='place-right'] {
     transform: translateX(100%);
     transition: none;
-}
-
-ul {
-    list-style: circle outside none;
 }
 
 video {
@@ -397,6 +380,7 @@ video {
     object-fit: cover;
     z-index: 0;
 }
+
 .video-container .caption {
     z-index: 1;
     position: relative;

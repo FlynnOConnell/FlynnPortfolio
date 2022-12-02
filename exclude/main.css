@@ -1,8 +1,5 @@
 /* Path: assets/css/main.css */
 /* ./src/index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 * {
     box-sizing: border-box;

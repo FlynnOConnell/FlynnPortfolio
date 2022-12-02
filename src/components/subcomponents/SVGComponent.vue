@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { path } from 'd3-path';
 import { defineAsyncComponent, computed } from 'vue';
 import SVGFilter from './SVGFIlter.vue';
 
