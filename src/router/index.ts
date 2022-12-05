@@ -25,14 +25,6 @@ const router = createRouter({
             },
         },
         {
-            path: '/AboutMe',
-            name: 'UnderMain',
-            component: () => import('../views/underview/UnderMain.vue'),
-            meta: {
-                title: 'UnderMain',
-            },
-        },
-        {
             path: '/scientist',
             name: 'UnderScience',
             component: () => import('../views/underview/UnderScience.vue'),

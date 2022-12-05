@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, computed } from 'vue';
+import { defineAsyncComponent } from 'vue';
 import SVGFilter from './SVGFIlter.vue';
 
 const svgprops = defineProps({
