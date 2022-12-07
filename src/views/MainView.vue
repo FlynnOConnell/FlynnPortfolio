@@ -284,7 +284,9 @@ function useSwipeRight() {
                         </div>
                         <!-- ROW 4 -->
                         <div id="ais-left" class="ais-section">
-
+                            <div class="techicon">
+                                <Icon subfolder="other" name="GoogleCloud" filter: true />
+                            </div>
                         </div>
                         <div id="ais-right" class="ais-section">
 
