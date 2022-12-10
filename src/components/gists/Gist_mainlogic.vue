@@ -1,8 +1,8 @@
-<template><div id="gist119709203" class="gist">
+<template><div id="gist119735258" class="gist">
     <div class="gist-file" translate="no">
       <div class="gist-data">
         <div class="js-gist-file-update-container js-task-list-container file-box">
-  <div id="file-premiersuitecpp-cpp" class="file my-2">
+  <div id="file-mainlogic-cpp" class="file my-2">
     
     <div itemprop="text" class="Box-body p-0 blob-wrapper data type-c  ">
 
@@ -32,52 +32,141 @@
 </svg>
 </span></template>
 
-  <table data-hpc class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="C++" data-tagsearch-path="PremierSuiteCPP.cpp">
+  <table data-hpc class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="C++" data-tagsearch-path="MainLogic.CPP">
         <tr>
-          <td id="file-premiersuitecpp-cpp-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
-          <td id="file-premiersuitecpp-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">BAKKESMOD_PLUGIN</span>(PremierSuite, <span class="pl-s"><span class="pl-pds">&quot;</span>Instant Suite<span class="pl-pds">&quot;</span></span>, plugin_version, PLUGINTYPE_FREEPLAY | PLUGINTYPE_CUSTOM_TRAINING)</td>
+          <td id="file-mainlogic-cpp-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-mainlogic-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">PremierSuite::queue</span>(ServerWrapper server, <span class="pl-k">void</span>* params, std::string eventName) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
-          <td id="file-premiersuitecpp-cpp-LC2" class="blob-code blob-code-inner js-file-line">
+          <td id="file-mainlogic-cpp-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-mainlogic-cpp-LC2" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">float</span> totalQueueDelayTime = <span class="pl-c1">0</span>;</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-mainlogic-cpp-LC3" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">float</span> autoGGDelayTime = cvarManager-&gt;<span class="pl-c1">getCvar</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>ranked_autogg_delay<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">getFloatValue</span>() / <span class="pl-c1">1000</span>;</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-mainlogic-cpp-LC4" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">bool</span> autoGG = cvarManager-&gt;<span class="pl-c1">getCvar</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>ranked_autogg<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">getBoolValue</span>();</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-mainlogic-cpp-LC5" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">float</span> queueDelayTime = cvarManager-&gt;<span class="pl-c1">getCvar</span>(qDelayCvarName).<span class="pl-c1">getFloatValue</span>();</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-mainlogic-cpp-LC6" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">bool</span> disableCasualQueue = cvarManager-&gt;<span class="pl-c1">getCvar</span>(disableCasualQCvarName).<span class="pl-c1">getBoolValue</span>();</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-mainlogic-cpp-LC7" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">bool</span> disablePrivate = cvarManager-&gt;<span class="pl-c1">getCvar</span>(disablePrivateCvarName).<span class="pl-c1">getBoolValue</span>();</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-mainlogic-cpp-LC8" class="blob-code blob-code-inner js-file-line">
 </td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
-          <td id="file-premiersuitecpp-cpp-LC3" class="blob-code blob-code-inner js-file-line">std::filesystem::path BakkesModConfigFolder;</td>
+          <td id="file-mainlogic-cpp-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-mainlogic-cpp-LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">if</span> (autoGG) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
-          <td id="file-premiersuitecpp-cpp-LC4" class="blob-code blob-code-inner js-file-line">std::filesystem::path PremierSuiteDataFolder;</td>
+          <td id="file-mainlogic-cpp-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-mainlogic-cpp-LC10" class="blob-code blob-code-inner js-file-line">		totalQueueDelayTime = queueDelayTime + autoGGDelayTime;</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
-          <td id="file-premiersuitecpp-cpp-LC5" class="blob-code blob-code-inner js-file-line">std::filesystem::path RocketLeagueExecutableFolder;</td>
+          <td id="file-mainlogic-cpp-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-mainlogic-cpp-LC11" class="blob-code blob-code-inner js-file-line">		cvarManager-&gt;<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>ps. totalQueueDelayTime has been set<span class="pl-pds">&quot;</span></span>);</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
-          <td id="file-premiersuitecpp-cpp-LC6" class="blob-code blob-code-inner js-file-line">std::shared_ptr&lt;CVarManagerWrapper&gt; _globalCvarManager;</td>
+          <td id="file-mainlogic-cpp-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-mainlogic-cpp-LC12" class="blob-code blob-code-inner js-file-line">	}</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
-          <td id="file-premiersuitecpp-cpp-LC7" class="blob-code blob-code-inner js-file-line">
+          <td id="file-mainlogic-cpp-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-mainlogic-cpp-LC13" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-mainlogic-cpp-LC14" class="blob-code blob-code-inner js-file-line">		totalQueueDelayTime = queueDelayTime;</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-mainlogic-cpp-LC15" class="blob-code blob-code-inner js-file-line">	}</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-mainlogic-cpp-LC16" class="blob-code blob-code-inner js-file-line">
 </td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
-          <td id="file-premiersuitecpp-cpp-LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-k">static</span> <span class="pl-k">inline</span> std::string <span class="pl-en">GetUserAgent</span>()</td>
+          <td id="file-mainlogic-cpp-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-mainlogic-cpp-LC17" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">if</span> (!server.<span class="pl-c1">IsNull</span>() &amp;&amp; (disablePrivate || disableCasualQueue)) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
-          <td id="file-premiersuitecpp-cpp-LC9" class="blob-code blob-code-inner js-file-line">{</td>
+          <td id="file-mainlogic-cpp-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-mainlogic-cpp-LC18" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">auto</span> playlist = (Mode)server.<span class="pl-c1">GetPlaylist</span>().<span class="pl-c1">GetPlaylistId</span>();</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
-          <td id="file-premiersuitecpp-cpp-LC10" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">&quot;</span>User-Agent: BPM;4;<span class="pl-pds">&quot;</span></span> + <span class="pl-c1">std::to_string</span>(BAKKESMOD_PLUGIN_API_VERSION) + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span> + <span class="pl-c1">GetPlatform</span>(myUniqueID.<span class="pl-c1">GetPlatform</span>()) + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span> + myUniqueID.<span class="pl-c1">str</span>() + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span>;</td>
+          <td id="file-mainlogic-cpp-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-mainlogic-cpp-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
-          <td id="file-premiersuitecpp-cpp-LC11" class="blob-code blob-code-inner js-file-line">}</td>
+          <td id="file-mainlogic-cpp-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-mainlogic-cpp-LC20" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span> ((playlist == CasualChaos || playlist == CasualDoubles || playlist == CasualDuel || playlist == CasualStandard) &amp;&amp; disableCasualQueue) {</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-mainlogic-cpp-LC21" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">return</span>;</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-mainlogic-cpp-LC22" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-mainlogic-cpp-LC23" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">else</span> <span class="pl-k">if</span> ((playlist == Private || playlist == Tournament) &amp;&amp; disablePrivate) {</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-mainlogic-cpp-LC24" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">return</span>;</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-mainlogic-cpp-LC25" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-mainlogic-cpp-LC26" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">else</span> {</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-mainlogic-cpp-LC27" class="blob-code blob-code-inner js-file-line">			gameWrapper-&gt;<span class="pl-c1">SetTimeout</span>(<span class="pl-c1">std::bind</span>(&amp;PremierSuite::delayedQueue, <span class="pl-c1">this</span>), queueDelayTime);</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-mainlogic-cpp-LC28" class="blob-code blob-code-inner js-file-line">			cvarManager-&gt;<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>ps. settimeout(delayedQueue, queueDelaytime) has been called<span class="pl-pds">&quot;</span></span>);</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-mainlogic-cpp-LC29" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-mainlogic-cpp-LC30" class="blob-code blob-code-inner js-file-line">	}</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-mainlogic-cpp-LC31" class="blob-code blob-code-inner js-file-line">	gameWrapper-&gt;<span class="pl-c1">SetTimeout</span>(<span class="pl-c1">std::bind</span>(&amp;PremierSuite::delayedQueue, <span class="pl-c1">this</span>), queueDelayTime);</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-mainlogic-cpp-LC32" class="blob-code blob-code-inner js-file-line">	cvarManager-&gt;<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>ps. settimeout(delayedQueue, queueDelaytime) has been called<span class="pl-pds">&quot;</span></span>);</td>
+        </tr>
+        <tr>
+          <td id="file-mainlogic-cpp-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-mainlogic-cpp-LC33" class="blob-code blob-code-inner js-file-line">}</td>
         </tr>
   </table>
 </div>
@@ -90,9 +179,9 @@
 
       </div>
       <div class="gist-meta">
-        <a href="https://gist.github.com/NeuroPyPy/de81d8d2d3e61bf69295d4b75959c24f/raw/65ffbefc815a403fc832ca1cd21801f5683f2382/PremierSuiteCPP.cpp" style="float:right">view raw</a>
-        <a href="https://gist.github.com/NeuroPyPy/de81d8d2d3e61bf69295d4b75959c24f#file-premiersuitecpp-cpp">
-          PremierSuiteCPP.cpp
+        <a href="https://gist.github.com/NeuroPyPy/ba94a250051e10a58f504d71b2100fc0/raw/fb6b7ac4f0f11cff290c58041b783af6a2a916f8/MainLogic.CPP" style="float:right">view raw</a>
+        <a href="https://gist.github.com/NeuroPyPy/ba94a250051e10a58f504d71b2100fc0#file-mainlogic-cpp">
+          MainLogic.CPP
         </a>
         hosted with &#10084; by <a href="https://github.com">GitHub</a>
       </div>

@@ -35,127 +35,99 @@
   <table data-hpc class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="C++" data-tagsearch-path="PS_GUI.cpp">
         <tr>
           <td id="file-ps_gui-cpp-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
-          <td id="file-ps_gui-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">if</span> (ImGui::BeginChild(<span class="pl-s"><span class="pl-pds">&quot;</span>##Keybinds<span class="pl-pds">&quot;</span></span>, ImVec2(ImGui::GetWindowContentRegionWidth() * <span class="pl-c1">0</span>.<span class="pl-c1">5f</span>, <span class="pl-c1">260</span>), <span class="pl-c1">false</span>, ImGuiWindowFlags_AlwaysAutoResize));</td>
+          <td id="file-ps_gui-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">if</span> (ImGui::BeginChild(<span class="pl-s"><span class="pl-pds">&quot;</span>##Keybinds<span class="pl-pds">&quot;</span></span>, ImVec2(ImGui::GetWindowContentRegionWidth() * <span class="pl-c1">0</span>.<span class="pl-c1">5f</span>, <span class="pl-c1">260</span>), <span class="pl-c1">false</span>, ImGuiWindowFlags_AlwaysAutoResize)) {</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
-          <td id="file-ps_gui-cpp-LC2" class="blob-code blob-code-inner js-file-line">		{</td>
+          <td id="file-ps_gui-cpp-LC2" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Text</span>(</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
-          <td id="file-ps_gui-cpp-LC3" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Text</span>(</td>
+          <td id="file-ps_gui-cpp-LC3" class="blob-code blob-code-inner js-file-line">				<span class="pl-s"><span class="pl-pds">&quot;</span>Easily Change keybinds to whatever button you&#39;d like.<span class="pl-cce">\n</span><span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
-          <td id="file-ps_gui-cpp-LC4" class="blob-code blob-code-inner js-file-line">				<span class="pl-s"><span class="pl-pds">&quot;</span>Easily Change keybinds to whatever button you&#39;d like.<span class="pl-cce">\n</span><span class="pl-pds">&quot;</span></span></td>
+          <td id="file-ps_gui-cpp-LC4" class="blob-code blob-code-inner js-file-line">				<span class="pl-s"><span class="pl-pds">&quot;</span>Join discord for questions and feature requests.<span class="pl-cce">\n</span><span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
-          <td id="file-ps_gui-cpp-LC5" class="blob-code blob-code-inner js-file-line">				<span class="pl-s"><span class="pl-pds">&quot;</span>Join discord for questions and feature requests.<span class="pl-cce">\n</span><span class="pl-pds">&quot;</span></span></td>
+          <td id="file-ps_gui-cpp-LC5" class="blob-code blob-code-inner js-file-line">			);</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
-          <td id="file-ps_gui-cpp-LC6" class="blob-code blob-code-inner js-file-line">			);</td>
+          <td id="file-ps_gui-cpp-LC6" class="blob-code blob-code-inner js-file-line">			</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
-          <td id="file-ps_gui-cpp-LC7" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Separator</span>();</td>
+          <td id="file-ps_gui-cpp-LC7" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">if</span> (<span class="pl-c1">ImGui::InputTextWithHint</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Keybind to unbind<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Removes this key from any keybind<span class="pl-pds">&quot;</span></span>, keyholder, <span class="pl-c1">IM_ARRAYSIZE</span>(keyholder))) {</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
-          <td id="file-ps_gui-cpp-LC8" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Indent</span>(<span class="pl-c1">5</span>);</td>
+          <td id="file-ps_gui-cpp-LC8" class="blob-code blob-code-inner js-file-line">				keyholderCvar.<span class="pl-c1">setValue</span>(keyholder);</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
-          <td id="file-ps_gui-cpp-LC9" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Spacing</span>();</td>
+          <td id="file-ps_gui-cpp-LC9" class="blob-code blob-code-inner js-file-line">			}</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
-          <td id="file-ps_gui-cpp-LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span></span></td>
+          <td id="file-ps_gui-cpp-LC10" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::Button</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Unbind Key<span class="pl-pds">&quot;</span></span>)) {</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
-          <td id="file-ps_gui-cpp-LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>...</span></td>
+          <td id="file-ps_gui-cpp-LC11" class="blob-code blob-code-inner js-file-line">				<span class="pl-c1">unbindKeybind</span>();</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
-          <td id="file-ps_gui-cpp-LC12" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>	</span></td>
+          <td id="file-ps_gui-cpp-LC12" class="blob-code blob-code-inner js-file-line">				cvarManager-&gt;<span class="pl-c1">executeCommand</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>writeconfig<span class="pl-pds">&quot;</span></span>, <span class="pl-c1">false</span>);</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
-          <td id="file-ps_gui-cpp-LC13" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">if</span> (<span class="pl-c1">ImGui::InputTextWithHint</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Keybind to unbind<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Removes this key from any keybind<span class="pl-pds">&quot;</span></span>, keyholder, <span class="pl-c1">IM_ARRAYSIZE</span>(keyholder))){</td>
+          <td id="file-ps_gui-cpp-LC13" class="blob-code blob-code-inner js-file-line">			}</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
-          <td id="file-ps_gui-cpp-LC14" class="blob-code blob-code-inner js-file-line">				keyholderCvar.<span class="pl-c1">setValue</span>(keyholder);</td>
+          <td id="file-ps_gui-cpp-LC14" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::InputTextWithHint</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Desired keybind<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Type desired keybind here<span class="pl-pds">&quot;</span></span>, keybind, <span class="pl-c1">IM_ARRAYSIZE</span>(keybind))) {</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
-          <td id="file-ps_gui-cpp-LC15" class="blob-code blob-code-inner js-file-line">			}</td>
+          <td id="file-ps_gui-cpp-LC15" class="blob-code blob-code-inner js-file-line">				keybindCvar.<span class="pl-c1">setValue</span>(keybind);</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
-          <td id="file-ps_gui-cpp-LC16" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::Button</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Unbind Key<span class="pl-pds">&quot;</span></span>)){</td>
+          <td id="file-ps_gui-cpp-LC16" class="blob-code blob-code-inner js-file-line">			}</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
-          <td id="file-ps_gui-cpp-LC17" class="blob-code blob-code-inner js-file-line">				<span class="pl-c1">unbindKeybind</span>();</td>
+          <td id="file-ps_gui-cpp-LC17" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::Button</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Change GUI Keybind<span class="pl-pds">&quot;</span></span>)){</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
-          <td id="file-ps_gui-cpp-LC18" class="blob-code blob-code-inner js-file-line">				cvarManager-&gt;<span class="pl-c1">executeCommand</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>writeconfig<span class="pl-pds">&quot;</span></span>, <span class="pl-c1">false</span>);</td>
+          <td id="file-ps_gui-cpp-LC18" class="blob-code blob-code-inner js-file-line">				<span class="pl-c1">changeGuiKeybind</span>();</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
-          <td id="file-ps_gui-cpp-LC19" class="blob-code blob-code-inner js-file-line">			}</td>
+          <td id="file-ps_gui-cpp-LC19" class="blob-code blob-code-inner js-file-line">				cvarManager-&gt;<span class="pl-c1">executeCommand</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>writeconfig<span class="pl-pds">&quot;</span></span>, <span class="pl-c1">false</span>);</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
-          <td id="file-ps_gui-cpp-LC20" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::Separator</span>();</td>
+          <td id="file-ps_gui-cpp-LC20" class="blob-code blob-code-inner js-file-line">			}</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
-          <td id="file-ps_gui-cpp-LC21" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::InputTextWithHint</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Desired keybind<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Type desired keybind here<span class="pl-pds">&quot;</span></span>, keybind, <span class="pl-c1">IM_ARRAYSIZE</span>(keybind))) {</td>
+          <td id="file-ps_gui-cpp-LC21" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::PopItemWidth</span>();</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
-          <td id="file-ps_gui-cpp-LC22" class="blob-code blob-code-inner js-file-line">				keybindCvar.<span class="pl-c1">setValue</span>(keybind);</td>
+          <td id="file-ps_gui-cpp-LC22" class="blob-code blob-code-inner js-file-line">		}</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
-          <td id="file-ps_gui-cpp-LC23" class="blob-code blob-code-inner js-file-line">			}</td>
+          <td id="file-ps_gui-cpp-LC23" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">ImGui::EndChild</span>();</td>
         </tr>
         <tr>
           <td id="file-ps_gui-cpp-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
-          <td id="file-ps_gui-cpp-LC24" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (<span class="pl-c1">ImGui::Button</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Change GUI Keybind<span class="pl-pds">&quot;</span></span>)){</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
-          <td id="file-ps_gui-cpp-LC25" class="blob-code blob-code-inner js-file-line">				<span class="pl-c1">changeGuiKeybind</span>();</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
-          <td id="file-ps_gui-cpp-LC26" class="blob-code blob-code-inner js-file-line">				cvarManager-&gt;<span class="pl-c1">executeCommand</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>writeconfig<span class="pl-pds">&quot;</span></span>, <span class="pl-c1">false</span>);</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
-          <td id="file-ps_gui-cpp-LC27" class="blob-code blob-code-inner js-file-line">			}</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
-          <td id="file-ps_gui-cpp-LC28" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">ImGui::PopItemWidth</span>();</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
-          <td id="file-ps_gui-cpp-LC29" class="blob-code blob-code-inner js-file-line">		}</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
-          <td id="file-ps_gui-cpp-LC30" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">ImGui::EndChild</span>();</td>
-        </tr>
-        <tr>
-          <td id="file-ps_gui-cpp-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
-          <td id="file-ps_gui-cpp-LC31" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">ImGui::EndTabItem</span>();</td>
+          <td id="file-ps_gui-cpp-LC24" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">ImGui::EndTabItem</span>();</td>
         </tr>
   </table>
 </div>
@@ -168,7 +140,7 @@
 
       </div>
       <div class="gist-meta">
-        <a href="https://gist.github.com/NeuroPyPy/df77cc67b546370af1c3b67e8ace0536/raw/81ba2da2432563076aee8103121c052b0e7e701f/PS_GUI.cpp" style="float:right">view raw</a>
+        <a href="https://gist.github.com/NeuroPyPy/df77cc67b546370af1c3b67e8ace0536/raw/11701c6f316fab841c2ce21e43f1e1669ba491e5/PS_GUI.cpp" style="float:right">view raw</a>
         <a href="https://gist.github.com/NeuroPyPy/df77cc67b546370af1c3b67e8ace0536#file-ps_gui-cpp">
           PS_GUI.cpp
         </a>

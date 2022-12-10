@@ -23,9 +23,7 @@ onMounted(() => {
 
     Array.from(otherSlides).forEach((el) => {
         if (el instanceof HTMLElement && el.dataset.status === 'active') {
-            console.log('Other slides changed from:', el.dataset.status);
             el.dataset.status = 'inactive';
-            console.log('to:', el.dataset.status);
         }
     });
 });
@@ -38,8 +36,6 @@ const videoplayer = ref();
 function playButton() {
     var video: any = videoplayer.value;
     var btn: any = playbutton.value;
-    console.log(video);
-    console.log(btn);
     if (video.paused) {
         video.play();
         btn.innerHTML = 'Pause';

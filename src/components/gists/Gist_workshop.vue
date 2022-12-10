@@ -1,120 +1,8 @@
-<style>
-
-/* .gist {
-  width: 100%;
-} */
-
-body .gist .highlight {
-    background: #161616;
-}
-body .gist .blob-num,
-body .gist .blob-code-inner,
-body .gist .pl-st {
-    color: #e6e1dc;
-}
-body .gist .pl-c,
-body .gist .pl-c span {
-    color: #555;
-    font-style: italic;
-}
-body .gist .pl-mb {
-    color: #1edafb;
-    font-weight: 700;
-}
-body .gist .pl-mh .pl-en {
-    color: #fdc251;
-    font-weight: 700;
-}
-body .gist .pl-mi {
-    color: #00698f;
-    font-style: italic;
-}
-body .gist .pl-mq {
-    color: #555;
-}
-body .gist .pl-sc {
-    color: #999;
-}
-body .gist .pl-c1,
-body .gist .pl-mh,
-body .gist .pl-sr .pl-cce {
-    color: #fdc251;
-}
-body .gist .pl-e,
-body .gist .pl-en,
-body .gist .pl-ent,
-body .gist .pl-s,
-body .gist .pl-v,
-body .gist .pl-vpf {
-    color: #974;
-}
-body .gist .pl-k,
-body .gist .pl-mdh,
-body .gist .pl-mdr,
-body .gist .pl-ml,
-body .gist .pl-mm,
-body .gist .pl-mo,
-body .gist .pl-mp,
-body .gist .pl-mr,
-body .gist .pl-ms,
-body .gist .pl-s1 .pl-v,
-body .gist .pl-s3 {
-    color: #00698f;
-}
-body .gist .pl-pds,
-body .gist .pl-s1,
-body .gist .pl-s1 .pl-pse .pl-s2 {
-    color: #58c554;
-}
-body .gist .pl-s1 .pl-s2,
-body .gist .pl-sv {
-    color: #1edafb;
-}
-body .gist .pl-smi,
-body .gist .pl-smp,
-body .gist .pl-stj,
-body .gist .pl-vo {
-    color: #be53e6;
-}
-body .gist .pl-sr,
-body .gist .pl-sr .pl-sra,
-body .gist .pl-sr .pl-sre,
-body .gist .pl-src {
-    color: #ff308f;
-}
-body .gist .pl-mi1,
-body .gist .pl-mdht {
-    color: #fff;
-    background: rgba(0, 64, 0, .5);
-}
-body .gist .pl-md,
-body .gist .pl-mdhf,
-body .gist .pl-id,
-body .gist .pl-ii {
-    color: #fff;
-    background: #900;
-}
-
-body .gist .gist-meta {
-  display: none;
-}
-
-body .gist .gist-data {
-  background-color: #161616 !important;
-  border: 1px solid var(--blue-dark) !important;
-}
-
-body .gist .gist-file {
-  border: 1px solid var(--blue-dark) !important;
-}
-
-</style>
-
-<template><div id="gist119709203" class="gist">
+<template><div id="gist119735151" class="gist">
     <div class="gist-file" translate="no">
       <div class="gist-data">
         <div class="js-gist-file-update-container js-task-list-container file-box">
-  <div id="file-premiersuitecpp-cpp" class="file my-2">
+  <div id="file-getworkshopmaps-cpp" class="file my-2">
     
     <div itemprop="text" class="Box-body p-0 blob-wrapper data type-c  ">
 
@@ -144,57 +32,171 @@ body .gist .gist-file {
 </svg>
 </span></template>
 
-  <table data-hpc class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="C++" data-tagsearch-path="PremierSuiteCPP.cpp">
+  <table data-hpc class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="C++" data-tagsearch-path="getWorkshopMaps.cpp">
         <tr>
-          <td id="file-premiersuitecpp-cpp-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
-          <td id="file-premiersuitecpp-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">BAKKESMOD_PLUGIN</span>(PremierSuite, <span class="pl-s"><span class="pl-pds">&quot;</span>Instant Suite<span class="pl-pds">&quot;</span></span>, plugin_version, PLUGINTYPE_FREEPLAY | PLUGINTYPE_CUSTOM_TRAINING)</td>
+          <td id="file-getworkshopmaps-cpp-L1" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="1"></td>
+          <td id="file-getworkshopmaps-cpp-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>/ &lt;summary&gt;Gets workshop maps from the given directory.&lt;/summary&gt;</span></td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
-          <td id="file-premiersuitecpp-cpp-LC2" class="blob-code blob-code-inner js-file-line">
+          <td id="file-getworkshopmaps-cpp-L2" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="2"></td>
+          <td id="file-getworkshopmaps-cpp-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>/ &lt;param name=&quot;workshopPath&quot;&gt;Path to the workshop directory to get the maps from&lt;/param&gt;</span></td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
+          <td id="file-getworkshopmaps-cpp-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>/ &lt;param name=&quot;extensions&quot;&gt;List of map extensions to filter by&lt;/param&gt;</span></td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
+          <td id="file-getworkshopmaps-cpp-LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>/ &lt;param name=&quot;preferredExtension&quot;&gt;Map extension to prefer when multiple files are found&lt;/param&gt;</span></td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
+          <td id="file-getworkshopmaps-cpp-LC5" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>/ &lt;returns&gt;The workshop maps from the given directory&lt;/returns&gt;</span></td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
+          <td id="file-getworkshopmaps-cpp-LC6" class="blob-code blob-code-inner js-file-line">std::vector&lt;std::filesystem::path&gt; <span class="pl-en">PremierSuite::getWorkshopMaps</span>(<span class="pl-k">const</span> std::filesystem::path&amp; workshopPath,</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
+          <td id="file-getworkshopmaps-cpp-LC7" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">const</span> std::vector&lt;std::string&gt;&amp; extensions,</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
+          <td id="file-getworkshopmaps-cpp-LC8" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">const</span> std::string&amp; preferredExtension) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
+          <td id="file-getworkshopmaps-cpp-LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">if</span> (!<span class="pl-c1">exists</span>(workshopPath)) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
+          <td id="file-getworkshopmaps-cpp-LC10" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">return</span> std::vector&lt;std::filesystem::path&gt;();</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
+          <td id="file-getworkshopmaps-cpp-LC11" class="blob-code blob-code-inner js-file-line">	}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
+          <td id="file-getworkshopmaps-cpp-LC12" class="blob-code blob-code-inner js-file-line">
 </td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L3" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="3"></td>
-          <td id="file-premiersuitecpp-cpp-LC3" class="blob-code blob-code-inner js-file-line">std::filesystem::path BakkesModConfigFolder;</td>
+          <td id="file-getworkshopmaps-cpp-L13" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="13"></td>
+          <td id="file-getworkshopmaps-cpp-LC13" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Make sure we don&#39;t request workshop map names every clock tick.</span></td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L4" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="4"></td>
-          <td id="file-premiersuitecpp-cpp-LC4" class="blob-code blob-code-inner js-file-line">std::filesystem::path PremierSuiteDataFolder;</td>
+          <td id="file-getworkshopmaps-cpp-L14" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="14"></td>
+          <td id="file-getworkshopmaps-cpp-LC14" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">const</span> <span class="pl-k">bool</span> shouldRequestWorkshopMapNames = publishedFileID.<span class="pl-c1">empty</span>();</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L5" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="5"></td>
-          <td id="file-premiersuitecpp-cpp-LC5" class="blob-code blob-code-inner js-file-line">std::filesystem::path RocketLeagueExecutableFolder;</td>
+          <td id="file-getworkshopmaps-cpp-L15" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="15"></td>
+          <td id="file-getworkshopmaps-cpp-LC15" class="blob-code blob-code-inner js-file-line">	std::vector&lt;std::filesystem::path&gt; files = <span class="pl-c1">IterateDirectory</span>(workshopPath, extensions, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>);</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L6" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="6"></td>
-          <td id="file-premiersuitecpp-cpp-LC6" class="blob-code blob-code-inner js-file-line">std::shared_ptr&lt;CVarManagerWrapper&gt; _globalCvarManager;</td>
+          <td id="file-getworkshopmaps-cpp-L16" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="16"></td>
+          <td id="file-getworkshopmaps-cpp-LC16" class="blob-code blob-code-inner js-file-line">	std::filesystem::path bestPath;</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L7" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="7"></td>
-          <td id="file-premiersuitecpp-cpp-LC7" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="file-getworkshopmaps-cpp-L17" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="17"></td>
+          <td id="file-getworkshopmaps-cpp-LC17" class="blob-code blob-code-inner js-file-line">	std::vector&lt;std::filesystem::path&gt; workshopMaps;</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L8" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="8"></td>
-          <td id="file-premiersuitecpp-cpp-LC8" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="file-getworkshopmaps-cpp-L18" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="18"></td>
+          <td id="file-getworkshopmaps-cpp-LC18" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span> (<span class="pl-k">const</span> std::filesystem::path&amp; file : files) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L9" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="9"></td>
-          <td id="file-premiersuitecpp-cpp-LC9" class="blob-code blob-code-inner js-file-line"><span class="pl-k">static</span> <span class="pl-k">inline</span> std::string <span class="pl-en">GetUserAgent</span>()</td>
+          <td id="file-getworkshopmaps-cpp-L19" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="19"></td>
+          <td id="file-getworkshopmaps-cpp-LC19" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span> (file.<span class="pl-c1">parent_path</span>() != bestPath.<span class="pl-c1">parent_path</span>()) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L10" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="10"></td>
-          <td id="file-premiersuitecpp-cpp-LC10" class="blob-code blob-code-inner js-file-line">{</td>
+          <td id="file-getworkshopmaps-cpp-L20" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="20"></td>
+          <td id="file-getworkshopmaps-cpp-LC20" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span> (!bestPath.<span class="pl-c1">empty</span>()) {</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L11" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="11"></td>
-          <td id="file-premiersuitecpp-cpp-LC11" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">&quot;</span>User-Agent: BPM;4;<span class="pl-pds">&quot;</span></span> + <span class="pl-c1">std::to_string</span>(BAKKESMOD_PLUGIN_API_VERSION) + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span> + <span class="pl-c1">GetPlatform</span>(myUniqueID.<span class="pl-c1">GetPlatform</span>()) + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span> + myUniqueID.<span class="pl-c1">str</span>() + <span class="pl-s"><span class="pl-pds">&quot;</span>;<span class="pl-pds">&quot;</span></span>;</td>
+          <td id="file-getworkshopmaps-cpp-L21" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="21"></td>
+          <td id="file-getworkshopmaps-cpp-LC21" class="blob-code blob-code-inner js-file-line">				<span class="pl-k">const</span> <span class="pl-c1">uint64_t</span> workshopMapId = <span class="pl-c1">std::strtoull</span>(bestPath.<span class="pl-c1">parent_path</span>().<span class="pl-c1">stem</span>().<span class="pl-c1">string</span>().<span class="pl-c1">c_str</span>(), <span class="pl-c1">nullptr</span>,</td>
         </tr>
         <tr>
-          <td id="file-premiersuitecpp-cpp-L12" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="12"></td>
-          <td id="file-premiersuitecpp-cpp-LC12" class="blob-code blob-code-inner js-file-line">}</td>
+          <td id="file-getworkshopmaps-cpp-L22" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="22"></td>
+          <td id="file-getworkshopmaps-cpp-LC22" class="blob-code blob-code-inner js-file-line">					<span class="pl-c1">10</span>);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L23" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="23"></td>
+          <td id="file-getworkshopmaps-cpp-LC23" class="blob-code blob-code-inner js-file-line">				<span class="pl-k">if</span> (shouldRequestWorkshopMapNames &amp;&amp; subscribedWorkshopMaps.<span class="pl-c1">find</span>(workshopMapId) == subscribedWorkshopMaps.<span class="pl-c1">end</span>()) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L24" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="24"></td>
+          <td id="file-getworkshopmaps-cpp-LC24" class="blob-code blob-code-inner js-file-line">					publishedFileID.<span class="pl-c1">push_back</span>(workshopMapId);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L25" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="25"></td>
+          <td id="file-getworkshopmaps-cpp-LC25" class="blob-code blob-code-inner js-file-line">				}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L26" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="26"></td>
+          <td id="file-getworkshopmaps-cpp-LC26" class="blob-code blob-code-inner js-file-line">				workshopMaps.<span class="pl-c1">push_back</span>(bestPath);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L27" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="27"></td>
+          <td id="file-getworkshopmaps-cpp-LC27" class="blob-code blob-code-inner js-file-line">			}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L28" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="28"></td>
+          <td id="file-getworkshopmaps-cpp-LC28" class="blob-code blob-code-inner js-file-line">			bestPath = file;</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L29" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="29"></td>
+          <td id="file-getworkshopmaps-cpp-LC29" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L30" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="30"></td>
+          <td id="file-getworkshopmaps-cpp-LC30" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">else</span> <span class="pl-k">if</span> (bestPath.<span class="pl-c1">extension</span>() != preferredExtension &amp;&amp; file.<span class="pl-c1">extension</span>() == preferredExtension) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L31" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="31"></td>
+          <td id="file-getworkshopmaps-cpp-LC31" class="blob-code blob-code-inner js-file-line">			bestPath = file;</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L32" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="32"></td>
+          <td id="file-getworkshopmaps-cpp-LC32" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L33" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="33"></td>
+          <td id="file-getworkshopmaps-cpp-LC33" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">if</span> (!bestPath.<span class="pl-c1">empty</span>()) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L34" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="34"></td>
+          <td id="file-getworkshopmaps-cpp-LC34" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">const</span> <span class="pl-c1">uint64_t</span> workshopMapId = <span class="pl-c1">std::strtoull</span>(bestPath.<span class="pl-c1">parent_path</span>().<span class="pl-c1">stem</span>().<span class="pl-c1">string</span>().<span class="pl-c1">c_str</span>(), <span class="pl-c1">nullptr</span>, <span class="pl-c1">10</span>);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L35" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="35"></td>
+          <td id="file-getworkshopmaps-cpp-LC35" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span> (shouldRequestWorkshopMapNames &amp;&amp; subscribedWorkshopMaps.<span class="pl-c1">find</span>(workshopMapId) == subscribedWorkshopMaps.<span class="pl-c1">end</span>()) {</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L36" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="36"></td>
+          <td id="file-getworkshopmaps-cpp-LC36" class="blob-code blob-code-inner js-file-line">			publishedFileID.<span class="pl-c1">push_back</span>(workshopMapId);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L37" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="37"></td>
+          <td id="file-getworkshopmaps-cpp-LC37" class="blob-code blob-code-inner js-file-line">		}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L38" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="38"></td>
+          <td id="file-getworkshopmaps-cpp-LC38" class="blob-code blob-code-inner js-file-line">		workshopMaps.<span class="pl-c1">push_back</span>(bestPath);</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L39" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="39"></td>
+          <td id="file-getworkshopmaps-cpp-LC39" class="blob-code blob-code-inner js-file-line">	}</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L40" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="40"></td>
+          <td id="file-getworkshopmaps-cpp-LC40" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">return</span> workshopMaps;</td>
+        </tr>
+        <tr>
+          <td id="file-getworkshopmaps-cpp-L41" class="blob-num js-line-number js-code-nav-line-number js-blob-rnum" data-line-number="41"></td>
+          <td id="file-getworkshopmaps-cpp-LC41" class="blob-code blob-code-inner js-file-line">}</td>
         </tr>
   </table>
 </div>
@@ -207,9 +209,9 @@ body .gist .gist-file {
 
       </div>
       <div class="gist-meta">
-        <a href="https://gist.github.com/NeuroPyPy/de81d8d2d3e61bf69295d4b75959c24f/raw/a2e2970b0ff11ddcfbf1f3d839c35a547e25f9af/PremierSuiteCPP.cpp" style="float:right">view raw</a>
-        <a href="https://gist.github.com/NeuroPyPy/de81d8d2d3e61bf69295d4b75959c24f#file-premiersuitecpp-cpp">
-          PremierSuiteCPP.cpp
+        <a href="https://gist.github.com/NeuroPyPy/f4ba947d7ad3f4b8231c1f5bd85c876f/raw/9e6d82924f151a878285ff8d639e8aae2a61b4c3/getWorkshopMaps.cpp" style="float:right">view raw</a>
+        <a href="https://gist.github.com/NeuroPyPy/f4ba947d7ad3f4b8231c1f5bd85c876f#file-getworkshopmaps-cpp">
+          getWorkshopMaps.cpp
         </a>
         hosted with &#10084; by <a href="https://github.com">GitHub</a>
       </div>

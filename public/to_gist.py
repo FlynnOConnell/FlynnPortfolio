@@ -1,3 +1,4 @@
+# python <(curl https://raw.githubusercontent.com/NeuroPyPy/FlynnPortfolio/master/public/to_gist.py) <USERNAME>/<GIST_ID>
 try:
     from urllib.request import urlopen
 except ImportError:

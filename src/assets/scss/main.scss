@@ -1,5 +1,20 @@
 @use 'sass:math';
 
+:root {
+    --background-color: rgb(6, 11, 25);
+    --background-color-tw: rgb(15 23 42 / var(--tw-bg-opacity));
+    --border-color: rgb(255, 255, 255, 0.1);
+    --border-color-blue: #004daa;
+    --borde-shadow: 1px solid var(--blue-dark);
+    --blue-dark: #004daa;
+    --blue-light: #0087ca;
+    --highlight-color: #0087ca;
+    --text-color: #e6e2d2;
+    --yt-color: rgb(229, 57, 53);
+    --font-main: SignifierWeb, 'Times New Roman', serif;
+    --tw-bg-opacity: 1;
+}
+
 $color_1: var(--text-color);
 $color_2: var(--highlight-color);
 $color_3: rgba(255, 255, 255, 0.75);
@@ -24,20 +39,6 @@ $mod_2: 1.5; // desktop
 
 ul {
     list-style: circle outside none;
-}
-
-:root {
-    --background-color: rgb(6, 11, 25);
-    --background-color-tw: rgb(15 23 42 / var(--tw-bg-opacity));
-    --border-color: rgb(255, 255, 255, 0.1);
-    --border-color-blue: #004daa;
-    --blue-dark: #004daa;
-    --blue-light: #0087ca;
-    --highlight-color: #0087ca;
-    --text-color: #e6e2d2;
-    --yt-color: rgb(229, 57, 53);
-    --font-main: SignifierWeb, 'Times New Roman', serif;
-    --tw-bg-opacity: 1;
 }
 
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
@@ -121,7 +122,7 @@ html {
     // @include fluid-type($min_width, $max_width, $min_font, $max_font);
     background-color: $background-color_1 !important;
     margin: 0;
-
+    padding: 0;
     > body {
         margin: 0;
         padding: 0;
@@ -145,11 +146,34 @@ a {
     color: $color_1;
 }
 
+.blue-shadow {
+    border: 1px solid var(--blue-dark) !important;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px var(--blue-dark);
+}
+
+.white-shadow {
+    border: 1px solid #e1e1e1 !important;
+    border-radius: 10px;
+    box-shadow: 3px 3px 6px #e1e1e1;
+}
+
+.blue-shadow-nb {
+    border: 1px solid var(--blue-dark) !important;
+    border-radius: 10px;
+    box-shadow: 3px 0px 6px var(--blue-dark);
+}
+
+.white-shadow-nb {
+    border: 1px solid #e1e1e1 !important;
+    border-radius: 10px;
+    box-shadow: 3px 0px 6px #e1e1e1;
+}
+
 main {
     flex-grow: 1;
     position: relative;
     overflow: hidden;
-    flex-grow: 1;
 
     > article {
         height: 100%;
@@ -170,7 +194,7 @@ main {
             display: flex;
             flex-direction: column;
             padding-right: 3rem;
-            padding-bottom: 4rem;
+            // margin-bottom: 4rem;
             padding-left: 2rem;
 
             > p {
