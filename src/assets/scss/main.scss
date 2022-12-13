@@ -1,7 +1,11 @@
 @use 'sass:math';
 
 :root {
+    --font-sans: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text',
+        -apple-system, system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
     --background-color: rgb(6, 11, 25);
+    --accent-color: #64ffda;
     --background-color-tw: rgb(15 23 42 / var(--tw-bg-opacity));
     --border-color: rgb(255, 255, 255, 0.1);
     --border-color-blue: #004daa;
@@ -13,12 +17,27 @@
     --yt-color: rgb(229, 57, 53);
     --font-main: SignifierWeb, 'Times New Roman', serif;
     --tw-bg-opacity: 1;
+    --dark-navy: #020c1b;
+    --navy: #0a192f;
+    --light-navy: #112240;
+    --lightest-navy: #233554;
+    --navy-shadow: rgba(2, 12, 27, 0.7);
+    --dark-slate: #495670;
+    --slate: #8892b0;
+    --light-slate: #a8b2d1;
+    --lightest-slate: #ccd6f6;
+    --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --nav-height: 100px;
+    --nav-scroll-height: 70px;
+    --line-height: 1.3;
 }
 
-$color_1: var(--text-color);
+$color_1: var(--lightest-slate);
+$color_1_accent: var(--dark-slate);
 $color_2: var(--highlight-color);
 $color_3: rgba(255, 255, 255, 0.75);
 $header-font: 'Crimson', serif;
+$header2-font: var(--font-sans);
 $font-family_1: 'Montserrat', sans-serif;
 $font-family_2: 'Open Sans', sans-serif;
 $background-color_1: var(--background-color);
@@ -101,7 +120,7 @@ h2 {
         $mod_1 * $mod_1 * $mod_1 * $min_font,
         $mod_2 * $mod_2 * $mod_2 * $min_font
     );
-    font-family: $header-font;
+    font-family: $header2-font;
     font-weight: 600;
     color: $color_1;
 }
@@ -121,11 +140,13 @@ h3 {
 html {
     // @include fluid-type($min_width, $max_width, $min_font, $max_font);
     background-color: $background-color_1 !important;
+    scrollbar-color: var(--dark-slate) var(--navy);
     margin: 0;
     padding: 0;
     > body {
         margin: 0;
         padding: 0;
+        line-height: 1.3;
     }
 }
 
@@ -168,6 +189,14 @@ a {
     border: 1px solid #e1e1e1 !important;
     border-radius: 10px;
     box-shadow: 3px 0px 6px #e1e1e1;
+}
+
+.feather {
+    &:hover {
+        color: $color_2 !important;
+        transform: scale(1.5);
+        transition: all 0.2s ease !important;
+    }
 }
 
 main {
@@ -449,7 +478,7 @@ nav {
 }
 
 .animation-underline {
-    font-weight: bolder;
+    font-family: var(--font-mono);
     display: inline-block;
     position: relative;
 

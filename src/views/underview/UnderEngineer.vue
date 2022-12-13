@@ -1,29 +1,96 @@
 //@ts-nocheck
 <script setup lang="ts">
 import SmallHeader from '@/components/maincomponents/SmallHeader.vue'
-import Gist_mainlogic from '@/components/gists/Gist_mainlogic.vue'
-import Gist_psgui from '@/components/gists/Gist_psgui.vue'
-import Gist_iterdir from '@/components/gists/Gist_iterdir.vue'
-import Gist_workshop from '@/components/gists/Gist_workshop.vue'
-import { onMounted, onUnmounted, ref, getCurrentInstance } from 'vue'
+import Gist_mainlogic from '@/components/gists/premiersuite/MainLogic.vue'
+import Gist_psgui from '@/components/gists/premiersuite/GUI.vue'
+import Gist_iterdir from '@/components/gists/premiersuite/IterDir.vue'
+import Gist_workshop from '@/components/gists/premiersuite/Workshop.vue'
+import Initialize from '@/components/gists/canalysis/Initialize.vue'
+import FileHandler from '@/components/gists/canalysis/FileHandler.vue'
+import Container from '@/components/gists/canalysis/Container.vue'
+import Functions from '@/components/gists/canalysis/Functions.vue'
+import { onMounted, ref } from 'vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
-import { onIntersect } from '@/composables/observers';
-
+import { headerObserver } from '@/composables/observers';
 const activetab = ref(1);
 const thistab = ref(null);
+
+
+
+
+onMounted(() => {
+
+    const plugin = document.createElement("script");
+    plugin.setAttribute(
+        "src",
+        "https://gist.github.com/NeuroPyPy/47c2a310c9b114eee14b6ac9a6e86738.js"
+    );
+    plugin.async = true;
+    const gist = document.getElementById('#gist')!;
+    console.log(gist)
+    // gist.appendChild(plugin);
+
+    const smallheader: any = document.querySelector('#smallheader')!;
+    const sections = [...document.querySelectorAll('[data-id]')]!;
+
+    const options = {
+        rootMargin: `${smallheader.offsetHeight * -5}px`,
+        threshold: 0,
+    };
+
+    const intersectCallback = headerObserver(smallheader, sections);
+    const observer = new IntersectionObserver(intersectCallback, options)
+
+    sections.forEach((section) => {
+        observer.observe(section)
+    })
+
+    return observer;
+});
 
 </script>
 
 <template>
-    <div class="relative my-16">
-        <section>
-            <h2 class="text-center"> My Software Projects </h2>
-        </section>
+    <div id="outer" class="my-16 fadediv">
+        <div orientation="left" class="side-absolute">
+            <ul class="side-absolute-inner fade-enter-done">
+                <li><a href="https://github.com/NeuroPyPy" aria-label="GitHub" target="_blank" rel="noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-github">
+                            <title>GitHub</title>
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg></a></li>
+                <li><a href="https://twitter.com/FlynnNeuro" aria-label="Twitter" target="_blank" rel="noreferrer"><svg
+                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-twitter">
+                            <title>Twitter</title>
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg></a></li>
+                <li><a href="https://www.linkedin.com/in/flynnoconnell/" aria-label="Linkedin" target="_blank"
+                        rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-linkedin">
+                            <title>LinkedIn</title>
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg></a></li>
+            </ul>
+        </div>
         <!-- CONTAINER FOR WHOLE PAGE -->
-        <section id="page-container" class="ml-10 mr-10">
-            <SmallHeader />
+        <div class="ml-20 mr-10">
+            <h2 class="text-center text-[var(--lightest-slate)] h-[80px]"> Software Projects </h2>
+            <SmallHeader id="smallheader" />
+
             <div id="column-container" class="flex flex-col justify-center px-5 my-20">
-                <article id="PremierSuite">
+                <section data-id="PremierSuite">
                     <div id="headwithicon" class="">
                         <h3>PremierSuite</h3>
                         <div class="techicon">
@@ -36,15 +103,15 @@ const thistab = ref(null);
                     <!-- PREMIERSUITE VIDEO / EXPLANATION -->
                     <div id="row-container" class="">
                         <!-- Left -->
-                        <div class="video-container blue-shadow relative h-full">
+                        <div class="image-container blue-shadow relative h-full">
                             <video ref="videoplayer" class="blue-shadow" autoplay muted loop>
                                 <source src="/movies/PremierSuiteExample.mp4" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <!-- Right -->
-                        <div class="explination">
-                            <p class="ml-8 mr-8 text-lg">
+                        <div class="explination ml-8 mr-8 ">
+                            <p class="text-lg">
                                 A downloadable plugin for
                                 <a href="https://www.rocketleague.com/">RocketLeague</a> that allows the direct
                                 manupulation
@@ -88,8 +155,8 @@ const thistab = ref(null);
                             </div>
                         </div>
                     </div>
-                </article>
-                <article>
+                </section>
+                <section data-id="Canalysis">
                     <div id="headwithicon" class="">
                         <h3>Canalysis</h3>
                         <div class="techicon">
@@ -102,7 +169,134 @@ const thistab = ref(null);
                     <!-- CANALYSIS VIDEO / EXPLINATION -->
                     <div id="row-container" class="">
                         <!-- Left -->
-                        <div class="video-container blue-shadow relative h-full">
+                        <div class="image-container blue-shadow relative h-full">
+                            <p>
+                                <img width="auto" height="auto" src=https://i.imgur.com/SPok8sB.gif>
+                            </p>
+                        </div>
+                        <!-- Right -->
+                        <div class="explination ml-8 mr-8">
+                            <p class="text-lg text-white">
+                            <h1> Calcium Imaging Data Analysis </h1>
+                            <ul class="text-white">
+                                <li>Syncing traces with externally captured GPIO events.</li>
+                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
+                                    matrix.</li>
+                                <li> Dimensionality reduction with variance filters and principal component analysis.
+                                </li>
+
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- CODE SNIPPET -->
+                    <div id="row-container" class="">
+                        <div class="tabscontainer">
+                            <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
+                                    v-bind:class="[activetab === 1 ? 'active' : '']">
+                                    Initialize</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
+                                    v-bind:class="[activetab === 2 ? 'active' : '']">
+                                    Data Container</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
+                                    v-bind:class="[activetab === 3 ? 'active' : '']">
+                                    File Handler</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
+                                    v-bind:class="[activetab === 4 ? 'active' : '']">
+                                    Functions</a>
+                            </div>
+                            <div id="content" class="mt-4">
+                                <div v-if="(activetab === 1)" class="tabcontent">
+                                    <component :is="Initialize" />
+                                </div>
+                                <div v-if="(activetab === 2)" class="tabcontent">
+                                    <component :is="Container" />
+                                </div>
+                                <div v-if="(activetab === 3)" class="tabcontent">
+                                    <a id="gist" href="#gist1" class="show">More...</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="NeuralNetwork">
+                    <div id="headwithicon" class="">
+                        <h3>Neural Network</h3>
+                        <div class="techicon">
+                            <Icon subfolder="languages" name="Python" filter: true />
+                        </div>
+                    </div>
+                    <!-- NEURAL NETWORK VIDEO / EXPLINATION -->
+                    <div id="row-container" class="">
+                        <!-- Left -->
+                        <div class="image-container blue-shadow relative h-full">
+                            <p>
+                                <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
+                            </p>
+                        </div>
+                        <!-- Right -->
+                        <div class="explination">
+                            <p class="ml-8 mr-8 text-lg text-white">
+                            <h1> ML for Classification </h1>
+                            <ul class="text-white">
+                                <li>Syncing traces with externally captured GPIO events.</li>
+                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
+                                    matrix.</li>
+                                <li> Dimensionality reduction with variance filters and principal component analysis.
+                                </li>
+                                <li> Support Vector Machine Learning for classification tasks.</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- CODE SNIPPET -->
+                    <div id="row-container" class="">
+                        <div class="tabscontainer">
+                            <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
+                                    v-bind:class="[activetab === 1 ? 'active' : '']">
+                                    Server Handler</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
+                                    v-bind:class="[activetab === 2 ? 'active' : '']">
+                                    Iterate Files</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
+                                    v-bind:class="[activetab === 3 ? 'active' : '']">
+                                    Extension Handler</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
+                                    v-bind:class="[activetab === 4 ? 'active' : '']">
+                                    GUI Tree</a>
+                            </div>
+                            <div id="content" class="mt-4">
+                                <div v-if="(activetab === 1)" class="tabcontent">
+                                    <component :is="Gist_mainlogic" />
+                                </div>
+                                <div v-if="(activetab === 2)" class="tabcontent">
+                                    <component :is="Gist_iterdir" />
+                                </div>
+                                <div v-if="(activetab === 3)" class="tabcontent">
+                                    <component :is="Gist_workshop" />
+                                </div>
+                                <div v-if="(activetab === 4)" class="tabcontent">
+                                    <component :is="Gist_psgui" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="DataViewer">
+                    <div id="headwithicon" class="">
+                        <h3>DataViewer</h3>
+                        <div class="techicon">
+                            <Icon subfolder="languages" name="Python" filter: true />
+                        </div>
+
+                    </div>
+                    <!-- CANALYSIS VIDEO / EXPLINATION -->
+                    <div id="row-container" class="">
+                        <!-- Left -->
+                        <div class="image-container blue-shadow relative h-full">
                             <p>
                                 <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
                             </p>
@@ -155,14 +349,78 @@ const thistab = ref(null);
                             </div>
                         </div>
                     </div>
-                </article>
+                </section>
             </div>
 
-        </section>
+        </div>
     </div>
 </template>
 
-<style>
+<style lang="scss">
+[data-status="active"] {
+    color: var(--blue-dark);
+}
+
+[data-status="inactive"] {
+    color: var(--light-slate);
+}
+
+#full-page {
+    height: calc(100vh - 150px);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.side-absolute {
+    width: 40px;
+    position: fixed;
+    bottom: 0px;
+    left: 16px;
+    right: auto;
+    z-index: 10;
+    color: var(--light-slate);
+}
+
+.side-absolute-inner {
+    display: flex;
+    flex-direction: column;
+    -moz-box-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.side-absolute-inner::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 0px auto;
+    background-color: var(--light-slate);
+}
+
+.side-absolute-inner li a {
+    padding: 10px;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    text-decoration-skip-ink: auto;
+    color: inherit;
+    position: relative;
+    transition: var(--transition);
+}
+
+.side-absolute-inner li a svg {
+    width: 20px;
+    height: 20px;
+}
+
+svg.feather {
+    fill: none;
+}
+
 #row-container {
     display: flex;
     flex-direction: row;
@@ -234,10 +492,10 @@ const thistab = ref(null);
     justify-content: center;
     min-height: 25px;
     max-height: 60px;
-    margin-top: 10rem;
+    margin-top: 2rem;
 }
 
-.video-container video {
+.container-container video {
     width: auto;
     height: 100%;
     object-fit: cover;

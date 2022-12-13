@@ -1,36 +1,66 @@
-/**
- * @function onIntersect
- * @param  {HTMLElement} elementToWatch     //elementToWatch
- * @param  {function} callback              //callback once element is intersecting
- * @param  {Boolen} once                    //if callback only run one time
- * @param  {Object} options                 //Intersection Observer API options
- * @return {type} observer
- */
+export var headerObserver = function (
+    toChange: HTMLElement,
+    toWatch: any
+): IntersectionObserverCallback {
+    let direction = 'up';
+    let prevYPosition = 0;
 
-interface onIntersect {
-    elementToWatch: HTMLElement;
-    callback: Function;
-    once?: boolean;
-    options?: number;
-    outCallback: (el: HTMLElement) => void;
-}
+    const smallheader: any = toChange;
+    const sections: any = toWatch;
 
-export const onIntersect = (
-    elementToWatch: HTMLElement,
-    elementToCross: HTMLElement,
-    callback: Function,
-    once = true
-) => {
-    const options = { threshold: 1.0, root: elementToCross };
-    const observer = new IntersectionObserver(([entry]) => {
-        if (entry && entry.isIntersecting) {
-            callback(entry.target);
-            if (once) {
-                observer.unobserve(entry.target);
-            }
+    const changeHighlight = (selector: string): void => {
+        const activelink = smallheader.querySelector(
+            `[data-status="active"]`
+        ) as HTMLElement;
+        const currentlink = smallheader.querySelector(
+            `[id="${selector}"]`
+        ) as HTMLElement;
+        activelink.dataset.status = 'inactive';
+        currentlink.dataset.status = 'active';
+
+        return;
+    };
+
+    const getTargetSection = (entry: any) => {
+        const index = sections.findIndex(
+            (section: any) => section == entry.target
+        );
+
+        if (index >= sections.length - 1) {
+            return entry.target;
+        } else {
+            return sections[index + 1];
         }
-    }, options);
+    };
 
-    observer.observe(elementToWatch);
-    return observer;
+    const shouldUpdate = (entry: any) => {
+        if (direction === 'down' && !entry.isIntersecting) {
+            return true;
+        }
+
+        if (direction === 'up' && entry.isIntersecting) {
+            return true;
+        }
+
+        return false;
+    };
+
+    const onIntersect = (entries: any[]) => {
+        entries.forEach((entry: any) => {
+            if (window.scrollY > prevYPosition) {
+                direction = 'down';
+            } else {
+                direction = 'up';
+            }
+            prevYPosition = window.scrollY;
+
+            const target =
+                direction === 'down' ? getTargetSection(entry) : entry.target;
+
+            if (shouldUpdate(entry)) {
+                changeHighlight(target.dataset.id);
+            }
+        });
+    };
+    return onIntersect;
 };
