@@ -16,7 +16,7 @@ except ImportError:
     from urllib2 import urlopen
 import json
 
-gist_url = f'https://gist.github.com/{sys.argv[1]}.json'
+gist_url = 'https://gist.github.com/{:s}.json'.format(sys.argv[1])
 
 gist = json.loads(urlopen(gist_url).read())
 html = bs(gist['div'], 'html.parser').prettify()
