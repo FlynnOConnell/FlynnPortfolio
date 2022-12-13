@@ -26,7 +26,7 @@ stylesheet = bs(stylesheeturl, 'html.parser').prettify()
 
 template = bs("<template>{:s}</template>".format(html), 'html.parser').prettify()
 
-with open(f"{:s}.vue".format(filename), "w") as f:
+with open("{:s}.vue".format(filename), "w") as f:
     f.write(template)
-    f.write(f"<script>export default {{ name: '{:s}' }}</script>".format(filename)
+    f.write("<script>export default {{ name: '{:s}' }}</script>".format(filename)
     f.write("<style>{:s}</style>".format(stylesheet)
