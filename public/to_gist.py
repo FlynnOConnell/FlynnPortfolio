@@ -24,9 +24,9 @@ html = bs(gist['div'], 'html.parser').prettify()
 stylesheeturl = urlopen("https://raw.githubusercontent.com/NeuroPyPy/FlynnPortfolio/master/public/cobalt_gist.css").read()
 stylesheet = bs(stylesheeturl, 'html.parser').prettify()
 
-template = bs(f"<template>{html}</template>", 'html.parser').prettify()
+template = bs("<template>{:s}</template>".format(html), 'html.parser').prettify()
 
-with open(f"{filename}.vue", "w") as f:
+with open(f"{:s}.vue".format(filename), "w") as f:
     f.write(template)
-    f.write(f"<script>export default {{ name: '{filename}' }}</script>")
-    f.write(f"<style>{stylesheet}</style>")
+    f.write(f"<script>export default {{ name: '{:s}' }}</script>".format(filename)
+    f.write("<style>{:s}</style>".format(stylesheet)
