@@ -12,7 +12,12 @@ import { RouterView } from 'vue-router';
     </div>
 </template>
 
-<style>
+<style lang="scss">
+@import "./assets/scss/main.scss";
+@import "./assets/css/tailwind.css";
+@import './assets/css/imports.css';
+@import 'highlight.js/styles/obsidian.css';
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;

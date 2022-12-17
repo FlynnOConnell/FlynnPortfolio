@@ -306,7 +306,7 @@ function useSwipeRight() {
                 </div>
                 <div class="article-title-section article-section">
                     <h2 style="font-family: CrimsonItalic">Software Engineering</h2>
-                    <button @click="$router.push('engineer')" class="article-nav-button">
+                    <button @click="$router.push('projects')" class="article-nav-button">
                         <font-awesome-icon :icon="['fas', 'circle-chevron-down']" inverse size="2x" />
                     </button>
                 </div>
@@ -324,11 +324,6 @@ function useSwipeRight() {
 </template>
 
 <style scoped>
-p {
-    font-family: "Crimson";
-    font-size: 1.5rem;
-}
-
 strong .italic {
     font-weight: bold;
     font-style: italic;

@@ -1,43 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import MainView from '../views/MainView.vue';
+import Home from '../views/Home.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'About',
-            component: MainView,
+            name: 'Home',
+            component: Home,
         },
         {
             path: '/404',
-            component: () => import('../views/NotFound.vue'),
+            component: () => import('../views/404.vue'),
             meta: {
-                title: '404 not found',
+                title: '404',
             },
         },
         {
             path: '/contact',
-            name: 'Contact',
-            component: () => import('../views/ContactView.vue'),
+            name: 'contact',
+            component: () => import('../views/secondary/Contact.vue'),
             meta: {
                 title: 'Contact Me',
             },
         },
         {
-            path: '/scientist',
-            name: 'UnderScience',
-            component: () => import('../views/underview/UnderScience.vue'),
+            path: '/science',
+            name: 'science',
+            component: () => import('../views/secondary/Science.vue'),
             meta: {
-                title: 'UnderScience',
+                title: 'Science',
             },
         },
         {
-            path: '/Engineer',
-            name: 'UnderEngineer',
-            component: () => import('../views/underview/UnderEngineer.vue'),
+            path: '/projects',
+            name: 'projects',
+            component: () => import('../views/secondary/Projects.vue'),
             meta: {
-                title: 'UnderEngineer',
+                title: 'Projects',
             },
         },
     ],

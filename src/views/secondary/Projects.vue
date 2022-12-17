@@ -1,34 +1,14 @@
-//@ts-nocheck
 <script setup lang="ts">
 import SmallHeader from '@/components/maincomponents/SmallHeader.vue'
-import Gist_mainlogic from '@/components/gists/premiersuite/MainLogic.vue'
-import Gist_psgui from '@/components/gists/premiersuite/GUI.vue'
-import Gist_iterdir from '@/components/gists/premiersuite/IterDir.vue'
-import Gist_workshop from '@/components/gists/premiersuite/Workshop.vue'
-import Initialize from '@/components/gists/canalysis/Initialize.vue'
-import FileHandler from '@/components/gists/canalysis/FileHandler.vue'
-import Container from '@/components/gists/canalysis/Container.vue'
-import Functions from '@/components/gists/canalysis/Functions.vue'
+import Gist from '@/components/subcomponents/Gist.vue'
 import { onMounted, ref } from 'vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
 import { headerObserver } from '@/composables/observers';
+
 const activetab = ref(1);
 const thistab = ref(null);
 
-
-
-
 onMounted(() => {
-
-    const plugin = document.createElement("script");
-    plugin.setAttribute(
-        "src",
-        "https://gist.github.com/NeuroPyPy/47c2a310c9b114eee14b6ac9a6e86738.js"
-    );
-    plugin.async = true;
-    const gist = document.getElementById('#gist')!;
-    console.log(gist)
-    // gist.appendChild(plugin);
 
     const smallheader: any = document.querySelector('#smallheader')!;
     const sections = [...document.querySelectorAll('[data-id]')]!;
@@ -84,12 +64,13 @@ onMounted(() => {
                         </svg></a></li>
             </ul>
         </div>
-        <!-- CONTAINER FOR WHOLE PAGE -->
         <div class="ml-20 mr-10">
             <h2 class="text-center text-[var(--lightest-slate)] h-[80px]"> Software Projects </h2>
             <SmallHeader id="smallheader" />
-
             <div id="column-container" class="flex flex-col justify-center px-5 my-20">
+                <!--  -->
+                <!-- DATAVIEWER -->
+                <!--  -->
                 <section data-id="PremierSuite">
                     <div id="headwithicon" class="">
                         <h3>PremierSuite</h3>
@@ -128,34 +109,43 @@ onMounted(() => {
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
                                     v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Server Handler</a>
+                                    Main</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
-                                    Iterate Files</a>
+                                    Logic</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
-                                    Extension Handler</a>
+                                    Workshops</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
                                     GUI Tree</a>
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <component :is="Gist_mainlogic" />
+                                    <!-- <component :is="Gist_mainlogic" /> -->
+                                    <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f" file_name="PremierSuite.cpp"
+                                        language="cpp" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <component :is="Gist_iterdir" />
+                                    <!-- <component :is="Gist_iterdir" /> -->
+                                    <Gist gist_id="ba94a250051e10a58f504d71b2100fc0" file_name="Logic.cpp"
+                                        language="cpp" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
-                                    <component :is="Gist_workshop" />
+                                    <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f" file_name="getWorkshopMaps.cpp"
+                                        language="cpp" />
                                 </div>
                                 <div v-if="(activetab === 4)" class="tabcontent">
-                                    <component :is="Gist_psgui" />
+                                    <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e" file_name="IterDirectory"
+                                        language="cpp" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!--  -->
+                <!-- CANALYSIS -->
+                <!--  -->
                 <section data-id="Canalysis">
                     <div id="headwithicon" class="">
                         <h3>Canalysis</h3>
@@ -195,32 +185,41 @@ onMounted(() => {
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
                                     v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Initialize</a>
+                                    Server Handler</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
-                                    Data Container</a>
+                                    Iterate Files</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
-                                    File Handler</a>
+                                    Extension Handler</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
-                                    Functions</a>
+                                    GUI Tree</a>
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <component :is="Initialize" />
+                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <component :is="Container" />
+                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
-                                    <a id="gist" href="#gist1" class="show">More...</a>
+                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                        language="python" />
                                 </div>
-
+                                <div v-if="(activetab === 4)" class="tabcontent">
+                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                        language="python" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!--  -->
+                <!-- NEURALNETWORK -->
+                <!--  -->
                 <section data-id="NeuralNetwork">
                     <div id="headwithicon" class="">
                         <h3>Neural Network</h3>
@@ -257,34 +256,41 @@ onMounted(() => {
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
                                     v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Server Handler</a>
+                                    SVM</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
-                                    Iterate Files</a>
+                                    Data Container</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
-                                    Extension Handler</a>
+                                    Scores</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
-                                    GUI Tree</a>
+                                    Validation</a>
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <component :is="Gist_mainlogic" />
+                                    <Gist gist_id="112e72d7c9ce238a0b50e21b488b4a06" file_name="SVM.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <component :is="Gist_iterdir" />
+                                    <Gist gist_id="611f79d2d500b3cb0dd4ec5043e7ca13" file_name="DataHandler.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
-                                    <component :is="Gist_workshop" />
+                                    <Gist gist_id="648d1c810cde2bbf1d8d7ae5cd20473b" file_name="Scores.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 4)" class="tabcontent">
-                                    <component :is="Gist_psgui" />
+                                    <Gist gist_id="d1f98ef449bb3abd667e502cfc73e6b3" file_name="_validate.py"
+                                        language="python" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!--  -->
+                <!-- DATAVIEWER -->
+                <!--  -->
                 <section data-id="DataViewer">
                     <div id="headwithicon" class="">
                         <h3>DataViewer</h3>
@@ -293,7 +299,7 @@ onMounted(() => {
                         </div>
 
                     </div>
-                    <!-- CANALYSIS VIDEO / EXPLINATION -->
+                    <!-- DATAVIEWER VIDEO / EXPLINATION -->
                     <div id="row-container" class="">
                         <!-- Left -->
                         <div class="image-container blue-shadow relative h-full">
@@ -316,42 +322,119 @@ onMounted(() => {
                             </p>
                         </div>
                     </div>
-                    <!-- CODE SNIPPET -->
+                    <!-- DATAVIEWER CODE SNIPPET -->
                     <div id="row-container" class="">
                         <div class="tabscontainer">
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
                                     v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Server Handler</a>
+                                    Main App</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
-                                    Iterate Files</a>
+                                    Canvas</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
-                                    Extension Handler</a>
+                                    Sliders</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
-                                    GUI Tree</a>
+                                    Jinja Template</a>
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <component :is="Gist_mainlogic" />
+                                    <Gist gist_id="25948acfb16b0eb0bde9f29c35792727" file_name="app.py"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <component :is="Gist_iterdir" />
+                                    <Gist gist_id="6489a24d4fdf267a629dc50d1c63efe7" file_name="canvas.ts"
+                                        language="typescript" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
-                                    <component :is="Gist_workshop" />
+                                    <Gist gist_id="9d19c4c99305e347ec4544feea0589c5" file_name="sliders.js"
+                                        language="python" />
                                 </div>
                                 <div v-if="(activetab === 4)" class="tabcontent">
-                                    <component :is="Gist_psgui" />
+                                    <Gist gist_id="16dd5df7952232322c29e5faa601b585" file_name="index.html"
+                                        language="html" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--  -->
+                <!-- PORTFOLIO -->
+                <!--  -->
+                <section data-id="Portfolio">
+                    <div id="headwithicon" class="">
+                        <h3>DataViewer</h3>
+                        <div class="techicon">
+                            <Icon subfolder="languages" name="Typescript" filter: true />
+                        </div>
+                        <div class="techicon">
+                            <Icon subfolder="frameworks" name="Vue" filter: true />
+                        </div>
+                    </div>
+                    <!-- PORTFOLIO VIDEO / EXPLINATION -->
+                    <div id="row-container" class="">
+                        <!-- Left -->
+                        <div class="image-container blue-shadow relative h-full">
+                            <p>
+                                <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
+                            </p>
+                        </div>
+                        <!-- Right -->
+                        <div class="explination">
+                            <p class="ml-8 mr-8 text-lg text-white">
+                            <h1> Calcium Imaging Data Analysis </h1>
+                            <ul class="text-white">
+                                <li>Syncing traces with externally captured GPIO events.</li>
+                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
+                                    matrix.</li>
+                                <li> Dimensionality reduction with variance filters and principal component analysis.
+                                </li>
+                                <li> Support Vector Machine Learning for classification tasks.</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- PORTFOLIO CODE SNIPPET -->
+                    <div id="row-container" class="">
+                        <div class="tabscontainer">
+                            <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
+                                    v-bind:class="[activetab === 1 ? 'active' : '']">
+                                    Observers</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
+                                    v-bind:class="[activetab === 2 ? 'active' : '']">
+                                    Canvas</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
+                                    v-bind:class="[activetab === 3 ? 'active' : '']">
+                                    Sliders</a>
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
+                                    v-bind:class="[activetab === 4 ? 'active' : '']">
+                                    Jinja Template</a>
+                            </div>
+                            <div id="content" class="mt-4">
+                                <div v-if="(activetab === 1)" class="tabcontent">
+                                    <Gist gist_id="8aed7d53d5c28c3d6cc6b98ec88a98c0" file_name="observers.ts"
+                                        language="typescript" />
+                                </div>
+                                <div v-if="(activetab === 2)" class="tabcontent">
+                                    <Gist gist_id="6489a24d4fdf267a629dc50d1c63efe7" file_name="canvas.ts"
+                                        language="typescript" />
+                                </div>
+                                <div v-if="(activetab === 3)" class="tabcontent">
+                                    <Gist gist_id="9d19c4c99305e347ec4544feea0589c5" file_name="sliders.js"
+                                        language="python" />
+                                </div>
+                                <div v-if="(activetab === 4)" class="tabcontent">
+                                    <Gist gist_id="16dd5df7952232322c29e5faa601b585" file_name="index.html"
+                                        language="html" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
-
         </div>
     </div>
 </template>

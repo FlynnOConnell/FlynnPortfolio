@@ -56,10 +56,6 @@ $mod_2: 1.5; // desktop
     box-sizing: border-box;
 }
 
-ul {
-    list-style: circle outside none;
-}
-
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
     $u1: unit($min-vw);
     $u2: unit($max-vw);
@@ -152,7 +148,6 @@ html {
 
 a {
     text-decoration: none;
-
     &:hover {
         color: $color_2;
         transition: color 0.5s ease;

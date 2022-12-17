@@ -5,11 +5,9 @@ import './plugins/pinia';
 import './plugins/formkit';
 import './plugins/fontawesome';
 import './plugins/vuefeather';
-import './assets/css/imports.css';
-import './assets/scss/_tooltip.scss';
 
-import directives from './directives/';
-
-directives(app);
+// import './assets/css/hljs_obsidian.css';
+// import './plugins/highlightjs';
+// import '@/assets/scss/style.scss';
 app.config.globalProperties.$log = console.log;
 app.mount('#app');

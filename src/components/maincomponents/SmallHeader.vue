@@ -18,14 +18,14 @@ let scrollPosition = ref(0);
             class="header-inner text-[var(--light-slate)] lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
 
             <router-link data-status="active" id="PremierSuite" class="animation-underline"
-                :to="{ name: 'UnderEngineer', hash: '#PremierSuite' }">PremierSuite</router-link>
+                :to="{ name: 'projects', hash: '#PremierSuite' }">PremierSuite</router-link>
             <router-link data-status="inactive" id="Canalysis" class="animation-underline"
-                :to="{ name: 'UnderEngineer', hash: '#Canalysis' }">Canalysis</router-link>
+                :to="{ name: 'projects', hash: '#Canalysis' }">Canalysis</router-link>
             <router-link data-status="inactive" id="NeuralNetwork" class="animation-underline"
-                :to="{ name: 'UnderEngineer', hash: '#NeuralNetwork' }">Neural Network
+                :to="{ name: 'projects', hash: '#NeuralNetwork' }">Neural Network
             </router-link>
             <router-link data-status="inactive" id="DataViewer" class="animation-underline"
-                :to="{ name: 'UnderEngineer', hash: '#DataViewer' }">Dataviewer</router-link>
+                :to="{ name: 'projects', hash: '#DataViewer' }">Dataviewer</router-link>
 
         </div>
     </div>
