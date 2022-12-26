@@ -9,7 +9,7 @@ let scrollPosition = ref(0);
     <div ref="headRef" class="header lg:h-[70px]" :class="[scrollPosition >= 120 ? 'shrink-header' : '', '']">
         <div class="header-back lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
             <div class="flex items-center">
-                <button class="text-[var(--light-slate)] font-bold text-sm" type="button" @click="$router.go(-1)">
+                <button class="text-[var(--light-slate)] font-bold text-sm" type="button" @click="$router.push('/')">
                     <font-awesome-icon :icon="['fas', 'home']" inverse style="color: var(--light-slate)" />
                 </button>
             </div>
@@ -17,15 +17,16 @@ let scrollPosition = ref(0);
         <div
             class="header-inner text-[var(--light-slate)] lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
 
-            <router-link data-status="active" id="PremierSuite" class="animation-underline"
-                :to="{ name: 'projects', hash: '#PremierSuite' }">PremierSuite</router-link>
-            <router-link data-status="inactive" id="Canalysis" class="animation-underline"
-                :to="{ name: 'projects', hash: '#Canalysis' }">Canalysis</router-link>
-            <router-link data-status="inactive" id="NeuralNetwork" class="animation-underline"
-                :to="{ name: 'projects', hash: '#NeuralNetwork' }">Neural Network
-            </router-link>
-            <router-link data-status="inactive" id="DataViewer" class="animation-underline"
-                :to="{ name: 'projects', hash: '#DataViewer' }">Dataviewer</router-link>
+            <router-link :to="{ name: 'projects', hash: '#PremierSuite' }" data-status="active" data-id="PremierSuite"
+                class="animation-underline activelink">PremierSuite</router-link>
+            <router-link :to="{ name: 'projects', hash: '#Canalysis' }" data-status="inactive" data-id="Canalysis"
+                class="animation-underline">Canalysis</router-link>
+            <router-link :to="{ name: 'projects', hash: '#NeuralNetwork' }" data-status="inactive"
+                data-id="NeuralNetwork" class="animation-underline">Neural Network</router-link>
+            <router-link :to="{ name: 'projects', hash: '#DataViewer' }" data-status="inactive" data-id="DataViewer"
+                class="animation-underline">Dataviewer</router-link>
+            <router-link :to="{ name: 'projects', hash: '#Portfolio' }" data-status="inactive" data-id="Portfolio"
+                class="animation-underline">Portfolio</router-link>
 
         </div>
     </div>
@@ -33,6 +34,15 @@ let scrollPosition = ref(0);
 </template>
 
 <style scoped>
+.activelink {
+    color: var(--blue-light);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration: none;
+    border-bottom: 2px solid var(--light-slate);
+    padding-bottom: 0.25rem;
+}
+
 .header button {
     position: absolute;
     left: 0;
@@ -69,7 +79,7 @@ let scrollPosition = ref(0);
     transition: all 250ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.shrink-header .header-inner {
+.shrink-header {
     padding-top: .35rem !important;
     padding-bottom: .35rem !important;
     font-size: larger !important;

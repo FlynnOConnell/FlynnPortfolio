@@ -13,11 +13,10 @@ export var headerObserver = function (
             `[data-status="active"]`
         ) as HTMLElement;
         const currentlink = smallheader.querySelector(
-            `[id="${selector}"]`
+            `[data-id="${selector}"]`
         ) as HTMLElement;
         activelink.dataset.status = 'inactive';
         currentlink.dataset.status = 'active';
-
         return;
     };
 
@@ -59,6 +58,7 @@ export var headerObserver = function (
 
             if (shouldUpdate(entry)) {
                 changeHighlight(target.dataset.id);
+                console.log('changeHighlight', target.dataset.id);
             }
         });
     };

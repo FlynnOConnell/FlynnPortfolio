@@ -1,5 +1,5 @@
 <template>
-  <div class="blue-shadow">
+  <div>
     <highlightjs :language="gistprops.language" :code="gistcontent" />
   </div>
 </template>
@@ -42,6 +42,12 @@ onMounted(async () => {
 });
 
 </script>
+
+<style scoped lang="scss">
+code {
+  font-size: 0.75rem !important;
+}
+</style>
 
 
 

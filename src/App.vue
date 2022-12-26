@@ -16,7 +16,7 @@ import { RouterView } from 'vue-router';
 @import "./assets/scss/main.scss";
 @import "./assets/css/tailwind.css";
 @import './assets/css/imports.css';
-@import 'highlight.js/styles/obsidian.css';
+@import 'highlight.js/styles/night-owl.css';
 
 .fade-enter-active,
 .fade-leave-active {

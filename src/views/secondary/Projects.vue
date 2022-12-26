@@ -3,29 +3,32 @@ import SmallHeader from '@/components/maincomponents/SmallHeader.vue'
 import Gist from '@/components/subcomponents/Gist.vue'
 import { onMounted, ref } from 'vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
-import { headerObserver } from '@/composables/observers';
 
 const activetab = ref(1);
 const thistab = ref(null);
 
 onMounted(() => {
 
-    const smallheader: any = document.querySelector('#smallheader')!;
-    const sections = [...document.querySelectorAll('[data-id]')]!;
-
+    const sections = [...document.querySelectorAll('section.project')]!;
     const options = {
-        rootMargin: `${smallheader.offsetHeight * -5}px`,
-        threshold: 0,
+        rootMargin: '0px 0px -70% 0px',
+        threshold: [0.01, 0.99]
+
     };
 
-    const intersectCallback = headerObserver(smallheader, sections);
-    const observer = new IntersectionObserver(intersectCallback, options)
-
+    const changeNav = (entries: any, observer: any) => {
+        entries.forEach((entry: any) => {
+            if (entry.isIntersecting) {
+                document.querySelector('.activelink')?.classList.remove('activelink');
+                var id = entry.target.getAttribute('id');
+                document.querySelector(`[data-id="${id}"]`)?.classList.add('activelink');
+            }
+        })
+    }
+    const observer = new IntersectionObserver(changeNav, options)
     sections.forEach((section) => {
         observer.observe(section)
     })
-
-    return observer;
 });
 
 </script>
@@ -69,9 +72,9 @@ onMounted(() => {
             <SmallHeader id="smallheader" />
             <div id="column-container" class="flex flex-col justify-center px-5 my-20">
                 <!--  -->
-                <!-- DATAVIEWER -->
+                <!-- PREMIERSUITE -->
                 <!--  -->
-                <section data-id="PremierSuite">
+                <section id="PremierSuite" data-id="PremierSuite" class="project">
                     <div id="headwithicon" class="">
                         <h3>PremierSuite</h3>
                         <div class="techicon">
@@ -121,24 +124,38 @@ onMounted(() => {
                                     GUI Tree</a>
                             </div>
                             <div id="content" class="mt-4">
-                                <div v-if="(activetab === 1)" class="tabcontent">
-                                    <!-- <component :is="Gist_mainlogic" /> -->
-                                    <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f" file_name="PremierSuite.cpp"
-                                        language="cpp" />
-                                </div>
-                                <div v-if="(activetab === 2)" class="tabcontent">
-                                    <!-- <component :is="Gist_iterdir" /> -->
-                                    <Gist gist_id="ba94a250051e10a58f504d71b2100fc0" file_name="Logic.cpp"
-                                        language="cpp" />
-                                </div>
-                                <div v-if="(activetab === 3)" class="tabcontent">
-                                    <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f" file_name="getWorkshopMaps.cpp"
-                                        language="cpp" />
-                                </div>
-                                <div v-if="(activetab === 4)" class="tabcontent">
-                                    <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e" file_name="IterDirectory"
-                                        language="cpp" />
-                                </div>
+                                <Transition name="fade" mode="out-in" appear>
+                                    <KeepAlive>
+                                        <div v-if="(activetab === 1)" class="tabcontent">
+                                            <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f"
+                                                file_name="PremierSuite.cpp" language="cpp" />
+                                        </div>
+                                    </KeepAlive>
+                                </Transition>
+                                <Transition name="fade" mode="out-in" appear>
+                                    <KeepAlive>
+                                        <div v-if="(activetab === 2)" class="tabcontent">
+                                            <Gist gist_id="ba94a250051e10a58f504d71b2100fc0" file_name="Logic.cpp"
+                                                language="cpp" />
+                                        </div>
+                                    </KeepAlive>
+                                </Transition>
+                                <Transition name="fade" mode="out-in" appear>
+                                    <KeepAlive>
+                                        <div v-if="(activetab === 3)" class="tabcontent">
+                                            <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f"
+                                                file_name="getWorkshopMaps.cpp" language="cpp" />
+                                        </div>
+                                    </KeepAlive>
+                                </Transition>
+                                <Transition name="fade" mode="out-in" appear>
+                                    <KeepAlive>
+                                        <div v-if="(activetab === 4)" class="tabcontent">
+                                            <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e"
+                                                file_name="IterDirectory.cpp" language="cpp" />
+                                        </div>
+                                    </KeepAlive>
+                                </Transition>
                             </div>
                         </div>
                     </div>
@@ -146,7 +163,7 @@ onMounted(() => {
                 <!--  -->
                 <!-- CANALYSIS -->
                 <!--  -->
-                <section data-id="Canalysis">
+                <section id="Canalysis" data-id="Canalysis" class="project">
                     <div id="headwithicon" class="">
                         <h3>Canalysis</h3>
                         <div class="techicon">
@@ -170,9 +187,11 @@ onMounted(() => {
                             <h1> Calcium Imaging Data Analysis </h1>
                             <ul class="text-white">
                                 <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
+                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
+                                    correlation
                                     matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component analysis.
+                                <li> Dimensionality reduction with variance filters and principal component
+                                    analysis.
                                 </li>
 
                             </ul>
@@ -185,7 +204,7 @@ onMounted(() => {
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
                                     v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Server Handler</a>
+                                    Initialize</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
                                     Iterate Files</a>
@@ -198,15 +217,15 @@ onMounted(() => {
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                    <Gist gist_id="7d65e69329bc617a3f835870ac1ac864" file_name="__init__.py"
                                         language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                    <Gist gist_id="14fffa95f2d1b7484ebaf81141b759f5" file_name="Container.py"
                                         language="python" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
-                                    <Gist gist_id="47c2a310c9b114eee14b6ac9a6e86738" file_name="Functions.py"
+                                    <Gist gist_id="3993e5d31723085f5cf0752ee135a15f" file_name="FileHandler.py"
                                         language="python" />
                                 </div>
                                 <div v-if="(activetab === 4)" class="tabcontent">
@@ -220,7 +239,7 @@ onMounted(() => {
                 <!--  -->
                 <!-- NEURALNETWORK -->
                 <!--  -->
-                <section data-id="NeuralNetwork">
+                <section id="NeuralNetwork" data-id="NeuralNetwork" class="project">
                     <div id="headwithicon" class="">
                         <h3>Neural Network</h3>
                         <div class="techicon">
@@ -241,9 +260,11 @@ onMounted(() => {
                             <h1> ML for Classification </h1>
                             <ul class="text-white">
                                 <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
+                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
+                                    correlation
                                     matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component analysis.
+                                <li> Dimensionality reduction with variance filters and principal component
+                                    analysis.
                                 </li>
                                 <li> Support Vector Machine Learning for classification tasks.</li>
                             </ul>
@@ -291,7 +312,7 @@ onMounted(() => {
                 <!--  -->
                 <!-- DATAVIEWER -->
                 <!--  -->
-                <section data-id="DataViewer">
+                <section id="DataViewer" data-id="DataViewer" class="project">
                     <div id="headwithicon" class="">
                         <h3>DataViewer</h3>
                         <div class="techicon">
@@ -310,15 +331,8 @@ onMounted(() => {
                         <!-- Right -->
                         <div class="explination">
                             <p class="ml-8 mr-8 text-lg text-white">
-                            <h1> Calcium Imaging Data Analysis </h1>
-                            <ul class="text-white">
-                                <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
-                                    matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component analysis.
-                                </li>
-                                <li> Support Vector Machine Learning for classification tasks.</li>
-                            </ul>
+                            <h1> DataViewer </h1>
+                            Utilities for viewing and manipulating data.
                             </p>
                         </div>
                     </div>
@@ -363,9 +377,9 @@ onMounted(() => {
                 <!--  -->
                 <!-- PORTFOLIO -->
                 <!--  -->
-                <section data-id="Portfolio">
+                <section id="Portfolio" data-id="Portfolio" class="project">
                     <div id="headwithicon" class="">
-                        <h3>DataViewer</h3>
+                        <h3>My Portfolio</h3>
                         <div class="techicon">
                             <Icon subfolder="languages" name="Typescript" filter: true />
                         </div>
@@ -378,21 +392,12 @@ onMounted(() => {
                         <!-- Left -->
                         <div class="image-container blue-shadow relative h-full">
                             <p>
-                                <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
                             </p>
                         </div>
                         <!-- Right -->
                         <div class="explination">
                             <p class="ml-8 mr-8 text-lg text-white">
-                            <h1> Calcium Imaging Data Analysis </h1>
-                            <ul class="text-white">
-                                <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and correlation
-                                    matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component analysis.
-                                </li>
-                                <li> Support Vector Machine Learning for classification tasks.</li>
-                            </ul>
+                            <h1> Source code for this Website Portfolio </h1>
                             </p>
                         </div>
                     </div>
@@ -405,7 +410,7 @@ onMounted(() => {
                                     Observers</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
-                                    Canvas</a>
+                                    API Fetch</a>
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
                                     Sliders</a>
@@ -413,14 +418,16 @@ onMounted(() => {
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
                                     Jinja Template</a>
                             </div>
-                            <div id="content" class="mt-4">
-                                <div v-if="(activetab === 1)" class="tabcontent">
-                                    <Gist gist_id="8aed7d53d5c28c3d6cc6b98ec88a98c0" file_name="observers.ts"
-                                        language="typescript" />
-                                </div>
+                            <div id="content" class="mt-4 blue-shadow">
+                                <Transition name="fade">
+                                    <div v-if="(activetab === 1)" class="tabcontent">
+                                        <Gist gist_id="8aed7d53d5c28c3d6cc6b98ec88a98c0" file_name="observers.ts"
+                                            language="typescript" />
+                                    </div>
+                                </Transition>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <Gist gist_id="6489a24d4fdf267a629dc50d1c63efe7" file_name="canvas.ts"
-                                        language="typescript" />
+                                    <Gist gist_id="fc5c4df0640fbe029c0c1836403f3b65" file_name="Gist.vue"
+                                        language="html" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
                                     <Gist gist_id="9d19c4c99305e347ec4544feea0589c5" file_name="sliders.js"
@@ -434,19 +441,41 @@ onMounted(() => {
                         </div>
                     </div>
                 </section>
+
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-[data-status="active"] {
-    color: var(--blue-dark);
+.fade-enter-active {
+    transition: opacity 0.5s ease;
 }
 
-[data-status="inactive"] {
-    color: var(--light-slate);
+.fade-leave-active {
+    transition: opacity 0.5s ease;
 }
+
+.fade-enter-from {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.fade-leave-to {
+    opacity: 0
+}
+
+.fade-enter-to {
+    opacity: 1;
+    transition: all 0.5s ease;
+
+}
+
+.fade-leave-from {
+    opacity: 1
+}
+
+
 
 #full-page {
     height: calc(100vh - 150px);
@@ -520,6 +549,8 @@ svg.feather {
     color: #888;
     margin-top: 3rem;
     flex-grow: 1;
+    margin-right: 8rem;
+    margin-left: 8rem;
 }
 
 .tabs {
@@ -528,8 +559,10 @@ svg.feather {
 }
 
 .tabcontent {
-    overflow: auto;
     min-height: 0;
+    height: 600px;
+    overflow-y: auto;
+    border-radius: 10px;
 }
 
 .tabs ul {
@@ -583,130 +616,5 @@ svg.feather {
     height: 100%;
     object-fit: cover;
     position: relative;
-}
-
-body .gist .highlight {
-    background: var(--background-color);
-}
-
-body .gist .blob-num,
-body .gist .blob-code-inner,
-body .gist .pl-st {
-    color: #e6e1dc;
-}
-
-body .gist .pl-c,
-body .gist .pl-c span {
-    color: #555;
-    font-style: italic;
-}
-
-body .gist .pl-mb {
-    color: #1edafb;
-    font-weight: 700;
-}
-
-body .gist .pl-mh .pl-en {
-    color: #fdc251;
-    font-weight: 700;
-}
-
-body .gist .pl-mi {
-    color: #00698f;
-    font-style: italic;
-}
-
-body .gist .pl-mq {
-    color: #555;
-}
-
-body .gist .pl-sc {
-    color: #999;
-}
-
-body .gist .pl-c1,
-body .gist .pl-mh,
-body .gist .pl-sr .pl-cce {
-    color: #fdc251;
-}
-
-body .gist .pl-e,
-body .gist .pl-en,
-body .gist .pl-ent,
-body .gist .pl-s,
-body .gist .pl-v,
-body .gist .pl-vpf {
-    color: #974;
-}
-
-body .gist .pl-k,
-body .gist .pl-mdh,
-body .gist .pl-mdr,
-body .gist .pl-ml,
-body .gist .pl-mm,
-body .gist .pl-mo,
-body .gist .pl-mp,
-body .gist .pl-mr,
-body .gist .pl-ms,
-body .gist .pl-s1 .pl-v,
-body .gist .pl-s3 {
-    color: #00698f;
-}
-
-body .gist .pl-pds,
-body .gist .pl-s1,
-body .gist .pl-s1 .pl-pse .pl-s2 {
-    color: #58c554;
-}
-
-body .gist .pl-s1 .pl-s2,
-body .gist .pl-sv {
-    color: #1edafb;
-}
-
-body .gist .pl-smi,
-body .gist .pl-smp,
-body .gist .pl-stj,
-body .gist .pl-vo {
-    color: #be53e6;
-}
-
-body .gist .pl-sr,
-body .gist .pl-sr .pl-sra,
-body .gist .pl-sr .pl-sre,
-body .gist .pl-src {
-    color: #ff308f;
-}
-
-body .gist .pl-mi1,
-body .gist .pl-mdht {
-    color: #fff;
-    background: rgba(0, 64, 0, .5);
-}
-
-body .gist .pl-md,
-body .gist .pl-mdhf,
-body .gist .pl-id,
-body .gist .pl-ii {
-    color: #fff;
-    background: #900;
-}
-
-body .gist .gist-meta {
-    display: none;
-}
-
-body .gist .gist-data {
-    background-color: var(--background-color) !important;
-    border: 1px solid var(--blue-dark) !important;
-    border-radius: 10px;
-    box-shadow: 3px 3px 6px var(--blue-dark);
-}
-
-body .gist .gist-file {
-    background-color: var(--background-color) !important;
-    border: unset !important;
-    border-radius: unset !important;
-
 }
 </style>
