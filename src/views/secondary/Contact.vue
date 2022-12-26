@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { createInput } from '@formkit/vue';
-import EmailInput from '../components/contactforms/EmailInput.vue';
+import EmailInput from '../../components/contactforms/EmailInput.vue';
 
 const values = ref({});
 const EmailInputComponent = createInput(EmailInput);
@@ -20,17 +20,11 @@ const EmailInputComponent = createInput(EmailInput);
             </div>
             <div class="flex flex-col gap-4">
                 <FormKit type="form" v-model="values">
-                    <FormKit
-                        :type="EmailInputComponent"
-                        label="Email:"
-                        :classes="{
-                            outer: 'mb-5',
-                            label: 'block mb-1 font-bold text-sm',
-                            help: 'text-xs text-gray-500',
-                        }"
-                        name="email_address"
-                        validation-visibility="live"
-                    />
+                    <FormKit :type="EmailInputComponent" label="Email:" :classes="{
+    outer: 'mb-5',
+    label: 'block mb-1 font-bold text-sm',
+    help: 'text-xs text-gray-500',
+}" name="email_address" validation-visibility="live" />
                 </FormKit>
             </div>
         </div>
