@@ -29,14 +29,14 @@ window.matchMedia('(max-width: 800px)').onchange = () => {
     <header>
         <nav ref="navref" data-toggled="false" data-transitionable="false">
             <div id="nav-logo-section" class="nav-section">
-                <router-link to="/" class="w-full h-full">
+                <router-link to="/home" class="w-full h-full">
                     <Icon subfolder="other" name="signature" />
                 </router-link>
             </div>
             <div id="nav-mobile-section">
                 <div id="nav-link-section" class="nav-section">
-                    <router-link class="animation-underline" to="/">ABOUT</router-link>
-                    <router-link class="animation-underline" to="/project">PROJECTS</router-link>
+                    <router-link class="animation-underline" to="/">HOME</router-link>
+                    <router-link class="animation-underline" to="/projects">PROJECTS</router-link>
                     <router-link class="animation-underline" to="/resume">RESUME</router-link>
                 </div>
                 <div id="nav-social-section" class="nav-section">

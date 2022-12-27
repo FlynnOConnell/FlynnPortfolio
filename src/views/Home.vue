@@ -71,7 +71,7 @@ function useSwipeLeft() {
     }, 20);
 }
 
-function useSwipeRight() {
+function useSwipeRight(): void {
     const nodeLength = main.value.children.length;
     let activeIndex = computed(() => {
         return indexStore.activeIndex;
@@ -294,6 +294,11 @@ function useSwipeRight() {
                         I have been coding <strong class="italic">professionally </strong>for 5+ years.
                     </p>
 
+                    <p class="text-white mt-5 mb-5">
+                        C++ taught me fundamental data structures and algorithms, which I used while studying the inner
+                        workings of pytho
+                    </p>
+
                     <p class="text-white mt-5 mb-5">I use my experience with <strong>C++, Python, Java</strong> and
                         <strong>Typescript</strong> to build
                         tools for extracting and analyzing neural recordings.
@@ -305,7 +310,7 @@ function useSwipeRight() {
                     </p>
                 </div>
                 <div class="article-title-section article-section">
-                    <h2 style="font-family: CrimsonItalic">Software Engineering</h2>
+                    <h2 style="font-family: CrimsonItalic">Software Development</h2>
                     <button @click="$router.push('projects')" class="article-nav-button">
                         <font-awesome-icon :icon="['fas', 'circle-chevron-down']" inverse size="2x" />
                     </button>
