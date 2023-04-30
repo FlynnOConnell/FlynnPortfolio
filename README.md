@@ -1,4 +1,4 @@
-# vue3-portfolio
+# FlynnPortfolio
 
 Source code for my [portfolio website](https://www.FlynnData.org) hosted on [DigitalOcean](https://www.digitalocean.com/) and built with Vue 3 in Vite.
 
