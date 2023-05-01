@@ -6,6 +6,10 @@ const router = createRouter({
     routes: [
         {
             path: '/',
+            redirect: '/home',
+        },
+        {
+            path: '/home',
             name: 'home',
             component: Home,
         },
@@ -38,6 +42,14 @@ const router = createRouter({
             component: () => import('../views/secondary/Projects.vue'),
             meta: {
                 title: 'Projects',
+            },
+        },
+        {
+            path: '/resume',
+            name: 'resume',
+            component: () => import('../views/secondary/Resume.vue'),
+            meta: {
+                title: 'Resume',
             },
         },
     ],

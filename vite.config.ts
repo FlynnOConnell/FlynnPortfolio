@@ -8,13 +8,6 @@ import svgLoader from 'vite-svg-loader';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [vue({}), vueJsx(), svgLoader()],
-    // css: {
-    //     preprocessorOptions: {
-    //         scss: {
-    //             additionalData: '@import "./src/assets/scss/main.scss";',
-    //         },
-    //     },
-    // },
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -25,8 +18,6 @@ export default defineConfig({
         chunkSizeWarningLimit: 1600,
     },
     define: {
-        // By default, Vite doesn't include shims for NodeJS/
-        // necessary for segment analytics lib to work
-        // global: {},
+        global: {},
     },
 });

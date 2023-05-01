@@ -13,9 +13,7 @@ onMounted(() => {
     const options = {
         rootMargin: '0px 0px -70% 0px',
         threshold: [0.01, 0.99]
-
     };
-
     const changeNav = (entries: any, observer: any) => {
         entries.forEach((entry: any) => {
             if (entry.isIntersecting) {
@@ -56,9 +54,9 @@ onMounted(() => {
                             </path>
                         </svg></a></li>
                 <li><a href="https://www.linkedin.com/in/flynnoconnell/" aria-label="Linkedin" target="_blank"
-                        rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-linkedin">
+                        rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-linkedin">
                             <title>LinkedIn</title>
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
                             </path>
@@ -127,8 +125,8 @@ onMounted(() => {
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
                                         <div v-if="(activetab === 1)" class="tabcontent">
-                                            <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f"
-                                                file_name="PremierSuite.cpp" language="cpp" />
+                                            <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f" file_name="PremierSuite.cpp"
+                                                language="cpp" />
                                         </div>
                                     </KeepAlive>
                                 </Transition>
@@ -143,16 +141,16 @@ onMounted(() => {
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
                                         <div v-if="(activetab === 3)" class="tabcontent">
-                                            <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f"
-                                                file_name="getWorkshopMaps.cpp" language="cpp" />
+                                            <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f" file_name="getWorkshopMaps.cpp"
+                                                language="cpp" />
                                         </div>
                                     </KeepAlive>
                                 </Transition>
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
                                         <div v-if="(activetab === 4)" class="tabcontent">
-                                            <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e"
-                                                file_name="IterDirectory.cpp" language="cpp" />
+                                            <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e" file_name="IterDirectory.cpp"
+                                                language="cpp" />
                                         </div>
                                     </KeepAlive>
                                 </Transition>
@@ -290,8 +288,7 @@ onMounted(() => {
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <Gist gist_id="112e72d7c9ce238a0b50e21b488b4a06" file_name="SVM.py"
-                                        language="python" />
+                                    <Gist gist_id="112e72d7c9ce238a0b50e21b488b4a06" file_name="SVM.py" language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
                                     <Gist gist_id="611f79d2d500b3cb0dd4ec5043e7ca13" file_name="DataHandler.py"
@@ -355,8 +352,7 @@ onMounted(() => {
                             </div>
                             <div id="content" class="mt-4">
                                 <div v-if="(activetab === 1)" class="tabcontent">
-                                    <Gist gist_id="25948acfb16b0eb0bde9f29c35792727" file_name="app.py"
-                                        language="python" />
+                                    <Gist gist_id="25948acfb16b0eb0bde9f29c35792727" file_name="app.py" language="python" />
                                 </div>
                                 <div v-if="(activetab === 2)" class="tabcontent">
                                     <Gist gist_id="6489a24d4fdf267a629dc50d1c63efe7" file_name="canvas.ts"
@@ -426,8 +422,7 @@ onMounted(() => {
                                     </div>
                                 </Transition>
                                 <div v-if="(activetab === 2)" class="tabcontent">
-                                    <Gist gist_id="fc5c4df0640fbe029c0c1836403f3b65" file_name="Gist.vue"
-                                        language="html" />
+                                    <Gist gist_id="fc5c4df0640fbe029c0c1836403f3b65" file_name="Gist.vue" language="html" />
                                 </div>
                                 <div v-if="(activetab === 3)" class="tabcontent">
                                     <Gist gist_id="9d19c4c99305e347ec4544feea0589c5" file_name="sliders.js"

@@ -1,15 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+
 const headRef = ref<any>(null);
 let scrollPosition = ref(0);
 
+const handleScroll = () => {
+    scrollPosition.value = window.pageYOffset || document.documentElement.scrollTop;
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
     <div ref="headRef" class="header lg:h-[70px]" :class="[scrollPosition >= 120 ? 'shrink-header' : '', '']">
         <div class="header-back lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
             <div class="flex items-center">
-                <button class="text-[var(--light-slate)] font-bold text-sm" type="button" @click="$router.push('/')">
+                <button class="text-[var(--light-slate)] font-bold text-sm" type="button" @click="$router.push('/home')">
                     <font-awesome-icon :icon="['fas', 'home']" inverse style="color: var(--light-slate)" />
                 </button>
             </div>
@@ -21,8 +33,8 @@ let scrollPosition = ref(0);
                 class="animation-underline activelink">PremierSuite</router-link>
             <router-link :to="{ name: 'projects', hash: '#Canalysis' }" data-status="inactive" data-id="Canalysis"
                 class="animation-underline">Canalysis</router-link>
-            <router-link :to="{ name: 'projects', hash: '#NeuralNetwork' }" data-status="inactive"
-                data-id="NeuralNetwork" class="animation-underline">Neural Network</router-link>
+            <router-link :to="{ name: 'projects', hash: '#NeuralNetwork' }" data-status="inactive" data-id="NeuralNetwork"
+                class="animation-underline">Neural Network</router-link>
             <router-link :to="{ name: 'projects', hash: '#DataViewer' }" data-status="inactive" data-id="DataViewer"
                 class="animation-underline">Dataviewer</router-link>
             <router-link :to="{ name: 'projects', hash: '#Portfolio' }" data-status="inactive" data-id="Portfolio"
@@ -30,7 +42,6 @@ let scrollPosition = ref(0);
 
         </div>
     </div>
-
 </template>
 
 <style scoped>

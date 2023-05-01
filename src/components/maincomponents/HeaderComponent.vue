@@ -2,8 +2,11 @@
 import { ref } from 'vue';
 import LinksComponent from '../subcomponents/LinksComponent.vue';
 import Icon from '../subcomponents/SVGComponent.vue';
+import { useRouter } from 'vue-router';
 
 const navref = ref<any>(null);
+const router = useRouter();
+
 const handleNavToggle = () => {
     if (navref.value != null) {
         navref.value.dataset.transitionable = 'true';
@@ -35,9 +38,16 @@ window.matchMedia('(max-width: 800px)').onchange = () => {
             </div>
             <div id="nav-mobile-section">
                 <div id="nav-link-section" class="nav-section">
-                    <router-link class="animation-underline" to="/">HOME</router-link>
-                    <router-link class="animation-underline" to="/projects">PROJECTS</router-link>
-                    <router-link class="animation-underline" to="/resume">RESUME</router-link>
+                    <div id="nav-link-section" class="">
+                        <button class="animation-underline" @click="router.push('/')">HOME</button>
+                    </div>
+                    <div id="nav-link-section" class="">
+                        <button class="animation-underline" @click="router.push('/projects')">PROJECTS</button>
+                    </div>
+                    <div id="nav-link-section" class="">
+                        <button class="animation-underline" @click="router.push('/resume')">RESUME</button>
+                    </div>
+
                 </div>
                 <div id="nav-social-section" class="nav-section">
                     <LinksComponent />
