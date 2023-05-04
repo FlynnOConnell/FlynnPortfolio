@@ -1,11 +1,11 @@
 import { app } from './plugins/main-app';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import './plugins/router';
 import './plugins/pinia';
 import './plugins/formkit';
-import './plugins/fontawesome';
-import './plugins/vuefeather';
-import './plugins/vueuse';
+import { setupVuetify } from './plugins/vuetify';
 
+setupVuetify(app);
 app.config.globalProperties.$log = console.log;
 app.mount('#app');

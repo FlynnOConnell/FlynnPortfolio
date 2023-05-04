@@ -46,6 +46,9 @@ onMounted(async () => {
 <style scoped lang="scss">
 code {
   font-size: 0.75rem !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: hidden;
 }
 </style>
 

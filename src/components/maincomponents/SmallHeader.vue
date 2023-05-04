@@ -1,11 +1,30 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import HomeIcon from '@/components/icons/nav/HomeIcon.vue';
 
 const headRef = ref<any>(null);
+let showArrowUp = ref(false);
 let scrollPosition = ref(0);
+
+let animationFrameId: number;
+
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 140,
+        behavior: "smooth"
+    });
+};
 
 const handleScroll = () => {
     scrollPosition.value = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Cancel any pending animation frame request
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+    }
+
+    // Request a new animation frame
+    animationFrameId = requestAnimationFrame(updateHomeIconPosition);
 };
 
 onMounted(() => {
@@ -15,45 +34,45 @@ onMounted(() => {
 onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll);
 });
+
+const updateHomeIconPosition = () => {
+    const homeIcon = document.querySelector('.home-icon') as HTMLElement;
+    if (homeIcon && headRef.value) {
+        const rect = headRef.value.getBoundingClientRect();
+        showArrowUp.value = rect.top <= 0;
+    }
+};
+
+// Add a watcher for the scrollPosition value
+watch(scrollPosition, () => {
+    updateHomeIconPosition();
+});
+
 </script>
 
 <template>
     <div ref="headRef" class="header lg:h-[70px]" :class="[scrollPosition >= 120 ? 'shrink-header' : '', '']">
         <div class="header-back lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
-            <div class="flex items-center">
-                <button class="text-[var(--light-slate)] font-bold text-sm" type="button" @click="$router.push('/home')">
-                    <font-awesome-icon :icon="['fas', 'home']" inverse style="color: var(--light-slate)" />
-                </button>
+            <div class="scrolltop" :class="{ 'show': showArrowUp }" @click="scrollToTop">
+                <svg v-show="showArrowUp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-arrow-up arrow-up-icon">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
             </div>
         </div>
         <div
-            class="header-inner text-[var(--light-slate)] lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto">
+            class="header-inner text-[var(--light-slate)] lg:justify-between px-2 lg:px-4 xl:px-12 lg:text-2xl leading-6 lg:h-auto home-icon">
 
-            <router-link :to="{ name: 'projects', hash: '#PremierSuite' }" data-status="active" data-id="PremierSuite"
-                class="animation-underline activelink">PremierSuite</router-link>
-            <router-link :to="{ name: 'projects', hash: '#Canalysis' }" data-status="inactive" data-id="Canalysis"
-                class="animation-underline">Canalysis</router-link>
-            <router-link :to="{ name: 'projects', hash: '#NeuralNetwork' }" data-status="inactive" data-id="NeuralNetwork"
-                class="animation-underline">Neural Network</router-link>
-            <router-link :to="{ name: 'projects', hash: '#DataViewer' }" data-status="inactive" data-id="DataViewer"
-                class="animation-underline">Dataviewer</router-link>
-            <router-link :to="{ name: 'projects', hash: '#Portfolio' }" data-status="inactive" data-id="Portfolio"
-                class="animation-underline">Portfolio</router-link>
+            <HomeIcon link="/"></HomeIcon>
+            <slot></slot>
 
         </div>
     </div>
 </template>
 
 <style scoped>
-.activelink {
-    color: var(--blue-light);
-    font-weight: 700;
-    font-size: 1.25rem;
-    text-decoration: none;
-    border-bottom: 2px solid var(--light-slate);
-    padding-bottom: 0.25rem;
-}
-
 .header button {
     position: absolute;
     left: 0;
@@ -94,5 +113,47 @@ onUnmounted(() => {
     padding-top: .35rem !important;
     padding-bottom: .35rem !important;
     font-size: larger !important;
+}
+
+.scrolltop {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.scrolltop:hover {
+    color: var(--highlight-color);
+    transition: color 0.5s ease;
+}
+
+.scrolltop.show {
+    opacity: 1;
+}
+
+.arrow-up-icon {
+    width: 24px;
+    height: 24px;
+    stroke: aliceblue;
+}
+
+.tooltip {
+    margin-left: 10px;
+    font: var(--font-main);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+.header-back {
+    position: relative;
 }
 </style>

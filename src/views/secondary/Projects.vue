@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import SmallHeader from '@/components/maincomponents/SmallHeader.vue'
 import Gist from '@/components/subcomponents/Gist.vue'
-import { onMounted, ref } from 'vue'
+import GitHubIcon from '@/components/icons/social/GitHubIcon.vue';
+import TwitterIcon from '@/components/icons/social/TwitterIcon.vue';
+import LinkedInIcon from '@/components/icons/social/LinkedInIcon.vue';
 import Icon from '@/components/subcomponents/SVGComponent.vue';
+import { onMounted, ref } from 'vue'
 
 const activetab = ref(1);
 const thistab = ref(null);
@@ -35,46 +38,40 @@ onMounted(() => {
     <div id="outer" class="my-16 fadediv">
         <div orientation="left" class="side-absolute">
             <ul class="side-absolute-inner fade-enter-done">
-                <li><a href="https://github.com/NeuroPyPy" aria-label="GitHub" target="_blank" rel="noreferrer"><svg
-                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-github">
-                            <title>GitHub</title>
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg></a></li>
-                <li><a href="https://twitter.com/FlynnNeuro" aria-label="Twitter" target="_blank" rel="noreferrer"><svg
-                            xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-twitter">
-                            <title>Twitter</title>
-                            <path
-                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                            </path>
-                        </svg></a></li>
-                <li><a href="https://www.linkedin.com/in/flynnoconnell/" aria-label="Linkedin" target="_blank"
-                        rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-linkedin">
-                            <title>LinkedIn</title>
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg></a></li>
+                <li>
+                    <GitHubIcon aria-label="GitHub" tooltip="" />
+                </li>
+                <li>
+                    <TwitterIcon aria-label="Twitter" tooltip="" />
+                </li>
+                <li>
+                    <LinkedInIcon aria-label="LinkedIn" tooltip="" />
+                </li>
             </ul>
+
         </div>
         <div class="ml-20 mr-10">
-            <h2 class="text-center text-[var(--lightest-slate)] h-[80px]"> Software Projects </h2>
-            <SmallHeader id="smallheader" />
-            <div id="column-container" class="flex flex-col justify-center px-5 my-20">
+            <SmallHeader id="smallheader">
+                <router-link :to="{ name: 'projects', hash: '#PremierSuite', query: { offset: 73 } }" data-status="active"
+                    data-id="PremierSuite" class="animation-underline activelink">PremierSuite</router-link>
+                <router-link :to="{ name: 'projects', hash: '#Canalysis', query: { offset: 73 } }" data-status="inactive"
+                    data-id="Canalysis" class="animation-underline">Canalysis</router-link>
+                <router-link :to="{ name: 'projects', hash: '#NeuralNetwork', query: { offset: 73 } }"
+                    data-status="inactive" data-id="NeuralNetwork" class="animation-underline">Neural Network</router-link>
+                <router-link :to="{ name: 'projects', hash: '#DataViewer', query: { offset: 73 } }" data-status="inactive"
+                    data-id="DataViewer" class="animation-underline">Dataviewer</router-link>
+                <router-link :to="{ name: 'projects', hash: '#Portfolio', query: { offset: 73 } }" data-status="inactive"
+                    data-id="Portfolio" class="animation-underline">Portfolio</router-link>
+            </SmallHeader>
+            <div class="project-container">
                 <!--  -->
                 <!-- PREMIERSUITE -->
                 <!--  -->
-                <section id="PremierSuite" data-id="PremierSuite" class="project">
-                    <div id="headwithicon" class="">
-                        <h3>PremierSuite</h3>
+                <section id="PremierSuite" data-id="PremierSuite" class="project-content-container">
+                    <div id="headwithicon">
+                        <GitHubIcon link="https://github.com/NeuroPyPy/PremierSuite" tooltip="NeuroPyPy/PremierSuite"
+                            svgMargin="0 8px 0 0" />
+                        <h2 class="project-label">PremierSuite</h2>
                         <div class="techicon">
                             <Icon subfolder="languages" name="C" filter: true />
                         </div>
@@ -82,18 +79,9 @@ onMounted(() => {
                             <Icon subfolder="languages" name="Cpp" filter: true />
                         </div>
                     </div>
-                    <!-- PREMIERSUITE VIDEO / EXPLANATION -->
-                    <div id="row-container" class="">
-                        <!-- Left -->
-                        <div class="image-container blue-shadow relative h-full">
-                            <video ref="videoplayer" class="blue-shadow" autoplay muted loop>
-                                <source src="/movies/PremierSuiteExample.mp4" type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <!-- Right -->
-                        <div class="explination ml-8 mr-8 ">
-                            <p class="text-lg">
+                    <div class="explination">
+                        <div class="project-text-outer">
+                            <p class="project-text-inner">
                                 A downloadable plugin for
                                 <a href="https://www.rocketleague.com/">RocketLeague</a> that allows the direct
                                 manupulation
@@ -104,35 +92,29 @@ onMounted(() => {
                             </p>
                         </div>
                     </div>
-                    <!-- CODE SNIPPET -->
-                    <div id="row-container" class="">
+                    <div class="image-container blue-shadow relative h-full">
+                        <video ref="videoplayer" class="blue-shadow" autoplay muted loop>
+                            <source src="/movies/PremierSuiteExample.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div id="row-container">
                         <div class="tabscontainer">
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
                                 <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 1"
-                                    v-bind:class="[activetab === 1 ? 'active' : '']">
-                                    Main</a>
-                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 2 ? 'active' : '']">
                                     Logic</a>
-                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 2"
                                     v-bind:class="[activetab === 3 ? 'active' : '']">
                                     Workshops</a>
-                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 4"
+                                <a class="flex-grow-1 animation-underline" ref="thistab" v-on:click="activetab = 3"
                                     v-bind:class="[activetab === 4 ? 'active' : '']">
                                     GUI Tree</a>
                             </div>
-                            <div id="content" class="mt-4">
+                            <div id="content">
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
                                         <div v-if="(activetab === 1)" class="tabcontent">
-                                            <Gist gist_id="de81d8d2d3e61bf69295d4b75959c24f" file_name="PremierSuite.cpp"
-                                                language="cpp" />
-                                        </div>
-                                    </KeepAlive>
-                                </Transition>
-                                <Transition name="fade" mode="out-in" appear>
-                                    <KeepAlive>
-                                        <div v-if="(activetab === 2)" class="tabcontent">
                                             <Gist gist_id="ba94a250051e10a58f504d71b2100fc0" file_name="Logic.cpp"
                                                 language="cpp" />
                                         </div>
@@ -140,7 +122,7 @@ onMounted(() => {
                                 </Transition>
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
-                                        <div v-if="(activetab === 3)" class="tabcontent">
+                                        <div v-if="(activetab === 2)" class="tabcontent">
                                             <Gist gist_id="f4ba947d7ad3f4b8231c1f5bd85c876f" file_name="getWorkshopMaps.cpp"
                                                 language="cpp" />
                                         </div>
@@ -148,7 +130,7 @@ onMounted(() => {
                                 </Transition>
                                 <Transition name="fade" mode="out-in" appear>
                                     <KeepAlive>
-                                        <div v-if="(activetab === 4)" class="tabcontent">
+                                        <div v-if="(activetab === 3)" class="tabcontent">
                                             <Gist gist_id="7206d8f0c952a4a8dd1f18328b62886e" file_name="IterDirectory.cpp"
                                                 language="cpp" />
                                         </div>
@@ -161,9 +143,12 @@ onMounted(() => {
                 <!--  -->
                 <!-- CANALYSIS -->
                 <!--  -->
-                <section id="Canalysis" data-id="Canalysis" class="project">
+                <section id="Canalysis" data-id="Canalysis" class="project-content-container">
                     <div id="headwithicon" class="">
-                        <h3>Canalysis</h3>
+                        <GitHubIcon link="https://github.com/NeuroPyPy/canalysis" tooltip="NeuroPyPy/PremierSuite"
+                            svgMargin="0 8px 0 0" />
+
+                        <h2 class="project-label">canalysis</h2>
                         <div class="techicon">
                             <Icon subfolder="languages" name="Python" filter: true />
                         </div>
@@ -171,32 +156,25 @@ onMounted(() => {
                             <Icon subfolder="languages" name="Cpp" filter: true />
                         </div>
                     </div>
-                    <!-- CANALYSIS VIDEO / EXPLINATION -->
-                    <div id="row-container" class="">
-                        <!-- Left -->
-                        <div class="image-container blue-shadow relative h-full">
-                            <p>
-                                <img width="auto" height="auto" src=https://i.imgur.com/SPok8sB.gif>
-                            </p>
-                        </div>
-                        <!-- Right -->
-                        <div class="explination ml-8 mr-8">
-                            <p class="text-lg text-white">
-                            <h1> Calcium Imaging Data Analysis </h1>
-                            <ul class="text-white">
-                                <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
-                                    correlation
-                                    matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component
-                                    analysis.
-                                </li>
+                    <div class="explination ml-8 mr-8">
+                        <p class="text-lg text-white">
+                        <ul class="text-white">
+                            <li>Syncing traces with externally captured GPIO events.</li>
+                            <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
+                                correlation
+                                matrix.</li>
+                            <li> Dimensionality reduction with variance filters and principal component
+                                analysis.
+                            </li>
 
-                            </ul>
-                            </p>
-                        </div>
+                        </ul>
+                        </p>
                     </div>
-                    <!-- CODE SNIPPET -->
+                    <div class="image-container blue-shadow relative h-full">
+                        <p>
+                            <img width="auto" height="auto" src=https://i.imgur.com/SPok8sB.gif>
+                        </p>
+                    </div>
                     <div id="row-container" class="">
                         <div class="tabscontainer">
                             <div id="tabs" class="tabs blue-shadow-nb overflow-hidden flex justify-center">
@@ -237,35 +215,42 @@ onMounted(() => {
                 <!--  -->
                 <!-- NEURALNETWORK -->
                 <!--  -->
-                <section id="NeuralNetwork" data-id="NeuralNetwork" class="project">
+                <section id="NeuralNetwork" data-id="NeuralNetwork" class="project-content-container">
                     <div id="headwithicon" class="">
-                        <h3>Neural Network</h3>
+                        <GitHubIcon link="https://github.com/NeuroPyPy/time-series-network" tooltip="NeuroPyPy/PremierSuite"
+                            svgMargin="0 8px 0 0" />
+
+                        <h2 class="project-label">time-series-network</h2>
                         <div class="techicon">
                             <Icon subfolder="languages" name="Python" filter: true />
                         </div>
                     </div>
                     <!-- NEURAL NETWORK VIDEO / EXPLINATION -->
                     <div id="row-container" class="">
-                        <!-- Left -->
-                        <div class="image-container blue-shadow relative h-full">
-                            <p>
-                                <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
-                            </p>
-                        </div>
-                        <!-- Right -->
                         <div class="explination">
                             <p class="ml-8 mr-8 text-lg text-white">
-                            <h1> ML for Classification </h1>
-                            <ul class="text-white">
-                                <li>Syncing traces with externally captured GPIO events.</li>
-                                <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
-                                    correlation
-                                    matrix.</li>
-                                <li> Dimensionality reduction with variance filters and principal component
-                                    analysis.
-                                </li>
-                                <li> Support Vector Machine Learning for classification tasks.</li>
-                            </ul>
+                                Classification of neural signals into 5 categories: <br>
+
+                                <ui>
+                                    <li>
+                                        Artificial Salive
+                                    </li>
+                                    <li>
+                                        Sucrose
+                                    </li>
+                                    <li>
+                                        Quinine
+                                    </li>
+                                    <li>
+                                        Citric Acid
+                                    </li>
+                                    <li>
+                                        NaCl
+                                    </li>
+
+                                    Support vector machine, Recurrent NN, and Concurrent NN.
+                                </ui>
+
                             </p>
                         </div>
                     </div>
@@ -309,30 +294,27 @@ onMounted(() => {
                 <!--  -->
                 <!-- DATAVIEWER -->
                 <!--  -->
-                <section id="DataViewer" data-id="DataViewer" class="project">
+                <section id="DataViewer" data-id="DataViewer" class="project-content-container">
                     <div id="headwithicon" class="">
-                        <h3>DataViewer</h3>
+                        <GitHubIcon link="https://github.com/NeuroPyPy/web-dataviewer" tooltip="NeuroPyPy/PremierSuite"
+                            svgMargin="0 8px 0 0" />
+
+                        <h2 class="project-label">web-dataviewer</h2>
                         <div class="techicon">
                             <Icon subfolder="languages" name="Python" filter: true />
                         </div>
 
                     </div>
                     <!-- DATAVIEWER VIDEO / EXPLINATION -->
-                    <div id="row-container" class="">
-                        <!-- Left -->
-                        <div class="image-container blue-shadow relative h-full">
-                            <p>
-                                <img style="float: right" width="550" height="300" src=https://i.imgur.com/SPok8sB.gif>
-                            </p>
-                        </div>
-                        <!-- Right -->
+                    <div id="row-container" class="text-white">
                         <div class="explination">
-                            <p class="ml-8 mr-8 text-lg text-white">
-                            <h1> DataViewer </h1>
-                            Utilities for viewing and manipulating data.
-                            </p>
+                            <p class="text-lg text-white"> </p>
+                            Locally hosted web server for data sharing, visualization, and analysis. <br>
+
+                            Built with Python, Flask, and Plotly.js. <br>
                         </div>
                     </div>
+
                     <!-- DATAVIEWER CODE SNIPPET -->
                     <div id="row-container" class="">
                         <div class="tabscontainer">
@@ -373,9 +355,12 @@ onMounted(() => {
                 <!--  -->
                 <!-- PORTFOLIO -->
                 <!--  -->
-                <section id="Portfolio" data-id="Portfolio" class="project">
+                <section id="Portfolio" data-id="Portfolio" class="project-content-containern">
                     <div id="headwithicon" class="">
-                        <h3>My Portfolio</h3>
+                        <GitHubIcon link="https://github.com/NeuroPyPy/FlynnPortfolio" tooltip="NeuroPyPy/PremierSuite"
+                            svgMargin="0 8px 0 0" />
+
+                        <h2 class="project-label">Portfolio Source Code</h2>
                         <div class="techicon">
                             <Icon subfolder="languages" name="Typescript" filter: true />
                         </div>
@@ -393,7 +378,7 @@ onMounted(() => {
                         <!-- Right -->
                         <div class="explination">
                             <p class="ml-8 mr-8 text-lg text-white">
-                            <h1> Source code for this Website Portfolio </h1>
+                            <h3> Source code for this Website Portfolio </h3>
                             </p>
                         </div>
                     </div>
@@ -436,80 +421,12 @@ onMounted(() => {
                         </div>
                     </div>
                 </section>
-
             </div>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-.fade-enter-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-enter-from {
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.fade-leave-to {
-    opacity: 0
-}
-
-.fade-enter-to {
-    opacity: 1;
-    transition: all 0.5s ease;
-
-}
-
-.fade-leave-from {
-    opacity: 1
-}
-
-
-
-#full-page {
-    height: calc(100vh - 150px);
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
-
-.side-absolute {
-    width: 40px;
-    position: fixed;
-    bottom: 0px;
-    left: 16px;
-    right: auto;
-    z-index: 10;
-    color: var(--light-slate);
-}
-
-.side-absolute-inner {
-    display: flex;
-    flex-direction: column;
-    -moz-box-align: center;
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-}
-
-.side-absolute-inner::after {
-    content: "";
-    display: block;
-    width: 1px;
-    height: 90px;
-    margin: 0px auto;
-    background-color: var(--light-slate);
-}
-
-.side-absolute-inner li a {
-    padding: 10px;
-}
-
 a {
     display: inline-block;
     text-decoration: none;
@@ -517,15 +434,6 @@ a {
     color: inherit;
     position: relative;
     transition: var(--transition);
-}
-
-.side-absolute-inner li a svg {
-    width: 20px;
-    height: 20px;
-}
-
-svg.feather {
-    fill: none;
 }
 
 #row-container {
@@ -536,18 +444,6 @@ svg.feather {
     margin-top: 2rem;
 }
 
-.tabscontainer {
-    display: flex;
-    flex-direction: column;
-    min-width: 420px;
-    font-family: "Crimson", serif;
-    color: #888;
-    margin-top: 3rem;
-    flex-grow: 1;
-    margin-right: 8rem;
-    margin-left: 8rem;
-}
-
 .tabs {
     overflow: hidden;
     background-color: var(--background-color);
@@ -555,9 +451,14 @@ svg.feather {
 
 .tabcontent {
     min-height: 0;
-    height: 600px;
+    height: auto;
+    max-height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;
     border-radius: 10px;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .tabs ul {
@@ -582,7 +483,6 @@ svg.feather {
     flex-grow: 1;
 }
 
-/* Change background color of tabs on hover */
 .tabs a:hover {
     display: flex;
     justify-content: center;
@@ -604,6 +504,64 @@ svg.feather {
     min-height: 25px;
     max-height: 60px;
     margin-top: 2rem;
+    align-items: center;
+}
+
+.explination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.project-label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration-line: underline;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50vw;
+    margin: 0 auto;
+}
+
+.project-content-container {
+    width: 100%;
+    margin-bottom: 6rem;
+}
+
+.tabscontainer {
+    display: flex;
+    flex-direction: column;
+    font-family: "Crimson", serif;
+    color: #888;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    flex-grow: 1;
+
+}
+
+.gist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.image-container video {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
 }
 
 .container-container video {

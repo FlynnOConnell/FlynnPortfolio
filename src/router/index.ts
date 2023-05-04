@@ -28,12 +28,20 @@ const router = createRouter({
                 title: 'Contact Me',
             },
         },
-        {
-            path: '/science',
-            name: 'science',
-            component: () => import('../views/secondary/Science.vue'),
+           {
+            path: '/why-though',
+            name: 'why',
+            component: () => import('../views/secondary/Why.vue'),
             meta: {
-                title: 'Science',
+                title: 'Why?',
+            },
+        },
+        {
+            path: '/publications',
+            name: 'publications',
+            component: () => import('../views/secondary/Publications.vue'),
+            meta: {
+                title: 'Publications',
             },
         },
         {
@@ -56,16 +64,17 @@ const router = createRouter({
     linkActiveClass: 'active-link',
     linkExactActiveClass: 'exact-active-link',
     scrollBehavior(to, from, savedPosition) {
+        const offset = parseInt(to.query.offset as string) || 0;
         if (to.hash) {
             return {
                 el: to.hash,
                 behavior: 'smooth',
-                top: 73,
+                top: offset,
             };
         } else if (savedPosition) {
             return savedPosition;
         }
-        return { left: 0, top: 0 };
+        return { left: 0, top: 0, behavior: 'smooth' };
     },
 });
 

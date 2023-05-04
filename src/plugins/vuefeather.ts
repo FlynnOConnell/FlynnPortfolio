@@ -1,4 +1,4 @@
 import { app } from './main-app';
+import { VueFeatherIcon } from 'vue-feather-icons';
 
-import VueFeather from 'vue-feather';
-app.component(VueFeather.name, VueFeather);
+app.component('VueFeatherIcon', VueFeatherIcon);

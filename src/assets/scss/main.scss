@@ -56,6 +56,82 @@ $mod_2: 1.5; // desktop
     box-sizing: border-box;
 }
 
+.fade-enter-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.fade-leave-to {
+    opacity: 0
+}
+
+.fade-enter-to {
+    opacity: 1;
+    transition: all 0.5s ease;
+
+}
+
+.fade-leave-from {
+    opacity: 1
+}
+
+.side-absolute {
+    width: 40px;
+    position: fixed;
+    bottom: 0px;
+    left: 16px;
+    right: auto;
+    z-index: 10;
+    color: var(--light-slate);
+    /* Move the other icons down */
+    padding-top: calc(var(--small-header-height) + 1rem);
+}
+
+.side-absolute-inner {
+    display: flex;
+    flex-direction: column;
+    -moz-box-align: center;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.side-absolute-inner::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 0px auto;
+    background-color: var(--light-slate);
+}
+
+.side-absolute-inner li a {
+    padding: 10px;
+}
+
+.side-absolute-inner li a svg {
+    width: 20px;
+    height: 20px;
+}
+
+.aligned-icon {
+    position: fixed;
+    left: 26px;
+    top: var(--small-header-top);
+}
+
+svg.feather {
+    fill: none;
+}
+
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
     $u1: unit($min-vw);
     $u2: unit($max-vw);
@@ -90,6 +166,19 @@ $mod_2: 1.5; // desktop
     }
 
     @return $number;
+}
+
+#navicon {
+    width: 24px;
+    height: 24px;
+    margin: 0 0.5rem;
+}
+
+a svg.icon{
+    width: 22px;
+    height: 20px;
+    color: var(--light-slate);
+    fill: 'None' !important;
 }
 
 h1 {
