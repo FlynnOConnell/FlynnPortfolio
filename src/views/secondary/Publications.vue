@@ -1,5 +1,5 @@
 <template>
-    <div class="publication-container">
+    <div class="publication-container" :style="`min-height: calc(100vh - ${headerHeight}px)`">
         <div orientation="left" class="side-absolute">
             <ul class="side-absolute-inner fade-enter-done">
                 <li>
@@ -13,51 +13,44 @@
                 </li>
             </ul>
         </div>
-        <div class="outer  flex flex-col justify-center align-items">
-            <div class="links">
-                <SmallHeader id="smallheader">
-                    <router-link :to="{ name: 'publications', hash: '#Pub1' }" data-status="active" data-id="Publication1"
-                        class="animation-underline activelink">Publication One</router-link>
-                    <router-link :to="{ name: 'publications', hash: '#Pub2' }" data-status="inactive" data-id="Publication2"
-                        class="animation-underline">Publication Two</router-link>
-                    <router-link :to="{ name: 'publications', hash: '#Pub3' }" data-status="inactive" data-id="Publication2"
-                        class="animation-underline">Publication Two</router-link>
-                </SmallHeader>
-            </div>
-            <v-card class="mx-auto pa-2" width="100%" rounded="4x">
-                <v-toolbar rounded="2x">
-                    <v-toolbar-title rounded="2x">Publications</v-toolbar-title>
-                    <v-spacer></v-spacer>
+        <div class="outer flex flex-col justify-center align-items">
+            <v-container class="bg-background rounded-lg elevation-24 code-container my-10">
+                <v-card class="mx-auto pa-2" width="100%" rounded="4x">
+                    <v-toolbar rounded="2x" class="bg-surface">
+                        <v-toolbar-title rounded="2x">Publications</v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn variant="text" icon="mdi-magnify"></v-btn>
+                        <v-btn variant="text" icon="mdi-view-module"></v-btn>
+                    </v-toolbar>
+                    <v-list lines="three">
+                        <v-list-subheader>Papers</v-list-subheader>
+                        <v-list-item v-for="(item, index) in publications" :key="index" :value="item" active-color="primary"
+                            rounded="x2">
 
-                    <v-btn variant="text" icon="mdi-magnify"></v-btn>
+                            <template v-slot:prepend>
+                                <LinkIcon :link="item.link" aria-label="External Link" />
+                            </template>
+                            <v-list-item-title v-text="item.title"></v-list-item-title>
+                            <v-list-item-subtitle v-text="item.description"></v-list-item-subtitle>
 
-                    <v-btn variant="text" icon="mdi-view-module"></v-btn>
-                </v-toolbar>
-                <v-list lines="three">
-                    <v-list-subheader>Papers</v-list-subheader>
-                    <v-list-item v-for="(item, index) in publications" :key="index" :value="item" active-color="primary"
-                        rounded="x2">
-
-                        <template v-slot:prepend>
-                            <LinkIcon :link="item.link" aria-label="External Link" />
-                        </template>
-                        <v-list-item-title v-text="item.title"></v-list-item-title>
-                        <v-list-item-subtitle v-text="item.description"></v-list-item-subtitle>
-
-                    </v-list-item>
-                </v-list>
-            </v-card>
+                        </v-list-item>
+                    </v-list>
+                </v-card>
+            </v-container>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject, provide } from 'vue';
 import SmallHeader from '@/components/maincomponents/SmallHeader.vue';
 import GitHubIcon from '@/components/icons/social/GitHubIcon.vue';
 import TwitterIcon from '@/components/icons/social/TwitterIcon.vue';
 import LinkedInIcon from '@/components/icons/social/LinkedInIcon.vue';
 import LinkIcon from '@/components/icons/nav/LinkIcon.vue';
+
+const headerHeight = inject('headerHeight');
+provide('headerHeight', headerHeight);
 
 export default defineComponent({
     name: "Publications",
@@ -79,7 +72,6 @@ export default defineComponent({
                     date: "July. 2022",
                     link: "/public/pdf/SFN_FinalPoster.pdf",
                     hash: "#Pub2"
-
                 },
                 {
                     title: "Sprague Dawley Rats Gaining Weight on a High Energy Diet Exhibit Damage to Taste Tissue Even after Return to a Healthy Diet",
@@ -90,7 +82,8 @@ export default defineComponent({
                     hash: "#Pub3"
                 },
             ],
-        };
+            headerHeight
+        }
     },
     components: { SmallHeader, GitHubIcon, TwitterIcon, LinkedInIcon, LinkIcon }
 });
@@ -98,14 +91,11 @@ export default defineComponent({
 
 <style scoped>
 .publication-container {
-    max-width: 75vw;
-    margin-top: 5rem;
-    margin-bottom: 16rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    margin: 0px;
+    overflow: hidden;
+    max-width: 70vw;
     align-self: center;
 }
 

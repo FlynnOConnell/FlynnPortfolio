@@ -18,6 +18,10 @@ export default {
             type: String,
             required: true,
         },
+        class: {
+            type: String,
+            default: '',
+        },
     },
 };
 </script>

@@ -43,7 +43,6 @@ const updateHomeIconPosition = () => {
     }
 };
 
-// Add a watcher for the scrollPosition value
 watch(scrollPosition, () => {
     updateHomeIconPosition();
 });

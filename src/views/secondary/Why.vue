@@ -3,11 +3,10 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { initTheme } from '@/composables/theme.js';
 import ArrowDownScroll from '@/components/icons/nav/ArrowDownScroll.vue';
 import ArrowUpScroll from '@/components/icons/nav/ArrowUpScroll.vue';
-
 import { inject, provide } from 'vue';
+
 const headerHeight = inject('headerHeight');
 provide('headerHeight', headerHeight);
-
 
 const isParentDivVisible = ref(false);
 
@@ -39,7 +38,6 @@ onUnmounted(() => {
             <h1 class="pb-20 pt-20 text-center text-6xl text-gray-700 transition-colors dark:text-gray-100">
                 Why I made this website
             </h1>
-            <v-icon icon="mdi-vuetify" size="x-large" color="white"></v-icon>
             <ArrowDownScroll class="pb-20 pt-5"></ArrowDownScroll>
             <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" viewBox="0 0 998 260"
                 fill="currentColor" class="fixed mx-auto max-w-3xl px-4 inset-x-0 bottom-0 -z-10 text-indigo-300">

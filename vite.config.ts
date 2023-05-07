@@ -15,7 +15,7 @@ export default defineConfig({
         vue({
                 template: { transformAssetUrls },
             }),
-            vuetify({styles: 'expose'}),
+            vuetify({styles: 'expose' }),
   ],
     resolve: {
         alias: {
@@ -24,10 +24,31 @@ export default defineConfig({
         },
     },
     build: {
-        chunkSizeWarningLimit: 1600,
+    rollupOptions: {
+      treeshake: true,
+      output: {
+        manualChunks: undefined,
+      },
     },
+    minify: true,
+    chunkSizeWarningLimit: 800,
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
+    assetsDir: '',
+    sourcemap: false,
+    manifest: false,
+    target: 'modules',
+    terserOptions: {
+      compress: {
+        keep_infinity: true,
+        drop_console: true,
+      },
+    },
+  },
+  server: {
+    hmr: {
+      timeout: 60000, // Increase the HMR timeout if necessary
+    },
+  },
     base: '/',
-    define: {
-        'global': {},
-    },
 });

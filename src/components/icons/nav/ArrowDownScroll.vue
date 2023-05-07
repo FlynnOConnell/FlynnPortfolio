@@ -22,12 +22,11 @@ export default {
     },
     setup() {
         const router = useRouter();
-        const headerHeight = document.getElementsByTagName("header")[0].offsetHeight;
         const scrollToMain = () => {
             const mainElement = document.getElementById("scroll");
             if (mainElement) {
                 const scrollOptions: ScrollToOptions = {
-                    top: mainElement.offsetTop + headerHeight,
+                    top: mainElement.offsetTop,
                     behavior: "smooth",
                 };
                 window.scrollTo(scrollOptions);

@@ -1,4 +1,4 @@
-export var headerObserver = function (
+export var sidebarObserver = function (
     toChange: HTMLElement,
     toWatch: any
 ): IntersectionObserverCallback {
@@ -40,7 +40,6 @@ export var headerObserver = function (
         if (direction === 'up' && entry.isIntersecting) {
             return true;
         }
-
         return false;
     };
 

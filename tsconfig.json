@@ -1,7 +1,7 @@
 {
     "extends": "@vue/tsconfig/tsconfig.web.json",
     "include": [
-        "src/types/env.d.tses/env.d.ts",
+        "src/types/env.d.tses",
         "src/**/*",
         "src/**/*.vue",
         "src/types/.d.ts"
@@ -25,7 +25,7 @@
         // Required in Vue projects
         "jsx": "preserve",
         "noImplicitThis": true,
-        "strict": true,
+        "strict": false,
         "isolatedModules": true,
         "ignoreDeprecations": "5.0",
         "target": "ESNext",

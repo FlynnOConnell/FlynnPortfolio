@@ -1,21 +1,39 @@
 <script setup lang="ts">
-import { ref, provide } from 'vue';
-import { useRoute } from 'vue-router';
-import HeaderComponent from '@/components/maincomponents/HeaderComponent.vue';
+import { Octokit } from 'octokit';
+import { provide, ref, onMounted } from 'vue';
+import { projects } from '@/data/projectData';
+import type { Ref } from 'vue';
 
-const route = useRoute();
-const headerHeight = ref(0);
-provide('headerHeight', headerHeight);
-
-const updateHeaderHeight = (value: number) => {
-    headerHeight.value = value;
+type PreloadedGitFilesType = {
+    [key: string]: string;
 };
+
+const preloadedGitfiles: Ref<PreloadedGitFilesType> = ref({});
+provide('preloadedGitfiles', preloadedGitfiles);
+
+const octokit = new Octokit({
+    auth: import.meta.env.VITE_GITHUB_TOKEN
+})
+
+onMounted(async () => {
+    for (const project of projects) {
+        for (const file of project.files) {
+            try {
+                const response = await octokit.request('GET /repos/NeuroPyPy/{repo}/contents/{path}', {
+                    repo: project.repo,
+                    path: file.path,
+                });
+                const content = atob(response.data.content);
+                preloadedGitfiles.value[file.path] = content;
+            } catch (error) { console.log("octokit error", error); }
+        }
+    }
+});
+
 </script>
 
-
 <template>
-    <div class="slider-container" :class="{ 'no-overflow': !(route.path === '/' || route.path === '/home') }">
-        <HeaderComponent @update-header-height="updateHeaderHeight"></HeaderComponent>
+    <div class="app-container">
         <router-view v-slot="{ Component }">
             <transition :duration="{ enter: 600, leave: 200 }" name="fade" mode="out-in" appear>
                 <component :is="Component" />
@@ -30,19 +48,6 @@ const updateHeaderHeight = (value: number) => {
 @import "./assets/scss/main.scss";
 @import './assets/css/imports.css';
 @import 'highlight.js/styles/night-owl.css';
-
-.slider-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0px;
-    overflow: hidden;
-}
-
-.no-overflow {
-    overflow: initial;
-    height: auto;
-}
 
 .fade-enter-active,
 .fade-leave-active {
