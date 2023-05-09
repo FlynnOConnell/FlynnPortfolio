@@ -26,9 +26,6 @@ export default defineConfig({
     build: {
     rollupOptions: {
       treeshake: true,
-      output: {
-        manualChunks: undefined,
-      },
     },
     minify: true,
     chunkSizeWarningLimit: 800,
@@ -38,12 +35,6 @@ export default defineConfig({
     sourcemap: false,
     manifest: false,
     target: 'modules',
-    terserOptions: {
-      compress: {
-        keep_infinity: true,
-        drop_console: true,
-      },
-    },
   },
   server: {
     hmr: {

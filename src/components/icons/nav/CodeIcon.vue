@@ -1,11 +1,9 @@
 <template>
-    <div ref="buttonRef" @click="action" role="button" tabindex="0" class="icon-link icon-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
-        <span class="tooltip">Software Engineer</span>
+    <div @click="action" role="button" tabindex="0" class="icon-link icon-container">
+        <v-btn stacked variant="plain" :ripple="false" :class="{ 'active': isHov }">
+            <v-icon size="x-large" icon="mdi-code-tags" class="feather"></v-icon>
+            <h3>Developer</h3>
+        </v-btn>
     </div>
 </template>
 
@@ -22,9 +20,9 @@ export default defineComponent({
         },
     },
     setup(props) {
-        const buttonRef = ref(null);
+        const isHov = ref(false);
         return {
-            buttonRef,
+            isHov,
         };
     },
 });

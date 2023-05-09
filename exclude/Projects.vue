@@ -3,17 +3,43 @@ import GitCode from '@/components/subcomponents/GitCode.vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
 import { projects } from '@/data/projectData';
 import { links } from '@/data/links';
+import { Octokit } from 'octokit';
 import SidebarContent from "@/components/maincomponents/SidebarContent.vue";
 import SidebarRoute from "@/components/maincomponents/SidebarRoute.vue";
-import { onMounted, inject, ref, computed, nextTick, provide } from 'vue'
+import { onMounted, onBeforeMount, inject, ref, computed, nextTick, provide } from 'vue'
+import type { Ref } from 'vue';
 
+const octokit = new Octokit({
+    auth: import.meta.env.VITE_GITHUB_TOKEN
+})
 const intersectingProjectId = ref('');
 provide('intersectingProjectId', intersectingProjectId);
-const preloadedGitfiles: PreloadedGitFilesType = inject('preloadedGitfiles');
 
-const getPreloadedContent = (path: string) => {
-    return preloadedGitfiles.value[path];
+type PreloadedGitFilesType = Ref<Record<string, string>>;
+const preloadedGitfiles: PreloadedGitFilesType = ref({});
+
+const scrollToProject = (projectId) => {
+    const target = document.getElementById(projectId);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    }
 };
+
+onBeforeMount(async () => {
+    for (const project of projects) {
+        for (const file of project.files) {
+            try {
+                const response = await octokit.request('GET /repos/NeuroPyPy/{repo}/contents/{path}', {
+                    repo: project.repo,
+                    path: file.path,
+                });
+                const content = atob(response.data.content);
+                file.content.value = content;
+                preloadedGitfiles.value[file.path] = content;
+            } catch (error) { console.log("octokit error", error); }
+        }
+    }
+});
 
 onMounted(async () => {
     // Wait for the next DOM update cycle
@@ -47,12 +73,11 @@ onMounted(async () => {
         debounceTimeout = setTimeout(applyChanges, 500);
     }
     const io = new IntersectionObserver(reportIntersection, { threshold: 0.1, root: null, rootMargin: "0px" });
-    const sections = [...document.querySelectorAll('.container-project-selector')];
+    const sections = [...document.querySelectorAll('section')];
 
     sections.forEach((section) => {
         io.observe(section);
     });
-
 });
 
 const sidebarWidth = computed(() => {
@@ -84,22 +109,24 @@ const copyGistContent = () => {
 <template>
     <v-app class="grey-darken-1 code-family">
         <SidebarRoute :links="links" :sidebarWidth="sidebarWidth"></SidebarRoute>
-        <SidebarContent :projects="projects" :intersectingProjectId="intersectingProjectId">
+        <SidebarContent :projects="projects" :intersectingProjectId="intersectingProjectId"
+            @project-clicked="scrollToProject">
         </SidebarContent>
-        <v-main class="">
+        <v-main>
             <v-container>
                 <v-row justify="space-around">
                     <v-col cols="8">
-                        <v-container v-for="project in projects" :key="project.repo" :ref="project.repo"
+                        <v-container tag="section" v-for="project in projects" :key="project.repo" :ref="project.repo"
+                            :data-id="project.repo" :id="project.repo"
                             class="bg-background rounded-lg my-2 container-project-selector">
                             <!-- HEADER -->
                             <v-card class="mb-4 mx-6 elevation-6" style="background-color: transparent;">
                                 <v-card-title>
                                     <v-row class="inline-flex" align="center" no-gutters>
                                         <v-col cols="auto" class="d-flex">
-                                            <a :link="`${project.fulllink}`" aria-label="GitHub" target="_blank"
+                                            <a :href="`${project.fulllink}`" aria-label="GitHub" target="_blank"
                                                 rel="noreferrer">
-                                                <v-icon size="x-small" class=""> mdi-github </v-icon>
+                                                <v-icon size="x-small"> mdi-github </v-icon>
                                             </a>
                                         </v-col>
                                         <v-col cols="auto" class="d-flex mx-6">
@@ -132,17 +159,25 @@ const copyGistContent = () => {
                                 </v-card-title>
                                 <v-card-text class="rounded-lg my-1 mx-6 elevation-1">
                                     <v-sheet v-for="(file, index) in project.files" :key="file.filename">
-
                                         <v-card v-show="project.activeTab.value === index">
-
-                                            <v-card-text class="scrollable-content">
-                                                <div>
-                                                    <!-- <GitCode :content="getPreloadedContent(project.files[index].path)"
-                                                        :language="project.files[index].language" /> -->
-                                                </div>
-                                            </v-card-text>
+                                            <suspense>
+                                                <template #default>
+                                                    <v-card-text class="scrollable-content">
+                                                        <GitCode :content="project.files[index].content.value"
+                                                            :language="project.files[index].language" />
+                                                    </v-card-text>
+                                                </template>
+                                                <template #fallback>
+                                                    <v-card-text class="scrollable-content">
+                                                        <div>
+                                                            Loading...
+                                                        </div>
+                                                    </v-card-text>
+                                                </template>
+                                            </suspense>
                                         </v-card>
                                     </v-sheet>
+
                                 </v-card-text>
 
                             </v-card>
@@ -187,7 +222,23 @@ a {
 .scrollable-content {
     overflow: auto;
     max-height: 90vh;
-    /* Subtract the height of the card title and subtitle */
+    min-height: 40vh;
+    // /* Change the scrollbar color */
+    // scrollbar-color: var(--background-color) #222222;
+    // /* Change the scrollbar width */
+    // scrollbar-width: thin;
+
+    // &::-webkit-scrollbar {
+    //     width: 6px;
+    // }
+
+    // &::-webkit-scrollbar-track {
+    //     background: var(--highlight-color);
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     background-color: #c7c7c7;
+    // }
 }
 
 .copy-button {

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <highlightjs :language="gitlanguage" :code="gitcontent" />
-  </div>
+  <highlightjs :language="gitlanguage" :code="gitcontent" />
 </template>
 
 <script setup>
@@ -19,8 +17,8 @@ const gitcodeprops = defineProps({
   },
 });
 
-let gitcontent = computed(() => gitcodeprops.content);
-let gitlanguage = computed(() => gitcodeprops.language);
+const gitcontent = computed(() => gitcodeprops.content);
+const gitlanguage = computed(() => gitcodeprops.language);
 
 </script>
 

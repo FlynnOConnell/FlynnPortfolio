@@ -26,13 +26,9 @@ export default {
 </script>
 
 <template>
-    <div class="hljs-container">
+    <v-sheet class="hljs-container pa-2">
         <highlightjs :code="code" :language="language" :autodetect=false />
-    </div>
+    </v-sheet>
 </template>
 
-<style lang="scss">
-code {
-    font-size: .75rem !important;
-}
-</style>
+<style lang="scss"></style>

@@ -1,64 +1,68 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import AboutMe from '../views/AboutMe.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            redirect: '/home',
+            redirect: '/about-me',
         },
         {
             path: '/home',
-            name: 'home',
-            component: Home,
+            redirect: '/about-me',
         },
         {
-            path: '/404',
-            component: () => import('../views/404.vue'),
-            meta: {
-                title: '404',
-            },
+            path: '/about-me',
+            name: 'landing-page',
+            component: AboutMe,
+        },
+        {
+            path: '/mobile',
+            name: 'mobile-landing-page',
+            component: () => import('../views/Mobile.vue'),
         },
         {
             path: '/contact',
             name: 'contact',
             component: () => import('../views/secondary/Contact.vue'),
-            meta: {
-                title: 'Contact Me',
-            },
         },
-           {
-            path: '/why-though',
-            name: 'why',
-            component: () => import('../views/secondary/Why.vue'),
+        {
+            path: '/404',
+            component: () => import('../views/secondary/404.vue'),
             meta: {
-                title: 'Why?',
+                title: '404',
             },
         },
         {
-            path: '/publications',
-            name: 'publications',
-            component: () => import('../views/secondary/Publications.vue'),
+            path: '/experience',
+            name: 'experience',
+            component: () => import('../views/Main.vue'),
             meta: {
-                title: 'Publications',
+                title: 'Experience',
             },
-        },
-        {
-            path: '/projects',
-            name: 'projects',
-            component: () => import('../views/secondary/Projects.vue'),
-            meta: {
-                title: 'Projects',
-            },
-        },
-        {
-            path: '/resume',
-            name: 'resume',
-            component: () => import('../views/secondary/Resume.vue'),
-            meta: {
-                title: 'Resume',
-            },
+            children: [
+                {
+                    path: 'why',
+                    name: 'why',
+                    component: () => import('../components/experience/Why.vue'),
+                },
+                {
+                    path: 'publications',
+                    name: 'publications',
+                    component: () => import('../components/experience/Publications.vue'),
+                },
+                {
+                    path: 'projects',
+                    name: 'projects',
+                    component: () => import('../components/experience/Projects.vue'),
+                },
+                {
+                    path: 'resume',
+                    name: 'resume',
+                    component: () => import('../components/experience/Resume.vue'),
+                },
+            ],
         },
     ],
     linkActiveClass: 'active-link',

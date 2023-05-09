@@ -17,6 +17,3 @@ interface ImportMeta {
     readonly env: ImportMetaEnv;
 }
 
-type PreloadedGitFilesType = {
-    [key: string]: string;
-};

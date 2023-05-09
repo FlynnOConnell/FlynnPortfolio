@@ -67,16 +67,17 @@ watch(
             <div id="nav-mobile-section">
                 <div id="nav-link-section" class="nav-section">
                     <div id="nav-link-section" class="">
-                        <button class="animation-underline" @click="router.push('/projects')">PROJECTS</button>
+                        <button class="animation-underline" @click="router.push('experience/projects')">PROJECTS</button>
                     </div>
                     <div id="nav-link-section" class="">
-                        <button class="animation-underline" @click="router.push('/resume')">RESUME</button>
+                        <button class="animation-underline"
+                            @click="router.push('/experience/publications')">PUBLICATIONS</button>
                     </div>
                     <div id="nav-link-section" class="">
-                        <button class="animation-underline" @click="router.push('/publications')">PUBLICATIONS</button>
+                        <button class="animation-underline" @click="router.push('/experience/resume')">RESUME</button>
                     </div>
                     <div id="nav-link-section" class="">
-                        <QuestionIcon link="/why-though?"></QuestionIcon>
+                        <QuestionIcon link="experience/why"></QuestionIcon>
                     </div>
                 </div>
                 <div id="nav-social-section" class="nav-section">

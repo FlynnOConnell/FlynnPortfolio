@@ -116,8 +116,8 @@ $color_2: var(--highlight-color);
 $color_3: rgba(255, 255, 255, 0.75);
 $header-font: 'Crimson', serif;
 $header2-font: var(--font-sans);
-$font-family_1: 'Montserrat', sans-serif;
-$font-family_2: 'Open Sans', sans-serif;
+$font-family_1: var( --vt-font-family-base);
+$font-family_2: var(--vt-font-family-mono);
 $background-color_1: var(--background-color);
 $background-color_2: transparent;
 $background-color_3: rgba(255, 255, 255, 0.02);
@@ -129,6 +129,10 @@ $min_font: 16px;
 $max_font: 20px;
 $mod_1: 1.2; // mobile
 $mod_2: 1.5; // desktop
+
+.no-bg {
+    background: none !important;
+}
 
 * {
     box-sizing: border-box;
@@ -208,6 +212,11 @@ $mod_2: 1.5; // desktop
 
 svg.feather {
     fill: none;
+}
+
+.active-text {
+    color: var(--vt-c-text-1);
+    transition: color .25s;
 }
 
 @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
@@ -423,8 +432,8 @@ main {
                 &:hover {
                     transition: background-color 0.5s ease;
                     background-color: $background-color_3;
-
-                    > .svg-inline--fa {
+                    
+                    i {
                         color: $color_2 !important;
                         transform: scale(1.5);
                         transition: all 0.2s ease !important;
@@ -457,7 +466,7 @@ main {
                 background-color: $background-color_3;
                 cursor: pointer;
                 > button {
-                    > .svg-inline--fa {
+                    > .v-btn__content {
                         color: $color_2 !important;
                         transform: scale(1.1);
                         transition: all 0.5s ease !important;
@@ -583,7 +592,7 @@ nav {
 
         > #nav-social-section {
             > .links {
-                .svg-inline--fa {
+                .v-btn__content {
                     color: $color_1;
                     margin: 0px 0.5rem;
 
@@ -624,6 +633,10 @@ nav {
                 color: var(--highlight-color);
                 transition: color 0.5s ease;
             }
+            > i {
+                color: var(--highlight-color);
+                transition: color 0.5s ease;
+            }
         }
 
         > span,
@@ -633,10 +646,6 @@ nav {
             line-height: 1rem;
         }
     }
-}
-
-.svg-inline--fa {
-    font-size: 1.5rem;
 }
 
 .animation-underline {

@@ -7,6 +7,7 @@ export interface ProjectFile {
     language?: string;
     type: string,
     title: string,
+    content?: Ref<string>;
 }
 
 export interface Project {
@@ -235,8 +236,8 @@ function extractNameAndType(str: string) {
   return { name, ext };
 }
 
-const get_shortlink = computed(() => (title: string) => (title ? `NeuroPyPy/${title}` : null));
-const get_longlink = computed(() => (title: string) => (title ? `http://NeuroPyPy/${title}` : null));
+const get_shortlink = computed(() => (repo: string) => ( `NeuroPyPy/${repo}`));
+const get_longlink = computed(() => (repo: string) => (`https://github.com/NeuroPyPy/${repo}`));
 
 export const projects: Project[] = (() => {
     allProjects.forEach((project) => {
@@ -248,6 +249,7 @@ export const projects: Project[] = (() => {
             const { name, ext } = extractNameAndType(file.path);
             file.language = ext;
             file.filename = name;
+            file.content = ref('');
         });
   });
   return allProjects as Project[];

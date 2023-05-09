@@ -1,35 +1,19 @@
 <script setup lang="ts">
-import { Octokit } from 'octokit';
-import { provide, ref, onMounted } from 'vue';
-import { projects } from '@/data/projectData';
-import type { Ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { onBeforeMount } from 'vue';
 
-type PreloadedGitFilesType = {
-    [key: string]: string;
-};
+onBeforeMount(() => {
+    const router = useRouter();
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-const preloadedGitfiles: Ref<PreloadedGitFilesType> = ref({});
-provide('preloadedGitfiles', preloadedGitfiles);
-
-const octokit = new Octokit({
-    auth: import.meta.env.VITE_GITHUB_TOKEN
-})
-
-onMounted(async () => {
-    for (const project of projects) {
-        for (const file of project.files) {
-            try {
-                const response = await octokit.request('GET /repos/NeuroPyPy/{repo}/contents/{path}', {
-                    repo: project.repo,
-                    path: file.path,
-                });
-                const content = atob(response.data.content);
-                preloadedGitfiles.value[file.path] = content;
-            } catch (error) { console.log("octokit error", error); }
-        }
+    if (isMobile) {
+        // Redirect to the mobile homepage
+        router.push('/mobile-homepage');
+    } else {
+        // Redirect to the regular homepage
+        router.push('/home');
     }
 });
-
 </script>
 
 <template>

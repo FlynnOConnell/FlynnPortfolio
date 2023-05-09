@@ -7,7 +7,6 @@ export const useActiveIndexStore = defineStore('activeIndexStore', {
         currentSlide: 'about',
     }),
     actions: {
-        // since we rely on `this`, we cannot use an arrow function
         setIndex(newIndex: number) {
             this.activeIndex = newIndex;
         },

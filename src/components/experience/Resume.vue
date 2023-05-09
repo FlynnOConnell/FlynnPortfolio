@@ -1,29 +1,30 @@
 <template>
-    <div class="resume">
-        <div class="resume-options text-white">
-            <div class="resume-versions text-white">
-                <div v-for="version in versions" :key="version.id" @click="selectResume(version)"
-                    :class="{ active: selectedResume === version }" class="resume-version">
-                    {{ version.name }}
-                </div>
-            </div>
-            <div class="download-button text-white">
-                <button @click="downloadResume">Download</button>
-            </div>
-        </div>
-        <div class="resume-preview">
-            <div class="paper-container">
-                <div class="paper-content">
-                    <iframe ref="resumeIframe" v-if="selectedResume" :src="selectedResume!.pdfUrl" frameborder="0"
-                        @load="resizeIframe"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+    <v-card>
+        <v-tabs center-active>
+            <v-tab v-for="(resume, index) in versions" color="deep-purple-accent-4 text-bold text-white" align-tabs="center"
+                @click="changeTabResume">
+                {{ resume.name }}
+            </v-tab>
+        </v-tabs>
+        <v-window>
+            <v-window-item v-for="(resume, index) in versions" :key="index" :value="resume.name">
+                <v-container fluid>
+                    <vue-pdf-embed :source="resume.pdfUrl" />
+                </v-container>
+            </v-window-item>
+        </v-window>
+    </v-card>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import VuePdfEmbed from 'vue-pdf-embed'
+
+const activeTabResume = ref(1);
+
+function changeTabResume(tab: number): void {
+    activeTabResume.value = tab;
+}
 
 interface ResumeVersion {
     id: number;
