@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { useLocalStorage, useMouse, usePreferredDark } from '@vueuse/core'
 import GitCode from '@/components/subcomponents/GitCode.vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
 import { projects } from '@/data/projectData';
 import { Octokit } from 'octokit';
-import SidebarProjects from "@/components/navigation/SidebarProjects.vue";
 import { useExperienceContentStore } from '@/stores/experienceContentStore';
-import { onMounted, onBeforeMount, ref, nextTick, provide } from 'vue'
+import { onMounted, onBeforeMount, ref } from 'vue'
 import type { Ref } from 'vue';
 
 const octokit = new Octokit({
@@ -35,20 +35,6 @@ onMounted(() => {
     const sidebarStore = useExperienceContentStore();
     sidebarStore.loadComponent("SidebarProjects", { 'projectArray': projects });
 });
-
-const gistContentRef = ref({} as string);
-const copyGistContent = () => {
-    const gistContent = gistContentRef.value;
-    if (gistContent) {
-        navigator.clipboard.writeText(gistContent)
-            .then(() => {
-                console.log('Gist content copied to clipboard');
-            })
-            .catch((error) => {
-                console.error('Failed to copy gist content to clipboard:', error);
-            });
-    }
-};
 
 const expandedCodeStates = ref([]);
 const expandedVideoStates = ref([]);

@@ -1,7 +1,8 @@
 
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { fa } from 'vuetify/iconsets/fa'
 import { VApp, VContainer, VBtn } from 'vuetify/components';
 import { Scroll } from 'vuetify/directives';
 
@@ -15,23 +16,6 @@ const directives = {
   Scroll,
 };
 
-const myCustomDarkTheme = {
-  dark: true,
-  colors: {
-    backdrop: '#292929',
-    background: '#121212',
-    surface: '#1d1d1d',
-    primary: '#bb86fc',
-    'primary-darken-1': '#3700B3',
-    secondary: '#03dac6',
-    'secondary-darken-1': '#018786',
-    error: '#B00020',
-    info: '#2196F3',
-    success: '#4CAF50',
-    warning: '#FB8C00',
-  }
-}
-
 export function setupVuetify(app: any) {
   const vuetify = createVuetify({
     components,
@@ -41,6 +25,7 @@ export function setupVuetify(app: any) {
       aliases,
       sets: {
         mdi,
+        fa
       }
     },
      theme: {

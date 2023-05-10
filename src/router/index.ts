@@ -23,11 +23,6 @@ const router = createRouter({
             component: () => import('../views/Mobile.vue'),
         },
         {
-            path: '/contact',
-            name: 'contact',
-            component: () => import('../views/secondary/Contact.vue'),
-        },
-        {
             path: '/404',
             component: () => import('../views/secondary/404.vue'),
             meta: {
@@ -42,11 +37,6 @@ const router = createRouter({
                 title: 'Experience',
             },
             children: [
-                {
-                    path: 'why',
-                    name: 'why',
-                    component: () => import('../components/experience/Why.vue'),
-                },
                 {
                     path: 'publications',
                     name: 'publications',

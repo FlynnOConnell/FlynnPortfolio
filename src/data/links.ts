@@ -15,13 +15,5 @@ export const links = [
         to     : 'resume',
         icon   : 'mdi-file-account',
         text   : 'Resume',
-    }, {
-        to     : '/contact',
-        icon   : 'mdi-card-account-mail-outline',
-        text   : 'Contact',
-    }, {
-        to     : 'why',
-        icon   : 'mdi-help-circle-outline',
-        text   : 'Why Though?',
-    },
+    }
 ]
