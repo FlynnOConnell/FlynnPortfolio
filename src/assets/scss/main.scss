@@ -110,6 +110,7 @@
     --vt-font-family-mono: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+$color_bg: var(--background-color);
 $color_1: var(--lightest-slate);
 $color_1_accent: var(--dark-slate);
 $color_2: var(--highlight-color);
@@ -129,6 +130,10 @@ $min_font: 16px;
 $max_font: 20px;
 $mod_1: 1.2; // mobile
 $mod_2: 1.5; // desktop
+
+.bg-dark-blue {
+    background-color: var(--background-color) !important;
+}
 
 .no-bg {
     background: none !important;

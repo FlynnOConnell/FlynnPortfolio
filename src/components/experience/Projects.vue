@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useLocalStorage, useMouse, usePreferredDark } from '@vueuse/core'
 import GitCode from '@/components/subcomponents/GitCode.vue'
 import Icon from '@/components/subcomponents/SVGComponent.vue';
+import SkeletonLoader from '@/components/navigation/LoadingSkeleton.vue';
 import { projects } from '@/data/projectData';
 import { Octokit } from 'octokit';
 import { useExperienceContentStore } from '@/stores/experienceContentStore';
-import { onMounted, onBeforeMount, ref } from 'vue'
+import { onMounted, onBeforeMount, ref, computed } from 'vue'
 import type { Ref } from 'vue';
 
 const octokit = new Octokit({
@@ -35,9 +35,11 @@ onMounted(() => {
     const sidebarStore = useExperienceContentStore();
     sidebarStore.loadComponent("SidebarProjects", { 'projectArray': projects });
 });
-
+const imageLoaded = ref([]);
+const videoLoaded = ref([]);
 const expandedCodeStates = ref([]);
 const expandedVideoStates = ref([]);
+
 
 </script>
 
@@ -71,43 +73,45 @@ const expandedVideoStates = ref([]);
                 <!-- DESCRIPTION -->
                 <v-card class="mb-4 mx-6 no-bg elevation-6">
                     <v-card-text>
-                        <div v-html="project.description" class="project-text-outer"></div>
+                        <p v-html="project.description" class="project-text-outer">
+                        </p>
                     </v-card-text>
                 </v-card>
                 <!-- CODE EXAMPLES -->
-                <v-row align="start" class=".space-around">
+                <v-row>
                     <v-col>
-                        <v-sheet class="pa-2 ma-2 d-flex justify-center no-bg">
+                        <v-sheet class="d-flex justify-center align-center no-bg">
                             <v-card-subtitle>
-                                Source
-                                <v-card-actions class="d-flex justify-center">
-                                    <v-btn size="small" density="compact"
-                                        :icon="expandedCodeStates[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                                        @click="expandedCodeStates[index] = !expandedCodeStates[index]" variant="tonal"
-                                        color="teal-accent-4">
-                                    </v-btn>
-                                </v-card-actions>
+                                <p>Source</p>
                             </v-card-subtitle>
+                            <v-card-actions>
+                                <v-btn size="x-small" density="comfortable"
+                                    :icon="expandedCodeStates[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                                    @click="expandedCodeStates[index] = !expandedCodeStates[index]" variant="tonal"
+                                    color="teal-accent-4">
+                                </v-btn>
+                            </v-card-actions>
                         </v-sheet>
                     </v-col>
-                    <v-col>
-                        <v-sheet class="pa-2 ma-2 d-flex justify-center no-bg">
+                    <!-- VIDEO EXAMPLES -->
+                    <v-col v-if="project.source !== ''">
+                        <v-sheet class="d-flex justify-center align-center no-bg">
                             <v-card-subtitle>
-                                Example
-                                <v-card-actions class="d-flex justify-center">
-                                    <v-btn size="small" density="compact"
-                                        :icon="expandedVideoStates[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                                        @click="expandedVideoStates[index] = !expandedVideoStates[index]" variant="tonal"
-                                        color="teal-accent-4">
-                                    </v-btn>
-                                </v-card-actions>
+                                <p>Example</p>
                             </v-card-subtitle>
+                            <v-card-actions>
+                                <v-btn size="small" density="compact"
+                                    :icon="expandedVideoStates[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                                    @click="expandedVideoStates[index] = !expandedVideoStates[index]" variant="tonal"
+                                    color="teal-accent-4"></v-btn>
+                            </v-card-actions>
                         </v-sheet>
                     </v-col>
                 </v-row>
                 <v-expand-transition>
+                    <!-- EXPANDED CODE -->
                     <template v-if="expandedCodeStates[index]">
-                        <v-card v-show="expandedCodeStates[index]" class="bg-none">
+                        <v-card class="bg-none">
                             <v-card-title>
                                 <v-tabs v-model="project.activeTab.value" align-tabs="center" selected-class="active-text"
                                     center-active>
@@ -116,56 +120,48 @@ const expandedVideoStates = ref([]);
                                     </v-tab>
                                 </v-tabs>
                             </v-card-title>
-                            <v-card-text class="rounded-lg my-1 elevation-1">
-                                <v-sheet v-for="(file, index) in project.files" :key="file.filename">
-                                    <v-card v-show="project.activeTab.value === index"
-                                        class="scrollable-content elevation-6">
-                                        <suspense>
-                                            <template #default>
-                                                <GitCode :content="project.files[index].content.value"
-                                                    :language="project.files[index].language" />
-                                            </template>
-                                            <template #fallback>
-                                                <v-card-text class="scrollable-content">
-                                                    <div>
-                                                        Loading...
-                                                    </div>
-                                                </v-card-text>
-                                            </template>
-                                        </suspense>
-                                    </v-card>
-                                </v-sheet>
+                            <v-card-text class="rounded-lg my-1">
+                                <template v-for="(file, index) in project.files" :key="file.filename">
+                                    <transition name="fade" mode="out-in">
+                                        <v-sheet v-if="project.activeTab.value === index">
+                                            <v-card v-show="project.activeTab.value === index"
+                                                class="scrollable-content elevation-6">
+                                                <v-card v-if="project.files[index].content.value"
+                                                    class="scrollable-content elevation-6">
+                                                    <GitCode :content="project.files[index].content.value"
+                                                        :language="project.files[index].language" />
+                                                </v-card>
+                                                <v-card v-else class="scrollable-content">
+                                                    <SkeletonLoader class="bg-none"></SkeletonLoader>
+                                                </v-card>
+                                            </v-card>
+                                        </v-sheet>
+                                    </transition>
+                                </template>
                             </v-card-text>
                         </v-card>
                     </template>
+                    <!-- EXPANDED VIDEO -->
                     <template v-if="expandedVideoStates[index]">
-                        <v-card v-show="expandedVideoStates[index]" class="bg-none">
+                        <v-card class="bg-none">
                             <v-responsive>
                                 <template v-if="project.sourcetype === 'image'">
-                                    <v-img :src="project.source" width="auto" height="auto" class="mx-2"></v-img>
+                                    <v-img v-if="imageLoaded[index]" :src="project.source" width="auto" height="auto"
+                                        class="mx-2" @load="imageLoaded[index] = true"></v-img>
+                                    <SkeletonLoader v-else class="bg-none"></SkeletonLoader>
                                 </template>
                                 <template v-else-if="project.sourcetype === 'video'">
-                                    <video ref="videoplayer" class="w-full h-auto object-cover" autoplay muted loop>
+                                    <video v-if="videoLoaded[index]" ref="videoplayer" class="w-full h-auto object-cover"
+                                        autoplay muted loop @loadedmetadata="videoLoaded[index] = true">
                                         <source :src="project.source" type="video/mp4" />
                                         Your browser does not support the video tag.
                                     </video>
-                                </template>
-                            </v-responsive>
-                        </v-card>
-                        <v-card v-show="expandedVideoStates[index]" class="bg-none">
-                            <v-responsive>
-                                <template v-if="project.sourcetype === 'image'">
-                                    <v-img :src="project.source" width="auto" height="auto" class="mx-2"></v-img>
-                                </template>
-                                <template v-else-if="project.sourcetype === 'video'">
-                                    <video ref="videoplayer" class="w-full h-auto object-cover" autoplay muted loop>
-                                        <source :src="project.source" type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    <SkeletonLoader v-else class="bg-none"></SkeletonLoader>
                                 </template>
                             </v-responsive>
                         </v-card>
                     </template>
+
                 </v-expand-transition>
                 <v-divider></v-divider>
             </v-card>
@@ -191,38 +187,8 @@ a {
     overflow: auto;
     max-height: 90vh;
     min-height: 40vh;
-    // /* Change the scrollbar color */
-    // scrollbar-color: var(--background-color) #222222;
-    // /* Change the scrollbar width */
+    scrollbar-color: var(--vt-scroll-bar-color) var(--vt-scroll-bar-bg-color);
     scrollbar-width: thin;
-
-    // &::-webkit-scrollbar {
-    //     width: 6px;
-    // }
-
-    // &::-webkit-scrollbar-track {
-    //     background: var(--highlight-color);
-    // }
-
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: #c7c7c7;
-    // }
-}
-
-.copy-button {
-    position: absolute;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: none;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: var(--transition);
-
-    &:hover {
-        color: var(--accent-color);
-    }
 }
 
 #row-container {
@@ -249,5 +215,19 @@ a {
     color: inherit;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-leave {
+    transition-delay: 0.15s;
 }
 </style>

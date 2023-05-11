@@ -4,28 +4,36 @@ import LinksComponent from '../subcomponents/LinksComponent.vue';
 import Icon from '../subcomponents/SVGComponent.vue';
 import { useRouter } from 'vue-router';
 import { useClipboard } from '@vueuse/core'
+import { useElementHover } from '@vueuse/core'
+import { useDisplay } from 'vuetify'
+const { mobile, lgAndUp } = useDisplay()
+console.log(mobile.value)
+console.log(lgAndUp.value)
+
+const CopyListItem = ref()
+const isPhoneHovered = useElementHover(CopyListItem)
+
+const SendMailItem = ref()
+const isMailHovered = useElementHover(SendMailItem)
+
+const isSent = ref(false);
+const showPlaneIcon = () => {
+    isSent.value = true;
+    setTimeout(() => {
+        isSent.value = false;
+    }, 2000);
+};
 
 const phonenumber = ref('5189181741');
 const { copy } = useClipboard();
+
 const isCopied = ref(false);
-const showCopy = ref(false);
-
-const overlay = ref(false);
-
-const showcopied = () => {
+const showCopyIcon = () => {
     copy(phonenumber.value)
     isCopied.value = true;
     setTimeout(() => {
         isCopied.value = false;
     }, 2000);
-};
-
-const showCopyTooltip = () => {
-    showCopy.value = true;
-};
-
-const hideCopyTooltip = () => {
-    showCopy.value = false;
 };
 
 const router = useRouter();
@@ -86,8 +94,6 @@ watch(
             navref.value.dataset.transitionable = 'true';
             navref.value.dataset.toggled =
                 navref.value.dataset.toggled === 'true' ? 'false' : 'true';
-        } else {
-            console.log('nav is null');
         }
     },
     { immediate: true }
@@ -98,7 +104,7 @@ watch(
 <template>
     <header>
         <nav ref="navref" data-toggled="false" data-transitionable="false">
-            <div id="nav-logo-section" class="nav-section">
+            <div v-if="!mobile" id="nav-logo-section" class="nav-section">
                 <router-link to="/home" class="w-full h-full">
                     <Icon subfolder="other" name="signature" class="temp" />
                 </router-link>
@@ -120,33 +126,30 @@ watch(
                     <LinksComponent />
                 </div>
                 <div ref="nav-contact-ref" id="nav-contact-section" class="nav-section">
-                    <v-overlay v-model="overlay" contained class="align-center justify-center">
-                        <template v-slot:activator="{ props }">
-                            <v-btn color="blue" v-bind="props">
-                                <p class="font-semibold">Contact Me</p>
-                            </v-btn>
-                        </template>
-                        <v-list>
-                            <v-list-item :href="items[0].href">
-                                <template v-slot:prepend>
-                                    <font-awesome-icon :icon="['far', 'paper-plane']" class="mr-5" />
-                                </template>
-                                <v-list-item-title>{{ items[0].title }}</v-list-item-title>
-                            </v-list-item>
-                            <v-list-item @click="showcopied" @mouseenter="showCopyTooltip" @mouseleave="hideCopyTooltip">
-                                <template v-slot:prepend>
-                                    <font-awesome-icon :icon="['fas', 'mobile-alt']" class="mr-6" />
-                                </template>
-                                <v-list-item-title>
-                                    (518)-918-1741
-                                </v-list-item-title>
-                                <v-tooltip text="Copy" location="bottom" :value="!isCopied && showCopy" />
-                                <v-tooltip text="Copied!" location="bottom" :value="isCopied" />
-                            </v-list-item>
-                        </v-list>
-                    </v-overlay>
-
-
+                    <v-list class="no-bg" rounded>
+                        <v-list-item :href="items[0].href" ref="SendMailItem" @click="showPlaneIcon">
+                            <template v-slot:prepend>
+                                <font-awesome-icon v-if="!isMailHovered && !isSent" :icon="['far', 'envelope']"
+                                    class="mr-5" />
+                                <font-awesome-icon v-if="isMailHovered && !isSent" :icon="['far', 'fa-paper-plane']"
+                                    class="mr-5" />
+                                <font-awesome-icon v-if="isSent" :icon="['far', 'fa-circle-check']" class="mr-5" />
+                            </template>
+                            <v-list-item-title>{{ items[0].title }}</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item class="hoverable" ref="CopyListItem" @click="showCopyIcon">
+                            <template v-slot:prepend>
+                                <font-awesome-icon v-if="!isPhoneHovered && !isCopied" :icon="['fas', 'mobile-alt']"
+                                    class="mr-6" />
+                                <font-awesome-icon v-if="isPhoneHovered && !isCopied" :icon="['far', 'fa-copy']"
+                                    class="mr-5" />
+                                <font-awesome-icon v-if="isCopied" :icon="['far', 'fa-circle-check']" class="mr-5" />
+                            </template>
+                            <v-list-item-title>
+                                (518)-918-1741
+                            </v-list-item-title>
+                        </v-list-item>
+                    </v-list>
                 </div>
             </div>
             <button id="nav-toggle-button" type="button" @click="handleNavToggle()">
@@ -156,4 +159,17 @@ watch(
         </nav>
     </header>
 </template>
+
+<style scoped lang="scss">
+.hoverable {
+    color: inherit;
+    transition: color 0.5s ease;
+    cursor: pointer;
+}
+
+.hoverable:hover {
+    color: var(--highlight-color);
+    transition: color 0.5s ease;
+}
+</style>
 

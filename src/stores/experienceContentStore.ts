@@ -1,6 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { shallowRef, ref, computed } from 'vue';
-import EmptySidebar from "@/components/navigation/EmptySidebar.vue";
 
 export const useExperienceContentStore = defineStore('experienceSidebarContent', () =>
 {

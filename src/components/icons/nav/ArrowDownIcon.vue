@@ -6,7 +6,7 @@
             <polyline points="8 12 12 16 16 12"></polyline>
             <line x1="12" y1="8" x2="12" y2="16"></line>
         </svg>
-        <span class="tooltip">Publications</span>
+        <span v-if="tooltip" class="tooltip">{{ tooltip }}</span>
     </router-link>
 </template>
 
@@ -18,6 +18,9 @@ export default {
             type: String,
             required: true,
         },
+        tooltip: {
+            type: String,
+        }
     },
 };
 </script>

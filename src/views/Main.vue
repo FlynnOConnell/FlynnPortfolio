@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { links } from '@/data/links';
 import SidebarRoute from "@/components/navigation/SidebarRoute.vue";
-import { computed, onMounted, ref, nextTick } from 'vue';
+import { computed, onMounted, nextTick } from 'vue';
 import { useExperienceContentStore } from '@/stores/experienceContentStore';
+
 
 const onsidebarClick = (repo) => {
     scrollTo(repo);
@@ -26,6 +27,8 @@ const sidebarWidth = computed(() => {
 });
 
 onMounted(async () => {
+
+
     // Wait for the next DOM update cycle
     await nextTick();
     let minId = null;

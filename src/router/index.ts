@@ -18,7 +18,7 @@ const router = createRouter({
             component: AboutMe,
         },
         {
-            path: '/mobile',
+            path: '/mobile-homepage',
             name: 'mobile-landing-page',
             component: () => import('../views/Mobile.vue'),
         },

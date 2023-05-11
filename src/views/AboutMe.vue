@@ -2,6 +2,7 @@
 import { computed, ref, onMounted } from 'vue';
 import { useActiveIndexStore } from '@/stores/activeIndex';
 import HeaderComponent from '@/components/navigation/HeaderComponent.vue';
+import HeaderMobile from '@/components/navigation/HeaderMobile.vue';
 import NeuronIcon from '@/components/icons/nav/NeuronIcon.vue';
 import CodeIcon from '@/components/icons/nav/CodeIcon.vue';
 import PauseIcon from '@/components/icons/other/PauseIcon.vue';
@@ -9,6 +10,9 @@ import PlayIcon from '@/components/icons/other/PlayIcon.vue';
 import HomeIconSlide from '@/components/icons/nav/HomeIconSlide.vue';
 import ArrowDownIcon from '@/components/icons/nav/ArrowDownIcon.vue';
 import Icon from '@/components/subcomponents/SVGComponent.vue';
+import { useDisplay } from 'vuetify'
+const { mobile, lgAndUp } = useDisplay()
+
 
 const isHovered = ref(false);
 const btnActive = computed(() => isHovered.value);
@@ -27,6 +31,9 @@ defineProps({
 });
 
 onMounted(() => {
+
+
+
     const video = videoplayer.value;
     if (video) {
         video.addEventListener('play', () => {
@@ -131,8 +138,9 @@ function useSwipeRight(): void {
 
 <template>
     <div class="home-container">
-        <HeaderComponent />
-        <main ref="main">
+        <HeaderComponent v-if="!mobile" />
+        <HeaderMobile v-else />
+        <main ref="main" :class="mobile ? 'mobile-main' : ''">
             <article ref="article" id="home" data-index="0" data-status="active">
                 <!-- IMAGE SECTION -->
                 <div class="article-image-section article-section relative">
@@ -145,7 +153,7 @@ function useSwipeRight(): void {
                 <div class="article-description-section article-section p-8 flex justify-center relative">
                     <div class="h-full w-full flex flex-col justify-between">
                         <h1 class="text-center">Hi, I'm Flynn</h1>
-                        <div id="neuron-bg" class="flex-grow"></div>
+                        <div id="neuron-bg" class="flex-grow d-none d-lg-block"></div>
                         <p class="text-xl">
                             I develop software to study the awake, behaving brain.
                         </p>
@@ -210,7 +218,8 @@ function useSwipeRight(): void {
                 </div>
                 <div class="article-title-section article-section">
                     <h2>A view inside the brain</h2>
-                    <ArrowDownIcon link="/publications" class="article-nav-button"></ArrowDownIcon>
+                    <ArrowDownIcon link="experience/publications" tooltip="Publications" class="article-nav-button">
+                    </ArrowDownIcon>
                 </div>
                 <div class="article-nav-section article-section">
                     <HomeIconSlide ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></HomeIconSlide>
@@ -311,29 +320,27 @@ function useSwipeRight(): void {
                 </div>
                 <div class="article-description-section article-section">
                     <p class="text-white mt-5 mb-5">
-                        I have been coding <strong class="italic">professionally </strong>for 5+ years.
+                        I have been coding every day that I can for 6+ years.
                     </p>
 
                     <p class="text-white mt-5 mb-5">
                         C++ taught me fundamental data structures and algorithms, which I used while studying the inner
-                        workings of pytho
+                        workings of python.
                     </p>
 
                     <p class="text-white mt-5 mb-5">I use my experience with <strong>C++, Python, Java</strong> and
                         <strong>Typescript</strong> to build
                         tools for extracting and analyzing neural recordings.
                     </p>
-                    <p class="text-white mt-5 mb-2">My <strong>object-oriented</strong> approach and <strong>strong
+                    <p class="text-white mt-5 mb-2">My object-oriented approach and <strong>strong
                             knowledge of
                             design patterns</strong> helps me keep code <strong class="italic">orgaized, fluent and
                             easily maintainable.</strong>
                     </p>
                 </div>
                 <div class="article-title-section article-section">
-                    <h2 style="font-family: CrimsonItalic">Software Development</h2>
-                    <button @click="$router.push('/projects')" class="article-nav-button">
-                        <v-icon>mdi-arrow-down-bold-hexagon-outline</v-icon>
-                    </button>
+                    <h2>Software Development</h2>
+                    <ArrowDownIcon link="experience/projects" tooltip="Projects" class="article-nav-button"></ArrowDownIcon>
                 </div>
                 <div class="article-nav-section article-section">
                     <NeuronIcon ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></NeuronIcon>
@@ -345,6 +352,10 @@ function useSwipeRight(): void {
 </template>
 
 <style lang="scss">
+.mobile-main {
+    max-height: 100vh;
+}
+
 .home-container {
     display: flex;
     flex-direction: column;

@@ -27,7 +27,6 @@ const allProjects: Project[] = [
     {
         repo: "PremierSuite",
         description: `
-            <p class="project-text-inner">
             A downloadable plugin for
             <a href="https://www.rocketleague.com/">RocketLeague</a> that allows the direct
             manipulation
@@ -35,7 +34,6 @@ const allProjects: Project[] = [
             in-game servers. Written in C/C++, users use a built-in GUI that provides additional
             functionality
             within Rocket League.
-            </p>
         `,
         languages: ["cpp", "c"],
         source: "/movies/PremierSuiteExample.mp4",
@@ -63,18 +61,12 @@ const allProjects: Project[] = [
     {
         repo: "canalysis",
         description: `
-      <p class="text-lg text-white">
-                        <ul class="text-white">
-                            <li>Syncing traces with externally captured GPIO events.</li>
-                            <li> Plotting: animated, 2D and 3D scatter, regression, skree, heatmap and
-                                correlation
-                                matrix.</li>
-                            <li> Dimensionality reduction with variance filters and principal component
-                                analysis.
-                            </li>
-
-                        </ul>
-                        </p>
+        <p>Syncing calcium traces with externally captured events.</p>
+        <p class=my-4>
+        Plotting: animated, 2D and 3D scatter, regression, skree, 2D and surface heatmap, correlation matrix, and many more.
+        Data analysis: PCA, variance filtering, spectrogram, spike rate, spike inference, regression, and many more.
+        </p>
+        This Python package is very object oriented and modular.    
     `,
         languages: ["py", "cpp", "c"],
         source: "https://i.imgur.com/SPok8sB.gif",
@@ -107,30 +99,18 @@ const allProjects: Project[] = [
     {
         repo: "time-series-network",
         description: `
-      <p class="ml-8 mr-8 text-lg text-white">
-                                Classification of neural signals into 5 categories: <br>
-
-                            <ul>
-                                <li>
-                                    Artificial Salive
-                                </li>
-                                <li>
-                                    Sucrose
-                                </li>
-                                <li>
-                                    Quinine
-                                </li>
-                                <li>
-                                    Citric Acid
-                                </li>
-                                <li>
-                                    NaCl
-                                </li>
-
-                                Support vector machine, Recurrent NN, and Concurrent NN.
-                            </ul>
-
-                            </p>
+            Primary classification of neural signals into 5 event categories. <br />
+            Our goal here was to take neural signals, and see if they elicit a response that can be detected by a machine learning algorithm.
+            We used a support vector machine, recurrent neural network, and a concurrent neural network to classify the signals into 5 event categories.
+            <br />
+            The concurrent neural network was the most successful, with an accuracy of 0.98.
+            The recurrent neural network was the least successful, with an accuracy of 0.78.
+            The support vector machine was in the middle, with an accuracy of 0.88.
+             <br >
+            All of these models were trained on the same data, and tested on the same data. <br />
+            The data was split into 80% training, 20% testing. <br />
+            The code shown is mostly templates for the SVM, the rest will be added after publication. 
+            <br />
     `,
         languages: ["py"],
         source: "",
@@ -164,10 +144,11 @@ const allProjects: Project[] = [
     {
         repo: "web-dataviewer",
         description: `
-     <p class="text-lg text-white"> </p>
-                            Locally hosted web server for data sharing, visualization, and analysis. <br>
-
-                            Built with Python, Flask, and Plotly.js. <br>
+            Locally hosted web server for data sharing, visualization, and analysis. <br>
+            Built with Python, Flask, and Plotly.js. <br>
+            This tool allows users to upload data, and view it in a variety of ways. <br>
+            The data can be viewed as a heatmap, scatter plot, 3D scatter plot or in its raw form. <br>
+            The data can also be analyzed with a variety of tools, including PCA, variance filters, spectrogram, and displayed in an interactively embedded figure. <br>
     `,
         languages: ["py", "ts"],
         source: "",
@@ -195,9 +176,12 @@ const allProjects: Project[] = [
     {
         repo: "FlynnPortfolio",
         description: `
-    <p class="ml-8 mr-8 text-lg text-white">
-                            <h3> Source code for this Website Portfolio </h3>
-                            </p>
+
+        Source code for this Website Portfolio. <br>
+        Made with Vue3, Typescript, TailwindCSS and Vuetify3. <br>
+        This website is a single page application, with a variety of components. <br>
+        The components are dynamically loaded, and the page is (lazily) rendered. <br>
+        Not ideally responsive yet, but it's getting there. <br>
     `,
         languages: ["vue", "ts", "py", "html", "css"],
         source: "",

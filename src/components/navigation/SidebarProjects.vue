@@ -1,5 +1,6 @@
 <template>
-    <v-navigation-drawer tag="aside" sticky color="transparent" app floating location="right" width="600">
+    <v-navigation-drawer tag="aside" sticky color="transparent" app floating location="right">
+        <v-spacer></v-spacer>
         <v-list class="no-bg">
             <v-list-subheader class="links-subhead">Projects</v-list-subheader>
             <v-spacer></v-spacer>
@@ -13,6 +14,7 @@
                 </template>
             </v-list-item>
         </v-list>
+        <v-spacer></v-spacer>
     </v-navigation-drawer>
 </template>
 
