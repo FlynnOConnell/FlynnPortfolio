@@ -1,5 +1,6 @@
 
 import { createVuetify } from 'vuetify';
+import type { ThemeDefinition } from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import { fa } from 'vuetify/iconsets/fa'
@@ -16,8 +17,29 @@ const directives = {
   Scroll,
 };
 
+const darkBlueTheme: ThemeDefinition = {
+  dark: true,
+  colors: {
+    background: '#030865',
+    'on-background': '#050b18',
+    surface: '#001849',
+    'on-surface': '#dbe1ff',
+    primary: '#381e72',
+    secondary: '#cbc2db',
+    outline: '#948f99',
+    error: '#B00020',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+  },
+}
+
 export function setupVuetify(app: any) {
   const vuetify = createVuetify({
+    display: {
+      mobileBreakpoint: 'sm',
+      
+    },
     components,
     directives,
     icons: {
@@ -28,8 +50,14 @@ export function setupVuetify(app: any) {
         fa
       }
     },
-     theme: {
-       defaultTheme: 'dark',
+    theme: {
+      defaultTheme: 'dark',
+    //   themes: { darkBlueTheme },
+    //    variations: {
+    //     colors: ['primary', 'secondary'],
+    //     lighten: 1,
+    //     darken: 2,
+    //  },
     },
   });
 

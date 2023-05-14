@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer app permanent :width="drawerWidth" :class="{ 'collapsed': collapsed }" @mouseenter="expandDrawer"
+    <v-navigation-drawer app :width="drawerWidth" :class="{ 'collapsed': collapsed }" @mouseenter="expandDrawer"
         @mouseleave="collapseDrawer">
         <v-list active-class="active-link">
             <v-list-item v-for="(link, i) in links" :key="i" :to="link.to">

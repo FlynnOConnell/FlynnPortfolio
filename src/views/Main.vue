@@ -1,22 +1,10 @@
 <script setup lang="ts">
 import { links } from '@/data/links';
 import SidebarRoute from "@/components/navigation/SidebarRoute.vue";
-import { computed, onMounted, nextTick } from 'vue';
-import { useExperienceContentStore } from '@/stores/experienceContentStore';
+import { computed, onMounted, nextTick, ref } from 'vue';
+import { useDisplay } from 'vuetify'
 
-
-const onsidebarClick = (repo) => {
-    scrollTo(repo);
-};
-
-const scrollTo = (projectId) => {
-    const target = document.getElementById(projectId);
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-
-const sidebarStore = useExperienceContentStore();
+const { mobile, mdAndUp } = useDisplay();
 
 const sidebarWidth = computed(() => {
     const expandedWidth = 256;
@@ -26,68 +14,20 @@ const sidebarWidth = computed(() => {
     return isExpanded ? expandedWidth + margin : collapsedWidth + margin;
 });
 
-onMounted(async () => {
-
-
-    // Wait for the next DOM update cycle
-    await nextTick();
-    let minId = null;
-    let maxId = null;
-    let debounceTimeout = null;
-    function applyChanges() {
-        const sections = [...document.querySelectorAll('section')];
-        minId = null;
-        maxId = null;
-    }
-
-    function reportIntersection(entries: any[]) {
-        clearTimeout(debounceTimeout);
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const entryId = parseInt(entry.target.id);
-                const id = entry.target.getAttribute('id');
-                console.log(id);
-                sidebarStore.setActiveId(id);
-                if (minId === null || maxId === null) {
-                    minId = entryId;
-                    maxId = entryId;
-                } else {
-                    minId = Math.min(minId, entryId);
-                    maxId = Math.max(maxId, entryId);
-                }
-            }
-        });
-        debounceTimeout = setTimeout(applyChanges, 500);
-    }
-    const io = new IntersectionObserver(reportIntersection, { threshold: 0.1, root: null, rootMargin: "0px" });
-    const sections = [...document.querySelectorAll('section')];
-
-    sections.forEach((section) => {
-        io.observe(section);
-    });
-});
-
 </script>
 
 <template>
-    <v-app class="grey-darken-1 code-family">
-        <SidebarRoute :links="links" :sidebarWidth="sidebarWidth"></SidebarRoute>
-        <component v-if="sidebarStore.isComponentLoaded" @link-clicked="onsidebarClick" :is="sidebarStore.loadedComponent"
-            v-bind="sidebarStore.props" />
-        <v-main>
-            <v-container>
-                <v-row justify="space-around">
-                    <v-col cols="8">
-                        <router-view v-slot="{ Component }">
-                            <transition :duration="{ enter: 600, leave: 200 }" name="fade" mode="out-in" appear>
-                                <component :is="Component" />
-                            </transition>
-                        </router-view>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-main>
-    </v-app>
+    <SidebarRoute v-if="!mobile" :links="links" :sidebarWidth="sidebarWidth"></SidebarRoute>
+    <v-main>
+        <v-container fluid class="pa-4 pa-sm-6 pa-md-8" style="max-width: 960px">
+
+            <router-view v-slot="{ Component }">
+                <transition :duration="{ enter: 600, leave: 200 }" name="fade" mode="out-in" appear>
+                    <component :is="Component" />
+                </transition>
+            </router-view>
+        </v-container>
+    </v-main>
 </template>
 
 <style lang="scss" scoped>

@@ -161,6 +161,10 @@ watch(
 </template>
 
 <style scoped lang="scss">
+header {
+    background-color: var(--background-color);
+}
+
 .hoverable {
     color: inherit;
     transition: color 0.5s ease;

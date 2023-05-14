@@ -12,6 +12,7 @@ export interface ProjectFile {
 
 export interface Project {
     repo: string;
+    abbrev: string;
     description: string;
     shortlink?: string | null;
     fulllink?: string | null;
@@ -26,6 +27,7 @@ export interface Project {
 const allProjects: Project[] = [
     {
         repo: "PremierSuite",
+        abbrev: "Ps",
         description: `
             A downloadable plugin for
             <a href="https://www.rocketleague.com/">RocketLeague</a> that allows the direct
@@ -60,6 +62,7 @@ const allProjects: Project[] = [
     },
     {
         repo: "canalysis",
+        abbrev: "Ca",
         description: `
         <p>Syncing calcium traces with externally captured events.</p>
         <p class=my-4>
@@ -98,6 +101,7 @@ const allProjects: Project[] = [
     },
     {
         repo: "time-series-network",
+        abbrev: "tsn",
         description: `
             Primary classification of neural signals into 5 event categories. <br />
             Our goal here was to take neural signals, and see if they elicit a response that can be detected by a machine learning algorithm.
@@ -143,6 +147,7 @@ const allProjects: Project[] = [
     },
     {
         repo: "web-dataviewer",
+        abbrev: "w-dv",
         description: `
             Locally hosted web server for data sharing, visualization, and analysis. <br>
             Built with Python, Flask, and Plotly.js. <br>
@@ -175,6 +180,7 @@ const allProjects: Project[] = [
     },
     {
         repo: "FlynnPortfolio",
+        abbrev: "FP",
         description: `
 
         Source code for this Website Portfolio. <br>

@@ -1,77 +1,67 @@
 <template>
-    <v-card class="elevation-5">
-        <v-toolbar>
-            <v-tabs align-tabs="start">
-                <v-tab v-for="resume in versions" color="deep-purple-accent-4 text-bold text-white" align-tabs="center"
-                    @click="changeTabResume(resume.id)">
-                    <p class="font-semibold">
-                        {{ resume.name }}
-                    </p>
-                </v-tab>
-            </v-tabs>
-            <v-divider vertical></v-divider>
-            <v-spacer></v-spacer>
-            <v-btn density="compact" size="large" @click="downloadResume">
-                <font-awesome-icon :icon="['fas', 'download']" class="mr-2" />
-                Download
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn density="compact" size="large" @click="openExternalResume">
-                <font-awesome-icon :icon="['fas', 'up-right-from-square']" class="mr-2" />
-                Open
-            </v-btn>
-            <v-spacer></v-spacer>
-        </v-toolbar>
-        <v-window v-model="activeTabResume" class="resume-window elevation-5">
-            <v-window-item v-for="resume in versions" :key="resume.id" :value="resume.id">
-                <v-container v-show="activeTabResume === resume.id" fluid class="resume-container">
-                    <Suspense>
-                        <template #default>
-                            <AsyncVuePdfEmbed :source="resume.pdfUrl" />
-                        </template>
-                        <template #fallback>
-                            <SkeletonLoader :width="'100%'" :height="'400px'" />
-                        </template>
-                    </Suspense>
-                </v-container>
-            </v-window-item>
-        </v-window>
-    </v-card>
+    <div style="transform-origin: center center 0px;">
+        <v-container fluid class="">
+            <v-card>
+                <v-toolbar density="compact" flat>
+                    <v-tabs align-tabs="start" slot="extension" v-model="currentResume">
+                        <v-tab v-for="resume in versions" align-tabs="center" :key="resume.name" :value="resume.name">
+                            <p class="text-body-1">
+                                {{ resume.name }}
+                            </p>
+                        </v-tab>
+                    </v-tabs>
+                    <v-divider vertical></v-divider>
+                    <v-btn :size="mobile ? 'x-small' : 'large'" @click="downloadResume">
+                        <font-awesome-icon :icon="['fas', 'download']" class="" variant="plain" />
+                    </v-btn>
+                    <v-btn :size="mobile ? 'x-small' : 'large'" @click="openExternalResume">
+                        <font-awesome-icon :icon="['fas', 'up-right-from-square']" class="" variant="plain" />
+                    </v-btn>
+                </v-toolbar>
+                <v-window v-model="currentResume" class="elevation-5">
+                    <v-window-item v-for="resume in versions" :key="resume.name" :value="resume.name" class="pa-2">
+                        <VuePdfEmbed :source="resume.pdfUrl" @rendered="handleDocumentRender" />
+                    </v-window-item>
+                </v-window>
+                <v-card-text> {{ currentResume }}</v-card-text>
+            </v-card>
+        </v-container>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { ref, defineAsyncComponent, onMounted } from 'vue';
-import SkeletonLoader from "@/components/navigation/LoadingSkeleton.vue";
+import { ref, defineAsyncComponent, onMounted, computed } from 'vue';
+import { useDisplay } from 'vuetify'
+import { useElementSize } from '@vueuse/core'
+import VuePdfEmbed from 'vue-pdf-embed';
+const { mobile } = useDisplay();
+const resumecontainer = ref(null);
+const { width, height } = useElementSize(resumecontainer.value);
+const vHeight = computed(() => height.value);
+const vWidth = computed(() => width.value);
+// const currentResume = computed(() => versions.find((resume) => resume.id === activeTabResume.value));
 
-const AsyncVuePdfEmbed = defineAsyncComponent(() => import('vue-pdf-embed'));
-let activeTabResume = ref(1);
-let loading = ref({ 1: true, 2: true, 3: true });
+const currentResume = ref('WebDev');
+const isLoading = ref(true);
 
-function changeTabResume(id: number): void {
-    activeTabResume.value = id;
+function handleDocumentRender() {
+    isLoading.value = false;
 }
 
-function handleLoad(id: number) {
-    loading.value[id] = false;
-}
-
-onMounted(() => {
-    handleLoad(1); // Preload the first resume
-});
 
 function openExternalResume() {
-    const resume = versions.find((resume) => resume.id === activeTabResume.value);
+    const resume = versions.find((resume) => resume.name === currentResume.value);
     if (resume) {
         window.open(resume.pdfUrl, '_blank');
     }
 }
 
 function downloadResume() {
-    const resume = versions.find((resume) => resume.id === activeTabResume.value);
+    const resume = versions.find((resume) => resume.name === currentResume.value);
     if (resume) {
         const link = document.createElement('a');
         link.href = resume.pdfUrl;
-        link.download = 'resume.pdf'; // you can set a custom filename here
+        link.download = 'resume.pdf';
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
@@ -88,17 +78,17 @@ interface ResumeVersion {
 const versions: ResumeVersion[] = [
     {
         id: 1,
-        name: 'Software/Data-Science',
-        pdfUrl: '/pdf/FlynnOConnell_Resume_DS.pdf',
-    },
-    {
-        id: 2,
-        name: 'Software/Web-Dev',
+        name: 'WebDev',
         pdfUrl: '/pdf/FlynnOConnell_Resume_WD.pdf',
     },
     {
+        id: 2,
+        name: 'DataScience',
+        pdfUrl: '/pdf/FlynnOConnell_Resume_DS.pdf',
+    },
+    {
         id: 3,
-        name: 'Software/Data-Analytics',
+        name: 'DataAnalytics',
         pdfUrl: '/pdf/FlynnOConnell_Resume_DSM.pdf',
     },
 ];
@@ -106,9 +96,5 @@ const versions: ResumeVersion[] = [
 </script>
 
 
-<style scoped>
-.resume-container {
-    min-height: 100vh;
-}
-</style>
+<style scoped></style>
 

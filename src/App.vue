@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { onBeforeMount } from 'vue';
+import { useDisplay } from 'vuetify'
+import HeaderMobile from '@/components/navigation/HeaderMobile.vue';
+const { mobile } = useDisplay();
 
 onBeforeMount(() => {
     const router = useRouter();
@@ -17,15 +20,13 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <div class="app-container">
+    <v-app fullheight>
+        <HeaderMobile v-if="mobile" />
         <router-view v-slot="{ Component }">
-            <transition :duration="{ enter: 600, leave: 200 }" name="fade" mode="out-in" appear>
-                <component :is="Component" />
-            </transition>
+            <component :is="Component" />
         </router-view>
-    </div>
+    </v-app>
 </template>
-
 
 <style lang="scss">
 @import 'tailwindcss/tailwind.css';

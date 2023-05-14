@@ -2,7 +2,7 @@
 import { computed, ref, onMounted } from 'vue';
 import { useActiveIndexStore } from '@/stores/activeIndex';
 import HeaderComponent from '@/components/navigation/HeaderComponent.vue';
-import HeaderMobile from '@/components/navigation/HeaderMobile.vue';
+
 import NeuronIcon from '@/components/icons/nav/NeuronIcon.vue';
 import CodeIcon from '@/components/icons/nav/CodeIcon.vue';
 import PauseIcon from '@/components/icons/other/PauseIcon.vue';
@@ -13,12 +13,10 @@ import Icon from '@/components/subcomponents/SVGComponent.vue';
 import { useDisplay } from 'vuetify'
 const { mobile, lgAndUp } = useDisplay()
 
-
 const isHovered = ref(false);
-const btnActive = computed(() => isHovered.value);
 const indexStore = useActiveIndexStore();
 
-const main = ref<HTMLElement | null>(null);
+const main = ref(null);
 const article = ref<HTMLElement | null>(null);
 const videoplayer = ref<HTMLVideoElement | null>(null);
 const playbutton = ref<HTMLButtonElement | null>(null);
@@ -31,8 +29,6 @@ defineProps({
 });
 
 onMounted(() => {
-
-
 
     const video = videoplayer.value;
     if (video) {
@@ -83,7 +79,7 @@ function playButton() {
 const iconComponent = computed(() => (isPlaying.value ? PauseIcon : PlayIcon));
 
 function useSwipeLeft() {
-    const nodeLength = main.value!.children.length;
+    const nodeLength = main.value!.$el.children.length;
 
     let activeIndex = computed(() => {
         return indexStore.activeIndex;
@@ -109,7 +105,7 @@ function useSwipeLeft() {
 }
 
 function useSwipeRight(): void {
-    const nodeLength = main.value!.children.length;
+    const nodeLength = main.value!.$el.children.length;
     let activeIndex = computed(() => {
         return indexStore.activeIndex;
     });
@@ -137,20 +133,21 @@ function useSwipeRight(): void {
 </script>
 
 <template>
-    <div class="home-container">
-        <HeaderComponent v-if="!mobile" />
-        <HeaderMobile v-else />
-        <main ref="main" :class="mobile ? 'mobile-main' : ''">
-            <article ref="article" id="home" data-index="0" data-status="active">
-                <!-- IMAGE SECTION -->
-                <div class="article-image-section article-section relative">
-                    <p id="credit" class="text-white absolute top-0 right-0 bold">
+    <HeaderComponent v-if="!mobile" />
+    <v-main ref="main" :class="mobile ? 'mobile-main' : ''">
+        <article ref="article" id="home" data-index="0" data-status="active">
+            <!-- IMAGE SECTION -->
+            <div id="home-image-section" class="article-image-section article-section relative">
+                <div class="article-inner">
+                    <p id="credit" class="absolute top-0 right-0 bold">
                         Photo credit: <br />
                         <a href="https://www.linkedin.com/in/kevin-mohsenian-phd-45020558/">Kevin Mohsenian</a>
                     </p>
                 </div>
-                <!-- DESCRIPTION SECTION -->
-                <div class="article-description-section article-section p-8 flex justify-center relative">
+            </div>
+            <!-- DESCRIPTION SECTION -->
+            <div v-if="!mobile" class="article-description-section article-section p-8 flex justify-center relative">
+                <div class="article-inner">
                     <div class="h-full w-full flex flex-col justify-between">
                         <h1 class="text-center">Hi, I'm Flynn</h1>
                         <div id="neuron-bg" class="flex-grow d-none d-lg-block"></div>
@@ -159,235 +156,581 @@ function useSwipeRight(): void {
                         </p>
                     </div>
                 </div>
-                <!-- TITLE SECTION -->
-                <div class="article-title-section article-section">
-                    <h2>Neuroscientist & Software Engineer</h2>
-                </div>
-                <!-- NAV BUTTONS SECTION -->
-                <div class="article-nav-section article-section" @mouseover="isHovered = true"
-                    @mouseout="isHovered = false">
-                    <CodeIcon ref="leftButton" class="article-nav-button" :action="useSwipeLeft" :isHov="isHovered">
-                    </CodeIcon>
-                    <NeuronIcon ref="rightButton" class="article-nav-button" :action="useSwipeRight" :isHov="isHovered">
-                    </NeuronIcon>
-                </div>
-            </article>
-            <article ref="article" id="scientist" data-index="1" data-status="inactive">
-                <div class="article-image-section article-section relative">
-                    <div class="flex flex-grow justify-center">
-                        <div class="video-container relative">
-                            <video ref="videoplayer" id="caSignal" autoplay muted loop>
-                                <source src="/movies/Ca2Imaging.mp4" type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="caption">
-                                <h5 class="text-white">Neurons glow when they're active</h5>
-                            </div>
-                            <button ref="playbutton" id="myBtn" class="absolute" @click="playButton">
-                                <component :is="iconComponent"></component>
-                            </button>
+            </div>
+            <!-- TITLE SECTION -->
+            <div class="article-title-section article-section">
+                <h2>Neuroscientist & Software Engineer</h2>
+            </div>
+            <!-- NAV SECTION -->
+            <div class="article-nav-section article-section" @mouseover="isHovered = true" @mouseout="isHovered = false">
+                <CodeIcon ref="leftButton" class="article-nav-button" :action="useSwipeLeft" :isHov="isHovered">
+                </CodeIcon>
+                <NeuronIcon ref="rightButton" class="article-nav-button" :action="useSwipeRight" :isHov="isHovered">
+                </NeuronIcon>
+            </div>
+        </article>
+        <article ref="article" id="scientist" data-index="1" data-status="inactive">
+            <!-- IMAGE SECTION -->
+            <div id="scientist-image-section" class="article-image-section article-section relative">
+                <div class="flex flex-grow justify-center">
+                    <div class="video-container relative">
+                        <video ref="videoplayer" id="caSignal" autoplay muted loop>
+                            <source src="/movies/Ca2Imaging.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="caption">
+                            <h5 class="text-white">Neurons glow when they're active</h5>
                         </div>
+                        <button ref="playbutton" id="myBtn" class="absolute" @click="playButton">
+                            <component :is="iconComponent"></component>
+                        </button>
                     </div>
                 </div>
-                <div class="article-description-section article-section">
-                    <div class="flex flex-col justify-evenly flex-grow text-white relative pt-3">
-                        <h1 class="self-start justify-evenly">
-                            My research objectives:
-                        </h1>
-                        <div class="relative mx-6 flex flex-col flex-grow justify-evenly self-center">
-                            <ul class="flex flex-col flex-grow justify-evenly">
-                                <li>
-                                    <strong>Neural Coding Mechanisms:</strong> How
-                                    do neurons encode information
-                                </li>
-                                <li>
-                                    <strong>Neural Dynamics:</strong> How do neurons
-                                    interact with each other
-                                </li>
-                                <li>
-                                    <strong>Neuroinflammation:</strong> How does
-                                    central inflammation affect eating behaviors
-                                </li>
-                                <li>
-                                    <strong>Neuroplasticity:</strong> How does the
-                                    brain adapt to changes in the environment
-                                </li>
-                            </ul>
-                        </div>
+            </div>
+            <!-- DESCRIPTION SECTION -->
+            <div v-if="!mobile" class="article-description-section article-section">
+                <div class="flex flex-col justify-evenly flex-grow text-white relative pt-3">
+                    <h1 class="self-start justify-evenly">
+                        My research objectives:
+                    </h1>
+                    <div class="relative mx-6 flex flex-col flex-grow justify-evenly self-center">
+                        <ul class="flex flex-col flex-grow justify-evenly">
+                            <li>
+                                <strong>Neural Coding Mechanisms:</strong> How
+                                do neurons encode information
+                            </li>
+                            <li>
+                                <strong>Neural Dynamics:</strong> How do neurons
+                                interact with each other
+                            </li>
+                            <li>
+                                <strong>Neuroinflammation:</strong> How does
+                                central inflammation affect eating behaviors
+                            </li>
+                            <li>
+                                <strong>Neuroplasticity:</strong> How does the
+                                brain adapt to changes in the environment
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="article-title-section article-section">
-                    <h2>A view inside the brain</h2>
-                    <ArrowDownIcon link="experience/publications" tooltip="Publications" class="article-nav-button">
-                    </ArrowDownIcon>
-                </div>
-                <div class="article-nav-section article-section">
-                    <HomeIconSlide ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></HomeIconSlide>
-                    <CodeIcon ref="rightButton" class="article-nav-button" :action="useSwipeRight"></CodeIcon>
-                </div>
-            </article>
-            <article ref="article" id="engineer" data-index="2" data-status="inactive">
-                <div class="article-image-section article-section">
-                    <div class="ais-wrapper">
-                        <!-- ROW 1 -->
-                        <div id="ais-left" class="ais-section justify-center">
-                            <h3 class="self-end justify-self-center">Primary Tools</h3>
-                        </div>
-                        <div id="ais-left" class="ais-section justify-center">
-                            <h3 class="self-end justify-self-center">Additional Skills</h3>
-                        </div>
-                        <!-- ROW 2 -->
-                        <div id="ais-left" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="cpp" filter: true />
-                            </div>
+            </div>
+            <!-- TITLE SECTION -->
+            <div class="article-title-section article-section">
+                <h2>A view inside the brain</h2>
+                <ArrowDownIcon link="experience/publications" tooltip="Publications" class="article-nav-button">
+                </ArrowDownIcon>
+            </div>
+            <!-- NAV SECTION -->
+            <div class="article-nav-section article-section">
+                <HomeIconSlide ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></HomeIconSlide>
+                <CodeIcon ref="rightButton" class="article-nav-button" :action="useSwipeRight"></CodeIcon>
+            </div>
+        </article>
+        <article ref="article" id="engineer" data-index="2" data-status="inactive">
+            <!-- IMAGE SECTION -->
+            <div id="engineer-image-section" class="article-image-section article-section"
+                :touch="mobile ? 'true' : 'false'">
+                <v-carousel hide-delimiters show-arrows="hover" height="100%">
+                    <v-carousel-item>
+                        <div id="icon-inner" class="article-inner h-full">
+                            <h1 class="w-full text-center">
+                                My Tech Stack
+                            </h1>
+                            <div class="ais-wrapper">
+                                <!-- ROW 1 -->
+                                <div id="ais-left" class="ais-section justify-center">
+                                    <h3 class="self-end justify-self-center">Primary Tools</h3>
+                                </div>
+                                <div id="ais-left" class="ais-section justify-center">
+                                    <h3 class="self-end justify-self-center">Additional Skills</h3>
+                                </div>
+                                <!-- ROW 2 -->
+                                <div id="ais-left" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="cpp" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="c" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="py" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="ts" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="java" filter: true />
+                                    </div>
+                                </div>
+                                <div id="ais-right" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="html" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="languages" name="css" filter: true />
+                                    </div>
 
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="py" filter: true />
-                            </div>
+                                </div>
+                                <!-- ROW 3 -->
+                                <div id="ais-left" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="frameworks" name="nuxt" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="frameworks" name="react" filter: true />
+                                    </div>
 
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="ts" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="java" filter: true />
-                            </div>
-                        </div>
-                        <div id="ais-right" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="html" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="css" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="languages" name="c" filter: true />
-                            </div>
-                        </div>
-                        <!-- ROW 3 -->
-                        <div id="ais-left" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="frameworks" name="nuxt" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="frameworks" name="react" filter: true />
-                            </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="frameworks" name="vue" filter: true />
+                                    </div>
+                                </div>
+                                <div id="ais-right" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="other" name="Docker" filter: true />
+                                    </div>
 
-                            <div class="techicon">
-                                <Icon subfolder="frameworks" name="vue" filter: true />
-                            </div>
-                        </div>
-                        <div id="ais-right" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="other" name="Docker" filter: true />
-                            </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="other" name="DigitalOcean" filter: true />
+                                    </div>
+                                </div>
+                                <!-- ROW 3 -->
+                                <div id="ais-left" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="databases" name="MongoDB" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="databases" name="MySQL" filter: true />
+                                    </div>
 
-                            <div class="techicon">
-                                <Icon subfolder="other" name="DigitalOcean" filter: true />
-                            </div>
-                        </div>
-                        <!-- ROW 3 -->
-                        <div id="ais-left" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="databases" name="MongoDB" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="databases" name="MySQL" filter: true />
-                            </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="databases" name="PostgresDB" filter: true />
+                                    </div>
+                                </div>
+                                <div id="ais-right" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="other" name="Node" filter: true />
+                                    </div>
+                                    <div class="techicon">
+                                        <Icon subfolder="other" name="Linux" filter: true />
+                                    </div>
+                                </div>
+                                <!-- ROW 4 -->
+                                <div id="ais-left" class="ais-section">
+                                    <div class="techicon">
+                                        <Icon subfolder="other" name="GoogleCloud" filter: true />
+                                    </div>
+                                </div>
+                                <div id="ais-right" class="ais-section">
 
-                            <div class="techicon">
-                                <Icon subfolder="databases" name="PostgresDB" filter: true />
+                                </div>
                             </div>
                         </div>
-                        <div id="ais-right" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="other" name="Node" filter: true />
-                            </div>
-                            <div class="techicon">
-                                <Icon subfolder="other" name="Linux" filter: true />
-                            </div>
-                        </div>
-                        <!-- ROW 4 -->
-                        <div id="ais-left" class="ais-section">
-                            <div class="techicon">
-                                <Icon subfolder="other" name="GoogleCloud" filter: true />
-                            </div>
-                        </div>
-                        <div id="ais-right" class="ais-section">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="article-description-section article-section">
-                    <p class="text-white mt-5 mb-5">
-                        I have been coding every day that I can for 6+ years.
+                    </v-carousel-item>
+                    <v-carousel-item>
+                        <v-container fluid>
+                            <v-row justify-center>
+                                <v-col>
+                                    <h1 class="text-center">
+                                        Languages
+                                    </h1>
+                                </v-col>
+                            </v-row>
+                            <v-row justify-center>
+                                <v-col>
+                                    <h1 class="text-left">
+                                        Languages
+                                    </h1>
+                                </v-col>
+                                <v-col cols="auto">
+                                    <div class="flex flex-row justify-evenly">
+                                        <div class="techicon">
+                                            <Icon subfolder="languages" name="cpp" filter: true />
+                                        </div>
+                                        <div class="techicon">
+                                            <Icon subfolder="languages" name="c" filter: true />
+                                        </div>
+                                        <div class="techicon">
+                                            <Icon subfolder="languages" name="py" filter: true />
+                                        </div>
+                                        <div class="techicon">
+                                            <Icon subfolder="languages" name="ts" filter: true />
+                                        </div>
+                                        <div class="techicon">
+                                            <Icon subfolder="languages" name="java" filter: true />
+                                        </div>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-carousel-item>
+                </v-carousel>
+            </div>
+            <!-- DESCRIPTION SECTION -->
+            <div v-if="!mobile" class="article-description-section article-section">
+                <div class="article-inner">
+                    <p>
+                        I have been coding every day that I can for over 6 years.
                     </p>
 
-                    <p class="text-white mt-5 mb-5">
+                    <p>
                         C++ taught me fundamental data structures and algorithms, which I used while studying the inner
                         workings of python.
                     </p>
 
-                    <p class="text-white mt-5 mb-5">I use my experience with <strong>C++, Python, Java</strong> and
+                    <p> I use my experience with <strong>C++, Python, Java</strong> and
                         <strong>Typescript</strong> to build
                         tools for extracting and analyzing neural recordings.
                     </p>
-                    <p class="text-white mt-5 mb-2">My object-oriented approach and <strong>strong
+                    <p>My object-oriented approach and <strong>strong
                             knowledge of
                             design patterns</strong> helps me keep code <strong class="italic">orgaized, fluent and
                             easily maintainable.</strong>
                     </p>
                 </div>
-                <div class="article-title-section article-section">
-                    <h2>Software Development</h2>
-                    <ArrowDownIcon link="experience/projects" tooltip="Projects" class="article-nav-button"></ArrowDownIcon>
-                </div>
-                <div class="article-nav-section article-section">
-                    <NeuronIcon ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></NeuronIcon>
-                    <HomeIconSlide ref="rightButton" class="article-nav-button" :action="useSwipeRight"></HomeIconSlide>
-                </div>
-            </article>
-        </main>
-    </div>
+            </div>
+            <!-- TITLE SECTION -->
+            <div class="article-title-section article-section">
+                <h2>Software Development</h2>
+                <ArrowDownIcon link="experience/projects" tooltip="Projects" class="article-nav-button"></ArrowDownIcon>
+            </div>
+            <!-- NAV SECTION -->
+            <div class="article-nav-section article-section">
+                <NeuronIcon ref="leftButton" class="article-nav-button" :action="useSwipeLeft"></NeuronIcon>
+                <HomeIconSlide ref="rightButton" class="article-nav-button" :action="useSwipeRight"></HomeIconSlide>
+            </div>
+        </article>
+    </v-main>
 </template>
 
 <style lang="scss">
-.mobile-main {
-    max-height: 100vh;
+.techicon {
+    height: auto;
+    width: 100%;
+    max-width: 65px;
+    min-width: 22px;
+    min-height: 22px;
+    margin-right: 3px;
 }
 
-.home-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0px;
+// MAIN NO BREAKPOINTS //
+main {
+    flex-grow: 1;
+    position: relative;
     overflow: hidden;
+    background-color: var(--background-color);
+
+    >article {
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 2fr 0.5fr;
+        position: absolute;
+        transition: transform 400ms ease;
+
+        >.article-section {
+            height: 100%;
+            display: flex;
+            padding: 2rem;
+
+            >.article-inner {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: flex-start;
+            }
+        }
+
+        >.article-description-section {
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding-right: 3rem;
+            padding-left: 2rem;
+
+            #neuron-bg {
+                background-image: url('@/assets/svg/other/Neuron.svg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            >p {
+                color: var(--lightest-slate);
+                transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+                transform-style: preserve-3d;
+
+                >a {
+                    &:hover {
+                        text-decoration: underline;
+                        transition: text-decoration 0.5s ease;
+                    }
+                }
+
+                >.source-link {
+                    color: var(--highlight-color);
+                    display: inline;
+                }
+            }
+        }
+
+        >.article-nav-section {
+            border-left: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            padding: 0 !important; // need this to override the padding from the article-section
+
+
+            >.article-nav-button {
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-grow: 1;
+                border: none;
+                outline: none;
+                color: rgba(255, 255, 255, 0.75);
+                cursor: pointer;
+
+                &:hover {
+                    transition: background-color 0.5s ease;
+                    background-color: rgba(255, 255, 255, 0.02);
+
+                    i {
+                        color: var(--highlight-color) !important;
+                        transform: scale(1.5);
+                        transition: all 0.2s ease !important;
+                    }
+                }
+
+                &:nth-child(2) {
+                    border-left: 1px solid var(--border-color);
+                }
+            }
+        }
+
+        >.article-title-section {
+            border-top: 1px solid var(--border-color);
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 4rem;
+            max-height: 150px;
+
+            >h2 {
+                flex-basis: 50%;
+                margin: 0px;
+                text-transform: uppercase;
+                flex-grow: 1;
+                line-height: normal;
+            }
+
+            &:hover {
+                transition: background-color 0.5s ease;
+                background-color: var(--background-color-3);
+                cursor: pointer;
+
+                >button {
+                    >.v-btn__content {
+                        color: var(--highlight-color) !important;
+                        transform: scale(1.1);
+                        transition: all 0.5s ease !important;
+                    }
+                }
+            }
+        }
+
+        &:first-child {
+            >.article-image-section {
+                background-color: transparent;
+                background-image: url('/img/SFN.jpg');
+            }
+        }
+
+        &:nth-child(2) {
+            >.article-image-section {
+                background-color: transparent;
+            }
+        }
+
+        &:nth-child(3) {
+            >.article-image-section {
+                background-color: transparent;
+            }
+        }
+
+        >.article-image-section {
+            background-position: center;
+            background-size: cover;
+
+            &#engineer-image-section {
+                padding-top: 2rem !important;
+                padding-bottom: 0 !important;
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+            }
+
+            #credit {
+                font-size: small;
+            }
+
+            #myBtn {
+                font-size: 18px;
+                border-radius: 15px;
+                color: #ffffff;
+                cursor: pointer;
+                bottom: 0;
+                padding: 0.5rem;
+
+                left: 0;
+                right: 0;
+                margin-left: auto;
+                margin-right: auto;
+                width: 75px;
+            }
+
+            #myBtn:hover {
+                color: var(--blue-dark);
+            }
+
+            .article-inner {
+                flex-grow: 1;
+                flex-shrink: 1;
+                overflow: hidden;
+            }
+
+            .ais-wrapper {
+                display: grid;
+                grid-template-columns: 2fr 2fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                margin: 0px;
+                overflow: hidden;
+
+                >.ais-section {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    margin: 0px;
+                    overflow: hidden;
+                }
+
+                >#ais-left {
+                    height: 100%;
+                    max-height: 60px;
+                }
+            }
+        }
+    }
 }
 
-.article-nav-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// MEDIA QUERIES - SMALL //
+@media only screen and (max-width: 768px) {
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        flex-grow: 1;
+        position: relative;
+        overflow: hidden;
+
+        >article {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            height: 100vh;
+            top: 0;
+        }
+
+        .article-image-section {
+            position: relative !important;
+        }
+
+        .mobile-description {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .article-section:first-child {
+            flex-basis: 50%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            overflow: auto;
+        }
+
+        .article-section:nth-child(2) {
+            flex-basis: 35%;
+            flex-grow: 1;
+            flex-shrink: 0;
+            overflow: auto;
+        }
+
+        .article-section:nth-child(3) {
+            flex-basis: 15%;
+            flex-grow: 0;
+            flex-shrink: 0;
+            overflow: auto;
+        }
+
+        .article-inner {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            flex-shrink: 1;
+            overflow: hidden;
+            font-size: clamp(12px, 1.5vw, 18px);
+        }
+    }
 }
 
-strong .italic {
-    font-weight: bold;
-    font-style: italic;
-}
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
 
-strong {
-    font-weight: bold;
-}
+    main {
+        overflow-y: hidden;
 
-#neuron-bg {
-    background-image: url('@/assets/svg/other/Neuron.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+        >article {
+            grid-template-columns: none;
+            grid-template-rows: 1.5fr repeat(3, 0.75fr) 0.25fr;
 
-#credit {
-    font-size: small;
+            >.article-title-section {
+                >h2 {
+                    line-height: 2.6rem;
+                }
+
+                border-bottom: 1px solid var(--border-color);
+                order: 2;
+            }
+
+            >.article-description-section {
+                border-left: none;
+                justify-content: center;
+                order: 3;
+            }
+
+            >.article-nav-section {
+                border-left: none;
+                border-bottom: 1px solid var(--border-color);
+                order: 4;
+            }
+
+            >.article-image-section {
+                order: 1;
+            }
+        }
+    }
 }
 
 main>article[data-status='active'] {
@@ -432,24 +775,6 @@ video {
     min-height: 100%;
 }
 
-#myBtn {
-    font-size: 18px;
-    border-radius: 15px;
-    color: #ffffff;
-    cursor: pointer;
-    bottom: 0;
-    padding: 0.5rem;
-
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75px;
-}
-
-#myBtn:hover {
-    color: var(--blue-dark);
-}
 
 .video-container {
     height: auto;
