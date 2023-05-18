@@ -211,6 +211,161 @@ const allProjects: Project[] = [
                 type: "API"
             },
         ],
+    },{
+        repo: "neuroexplore",
+        abbrev: "NX",
+        description: `
+
+        Electrophyiological time-series analysis tool. 
+        Made with Python, this package runs statistical analysis on time-series data.
+        The nature of the data is primarily neural signals with external stimuli.
+        Heavily utilizes pandas, numpy, and scipy.
+        Additionally provides a variety of visualization tools, including a heatmaps, spectrograms, and scatter plots.
+    `,
+        languages: ["py"],
+        source: "",
+        subfolder: ["frameworks"],
+        sourcetype: "",
+        activeTab: ref(0),
+        files: [
+            {
+                path: "data_utils/neuron.py",
+                title: "neuron",
+                type: "Class"
+            },
+            {
+                path: "data_utils/signals_stimuli.py",
+                title: "signals",
+                type: "Class"
+            },
+            {
+                path: "data_utils/data_collection.py",
+                title: "collector",
+                type: "Class"
+            },
+            {
+                path: "helpers/plot.py",
+                title: "plotter",
+                type: "Module"
+            },{
+                path: "helpers/ax_helpers.py",
+                title: "axe helpers",
+                type: "Module"
+            },
+        ],
+    },
+    {
+        repo: "web-dataviewer",
+        abbrev: "w-dv",
+        description: `
+            Locally hosted web server for data sharing, visualization, and analysis. <br>
+            Built with Python, Flask, and Plotly.js. <br>
+            This tool allows users to upload data, and view it in a variety of ways. <br>
+            The data can be viewed as a heatmap, scatter plot, 3D scatter plot or in its raw form. <br>
+            The data can also be analyzed with a variety of tools, including PCA, variance filters, spectrogram, and displayed in an interactively embedded figure. <br>
+    `,
+        languages: ["py", "ts"],
+        source: "",
+        sourcetype: "",
+        activeTab: ref(0),
+        subfolder: ["languages", "languages"],
+        files: [
+            {
+                path: "app/app.py",
+                title: "Application",
+                type: "Module"
+            },
+            {
+                path: "app/static/js/canvas.js",
+                title: "Canvas",
+                type: "Composable"
+            },
+            {
+                path: "app/static/js/sliders.js",
+                title: "Sliders",
+                type: "Component"
+            },
+        ],
+    },
+    {
+        repo: "FlynnPortfolio",
+        abbrev: "FP",
+        description: `
+
+        Source code for this Website Portfolio. <br>
+        Made with Vue3, Typescript, TailwindCSS and Vuetify3. <br>
+        This website is a single page application, with a variety of components. <br>
+        The components are dynamically loaded, and the page is (lazily) rendered. <br>
+        Not ideally responsive yet, but it's getting there. <br>
+    `,
+        languages: ["vue", "ts", "py", "html", "css"],
+        source: "",
+        subfolder: ["frameworks", "languages", "languages", "languages", "languages"],
+        sourcetype: "",
+        activeTab: ref(0),
+        files: [
+            {
+                path: "src/composables/observers.ts",
+                title: "Intersection Observers",
+                type: "Composable"
+            },
+            {
+                path: "src/firebase/firebase.ts",
+                title: "Firebase",
+                type: "Authentication"
+            },
+            {
+                path: "src/api/openai.ts",
+                title: "OpenAI API",
+                type: "API"
+            },
+        ],
+    },{
+        repo: "metric-space-analysis",
+        abbrev: "msa",
+        description: `
+
+        Analysis of the metric spaces occupied by neural recordings, and their properties.
+        People think of an "active brain" as one with many neurons with high firing rates.
+        This aims to quantify the distance between "spikes"/action-potentials or neuronal firing. 
+        This is an adaptation of the <a href=https://pubmed.ncbi.nlm.nih.gov/?Db=pubmed&Cmd=ShowDetailView&TermToSearch=9705450> Victor Purpura Method </a> for multi-neuron spike-train metrics. 
+
+        See: <a href=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2782407/> A new multi-neuron spike train metric </a>
+
+        Victor, J. D., and Purpura, K. P. (1998). doi: 10.1152/jn.1998.80.2.554
+        Adapted from original work by Alex Denmen. 
+    `,
+        languages: ["py", "c"],
+        source: "",
+        subfolder: ["frameworks"],
+        sourcetype: "",
+        activeTab: ref(0),
+        files: [
+            {
+                path: "data_utils/neuron.py",
+                title: "neuron",
+                type: "Class"
+            },
+            {
+                path: "data_utils/signals_stimuli.py",
+                title: "signals",
+                type: "Class"
+            },
+            {
+                path: "data_utils/data_collection.py",
+                title: "collector",
+                type: "Class"
+            },
+            {
+                path: "helpers/plot.py",
+                title: "plotter",
+                type: "Module"
+            },{
+                path: "helpers/ax_helpers.py",
+                title: "axe helpers",
+                type: "Module"
+            },
+        ],
     },
 ];
 

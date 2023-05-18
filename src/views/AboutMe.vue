@@ -148,12 +148,46 @@ function useSwipeRight(): void {
             <!-- DESCRIPTION SECTION -->
             <div v-if="!mobile" class="article-description-section article-section p-8 flex justify-center relative">
                 <div class="article-inner">
-                    <div class="h-full w-full flex flex-col justify-between">
-                        <h1 class="text-center">Hi, I'm Flynn</h1>
-                        <div id="neuron-bg" class="flex-grow d-none d-lg-block"></div>
-                        <p class="text-xl">
-                            I develop software to study the awake, behaving brain.
-                        </p>
+                    <div class="w-full flex flex-col justify-between">
+                        <h1 class="text-left">Hi! I'm Flynn</h1>
+                        <h2 class="text-xl">
+                            Professionally, I develop software to study the awake, behaving brain.
+                        </h2>
+                        <h3>
+                            But I love all things tech, and I'm always looking for new opportunities to learn and grow.
+                            I love reading source code in search of different perspectives and and designs.
+                        </h3>
+                        <p>I have a wide variety of software development experience:</p>
+                        <v-expansion-panels>
+                            <v-expansion-panel>
+                                <v-expansion-panel-title>
+                                    <v-icon icon="mdi-vuejs" /> Frontend
+                                </v-expansion-panel-title>
+                                <v-expansion-panel-text>
+                                    <p>
+                                        I created this website using Vue.js, Typescript and Vuetify.
+                                    </p>
+                                    <p>
+                                        Before I settled on Vue, I used React and Flask but due to my experience in python..
+                                        I was more interested in learning the inner-workings of TypeScript.
+                                    </p>
+                                </v-expansion-panel-text>
+                            </v-expansion-panel>
+                            <v-expansion-panel>
+                                <v-expansion-panel-title>
+                                    <v-icon icon="mdi-vuejs" /> Backend
+                                </v-expansion-panel-title>
+                                <v-expansion-panel-text>
+                                    <p>
+                                        I created this website using Vue.js, Typescript and Vuetify.
+                                    </p>
+                                    <p>
+                                        Before I settled on Vue, I used React and Flask but due to my experience in python..
+                                        I was more interested in learning the inner-workings of TypeScript.
+                                    </p>
+                                </v-expansion-panel-text>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
                     </div>
                 </div>
             </div>
