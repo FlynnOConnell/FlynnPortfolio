@@ -1,6 +1,6 @@
 # FlynnPortfolio
 
-Source code for my [portfolio website](https://www.FlynnData.org) hosted on [Firebase](https://firebase.google.com/.
+Source code for my [portfolio website](https://www.Flynno.dev) hosted on [Firebase](https://firebase.google.com/.
 
 Built with Vue 3 in Vite vuetify.
 
