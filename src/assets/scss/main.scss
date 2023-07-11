@@ -93,6 +93,7 @@ $color_1: var(--lightest-slate);
 $color_1_accent: var(--dark-slate);
 $color_2: var(--highlight-color);
 $color_3: rgba(255, 255, 255, 0.75);
+$color_4: #c0eaee;
 $header-font: 'Crimson', serif;
 $header2-font: var(--font-sans);
 $font-family_1: var(--vt-font-family-base);
@@ -158,7 +159,7 @@ h3 {
 p {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
     font-family: $font-family_1;
-    color: $color_2;
+    color: $color_4;
 }
 
 @function strip-unit($number) {
