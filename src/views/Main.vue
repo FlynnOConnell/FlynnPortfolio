@@ -20,7 +20,6 @@ const sidebarWidth = computed(() => {
     <SidebarRoute v-if="!mobile" :links="links" :sidebarWidth="sidebarWidth"></SidebarRoute>
     <v-main>
         <v-container fluid class="pa-4 pa-sm-6 pa-md-8" style="max-width: 960px">
-
             <router-view v-slot="{ Component }">
                 <transition :duration="{ enter: 600, leave: 200 }" name="fade" mode="out-in" appear>
                     <component :is="Component" />

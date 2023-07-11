@@ -95,7 +95,7 @@ $color_2: var(--highlight-color);
 $color_3: rgba(255, 255, 255, 0.75);
 $header-font: 'Crimson', serif;
 $header2-font: var(--font-sans);
-$font-family_1: var( --vt-font-family-base);
+$font-family_1: var(--vt-font-family-base);
 $font-family_2: var(--vt-font-family-mono);
 $background-color_1: var(--background-color);
 $background-color_2: transparent;
@@ -135,6 +135,30 @@ $mod_2: 1.5; // desktop
             }
         }
     }
+}
+
+h1 {
+    @include fluid-type($min_width, $max_width, $min_font * $mod_2, $max_font * $mod_2);
+    font-family: $header-font;
+    color: $color_1;
+}
+
+h2 {
+    @include fluid-type($min_width, $max_width, $min_font * $mod_1, $max_font * $mod_1);
+    font-family: $header2-font;
+    color: $color_1;
+}
+
+h3 {
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
+    font-family: $header2-font;
+    color: $color_1_accent;
+}
+
+p {
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
+    font-family: $font-family_1;
+    color: $color_2;
 }
 
 @function strip-unit($number) {

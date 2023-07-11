@@ -157,43 +157,17 @@ function useSwipeRight(): void {
                             But I love all things tech, and I'm always looking for new opportunities to learn and grow.
                             I love reading source code in search of different perspectives and and designs.
                         </h3>
-                        <p>I have a wide variety of software development experience:</p>
-                        <v-expansion-panels>
-                            <v-expansion-panel>
-                                <v-expansion-panel-title>
-                                    <v-icon icon="mdi-vuejs" /> Frontend
-                                </v-expansion-panel-title>
-                                <v-expansion-panel-text>
-                                    <p>
-                                        I created this website using Vue.js, Typescript and Vuetify.
-                                    </p>
-                                    <p>
-                                        Before I settled on Vue, I used React and Flask but due to my experience in python..
-                                        I was more interested in learning the inner-workings of TypeScript.
-                                    </p>
-                                </v-expansion-panel-text>
-                            </v-expansion-panel>
-                            <v-expansion-panel>
-                                <v-expansion-panel-title>
-                                    <v-icon icon="mdi-vuejs" /> Backend
-                                </v-expansion-panel-title>
-                                <v-expansion-panel-text>
-                                    <p>
-                                        I created this website using Vue.js, Typescript and Vuetify.
-                                    </p>
-                                    <p>
-                                        Before I settled on Vue, I used React and Flask but due to my experience in python..
-                                        I was more interested in learning the inner-workings of TypeScript.
-                                    </p>
-                                </v-expansion-panel-text>
-                            </v-expansion-panel>
-                        </v-expansion-panels>
+                        <p>I consider myself a professional learner, a skill adapted from the endless reviews of scientific literature.</p>
+                        <p>Nobody has time to read 50 papers written in a foreign scientific language, so you really have to get to the core of what the authors are trying to prove and understand what to skip.</p>
+                        <p>I apply the same mentality to learning a programming language. Behind all of the abstractions, how is this framework accomplishing what it's meant to accomplish...</p>
+                        <p>Or for python, why are for loops so unbelievably slow, what is it actually doing under the hood.</p>
+                        <p>This makes software development one of the most intelectually stimulating disciples I've come across.</p>
                     </div>
                 </div>
             </div>
             <!-- TITLE SECTION -->
             <div class="article-title-section article-section">
-                <h2>Neuroscientist & Software Engineer</h2>
+                <h1>Neuroscientist & Software Engineer</h1>
             </div>
             <!-- NAV SECTION -->
             <div class="article-nav-section article-section" @mouseover="isHovered = true" @mouseout="isHovered = false">
@@ -390,9 +364,6 @@ function useSwipeRight(): void {
                                         <div class="techicon">
                                             <Icon subfolder="languages" name="ts" filter: true />
                                         </div>
-                                        <div class="techicon">
-                                            <Icon subfolder="languages" name="java" filter: true />
-                                        </div>
                                     </div>
                                 </v-col>
                             </v-row>
@@ -406,7 +377,6 @@ function useSwipeRight(): void {
                     <p>
                         I have been coding every day that I can for over 6 years.
                     </p>
-
                     <p>
                         C++ taught me fundamental data structures and algorithms, which I used while studying the inner
                         workings of python.
@@ -472,7 +442,7 @@ main {
                 display: flex;
                 flex-grow: 1;
                 flex-direction: column;
-                justify-content: space-around;
+                justify-content: space-between;
                 align-items: flex-start;
             }
         }
@@ -549,7 +519,6 @@ main {
             align-items: center;
             justify-content: space-between;
             padding: 1rem 4rem;
-            max-height: 150px;
 
             >h2 {
                 flex-basis: 50%;
